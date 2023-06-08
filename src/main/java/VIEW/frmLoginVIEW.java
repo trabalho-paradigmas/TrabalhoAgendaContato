@@ -180,7 +180,6 @@ public class frmLoginVIEW extends javax.swing.JFrame {
                 objFrmPrincipalVIEW.lblUsuario.setText(nome_usuario);
                 //tela aciona
                 objFrmPrincipalVIEW.setVisible(true);
-
                 // fecha tela de login
                 dispose();
 
@@ -204,5 +203,6 @@ public class frmLoginVIEW extends javax.swing.JFrame {
         objCadastroUsuario.setVisible(true);
         dispose();
     }
-
+    
+    
 }

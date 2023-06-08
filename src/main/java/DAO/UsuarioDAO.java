@@ -3,6 +3,7 @@ package DAO;
 //import DTO.CadastroUsuarioDTO;
 import DTO.UsuarioDTO;
 import VIEW.frmPrincipal;
+import VIEW.telaUsuarioVIEW;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -63,9 +64,9 @@ public class UsuarioDAO {
 
     }
 
-    public ResultSet consultarUsuario(UsuarioDTO usuarioDTO) {
+    public ResultSet consultarNome(UsuarioDTO usuarioDTO) {
         
-        String sql = "SELECT nome_usuario FROM usuario WHERE nome_usuario = ? ";
+        String sql = "SELECT nome FROM usuario WHERE nome_usuario = ? ";
         conn = new ConexaoDAO().conectaBD();
 
         try {
@@ -73,6 +74,7 @@ public class UsuarioDAO {
             pstm.setString(1, usuarioDTO.getNome_usuario());
             rs = pstm.executeQuery();
             return rs;
+           
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ConsultaUsuario " + e);

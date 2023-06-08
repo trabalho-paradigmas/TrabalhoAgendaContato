@@ -9,6 +9,7 @@ import DTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.InstantSource;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -193,9 +194,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnMenPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenPerfilActionPerformed
         //vai para a tela de perfil do usuario dentro do tesktopTela
-
-        retornaNome();
-
+        retornaNomeUsuario();
 
     }//GEN-LAST:event_btnMenPerfilActionPerformed
 
@@ -264,13 +263,33 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void retornaNome() {
+    private void retornaNomeUsuario() {
 
         String nomeUsuario = lblUsuario.getText();
 
-        telaUsuarioVIEW telaUsuarioVIEW = new telaUsuarioVIEW(nomeUsuario);
-        telaUsuarioVIEW.setVisible(true);
-        DesktopTela.add(telaUsuarioVIEW);
+        String nome_usuario = lblUsuario.getText();
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        usuarioDTO.setNome_usuario(nome_usuario);
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        ResultSet rs = usuarioDAO.consultarNome(usuarioDTO);
+        try {
+            if (rs.next()) {
+                try {
+                    String nome = rs.getString("nome");
+                    telaUsuarioVIEW telaUsuarioVIEW = new telaUsuarioVIEW();
+                    telaUsuarioVIEW.recebeNomeUsuario(nomeUsuario);
+                    telaUsuarioVIEW.recebeNome(nome);
+                    telaUsuarioVIEW.setVisible(true);
+                    DesktopTela.add(telaUsuarioVIEW);
+                } catch (Exception erro) {
+                    JOptionPane.showMessageDialog(null, "MERDA DO NOME DE USUARIO" + erro);
+                }
+
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "MERDA DO NOME DE USUARIO" + erro);
+        }
 
     }
 

@@ -22,10 +22,8 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
     /**
      * Creates new form telaUsuarioVIEW
      */
-    public telaUsuarioVIEW(String nomeUsuario) {
+    public telaUsuarioVIEW() {
         initComponents();
-        String nome_usuario = nomeUsuario;
-        lblNomeUsuario.setText(nome_usuario);
 
     }
 
@@ -41,9 +39,9 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        lblSenha = new javax.swing.JLabel();
         lblNomeUsuario = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -57,11 +55,11 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nome de usuario:");
 
-        jLabel3.setText("Senha");
-
-        lblSenha.setText("jLabel4");
-
         lblNomeUsuario.setText("jLabel4");
+
+        jButton1.setText("Editar");
+
+        jButton2.setText("Excluir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,15 +68,19 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNomeUsuario)
-                    .addComponent(lblSenha)
-                    .addComponent(lblNome))
-                .addContainerGap(195, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNomeUsuario)
+                            .addComponent(lblNome))))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,11 +93,11 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(lblNomeUsuario))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lblSenha))
-                .addContainerGap(134, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(44, 44, 44))
         );
 
         setBounds(0, 0, 406, 310);
@@ -103,19 +105,24 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     public javax.swing.JLabel lblNome;
     public javax.swing.JLabel lblNomeUsuario;
-    public javax.swing.JLabel lblSenha;
     // End of variables declaration//GEN-END:variables
 
-    public void recebeNome(String nomeUsuario) {
+    public void recebeNomeUsuario(String nomeUsuario) {
 
-        String nome_usuario = nomeUsuario;
-        lblNomeUsuario.setText(nome_usuario);
+        lblNomeUsuario.setText(nomeUsuario);
+        // lblSenha.setText(senha);
 
     }
 
+    public void recebeNome(String nome) {
+        
+       lblNome.setText(nome);
+
+    }
 }
