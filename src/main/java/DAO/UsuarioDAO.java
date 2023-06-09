@@ -65,7 +65,7 @@ public class UsuarioDAO {
     }
 
     public ResultSet consultarNome(UsuarioDTO usuarioDTO) {
-        
+
         String sql = "SELECT nome FROM usuario WHERE nome_usuario = ? ";
         conn = new ConexaoDAO().conectaBD();
 
@@ -74,13 +74,30 @@ public class UsuarioDAO {
             pstm.setString(1, usuarioDTO.getNome_usuario());
             rs = pstm.executeQuery();
             return rs;
-           
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ConsultaUsuario " + e);
             return null;
-            
+
         }
+    }
+
+    public ResultSet alteraUsuario(String nomeUsuario) {
+        String sql = "update usuario set nome_usuario = ?, senha_usuario = ?, nome = ? where noe_usuario = ?";
+        conn = new ConexaoDAO().conectaBD();
+        
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm. setString(1, nomeUsuario);
+            rs = pstm.executeQuery();
+            System.out.println(rs);
+            
+            return rs;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ConsultaUsuario " + e);
+            return null;
+        }
+
     }
 
 }

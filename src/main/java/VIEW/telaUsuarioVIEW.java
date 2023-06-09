@@ -5,6 +5,7 @@ import DTO.UsuarioDTO;
 import com.mysql.cj.protocol.Resultset;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -37,11 +38,11 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        lblNome = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblNomeUsuario = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEditarUsuario = new javax.swing.JButton();
+        btnExcluirUsuario = new javax.swing.JButton();
+        lblNome = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -51,15 +52,20 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Nome:");
 
-        lblNome.setText("jLabel2");
-
         jLabel2.setText("Nome de usuario:");
 
         lblNomeUsuario.setText("jLabel4");
 
-        jButton1.setText("Editar");
+        btnEditarUsuario.setText("Editar");
+        btnEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarUsuarioActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Excluir");
+        btnExcluirUsuario.setText("Excluir");
+
+        lblNome.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,17 +75,17 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnEditarUsuario)
                         .addGap(57, 57, 57)
-                        .addComponent(jButton2))
+                        .addComponent(btnExcluirUsuario))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNomeUsuario)
-                            .addComponent(lblNome))))
+                            .addComponent(lblNome)
+                            .addComponent(lblNomeUsuario))))
                 .addContainerGap(146, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,21 +101,25 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
                     .addComponent(lblNomeUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnEditarUsuario)
+                    .addComponent(btnExcluirUsuario))
                 .addGap(44, 44, 44))
         );
 
         setBounds(0, 0, 406, 310);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
+        telaEditaUsuario();
+    }//GEN-LAST:event_btnEditarUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnEditarUsuario;
+    private javax.swing.JButton btnExcluirUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    public javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNome;
     public javax.swing.JLabel lblNomeUsuario;
     // End of variables declaration//GEN-END:variables
 
@@ -121,8 +131,22 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
     }
 
     public void recebeNome(String nome) {
-        
-       lblNome.setText(nome);
+
+        lblNome.setText(nome);
 
     }
+
+    private void telaEditaUsuario() {
+
+        String nome = lblNome.getText();
+        String nome_usuario = lblNomeUsuario.getText();
+
+        JDesktopPane desktopPane = getDesktopPane();
+        frmTelaEditaUsuario telaEditaUsuario = new frmTelaEditaUsuario();
+        telaEditaUsuario.recbeNomeeNomeUser(nome, nome_usuario);
+        desktopPane.add(telaEditaUsuario);
+        telaEditaUsuario.setVisible(true);
+
+    }
+
 }
