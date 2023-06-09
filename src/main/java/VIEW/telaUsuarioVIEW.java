@@ -64,6 +64,11 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
         });
 
         btnExcluirUsuario.setText("Excluir");
+        btnExcluirUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirUsuarioActionPerformed(evt);
+            }
+        });
 
         lblNome.setText("jLabel3");
 
@@ -113,6 +118,10 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
         telaEditaUsuario();
     }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
+    private void btnExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirUsuarioActionPerformed
+        excluirUsuario();
+    }//GEN-LAST:event_btnExcluirUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditarUsuario;
@@ -146,6 +155,25 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
         telaEditaUsuario.recbeNomeeNomeUser(nome, nome_usuario);
         desktopPane.add(telaEditaUsuario);
         telaEditaUsuario.setVisible(true);
+
+    }
+
+    private void excluirUsuario() {
+        String nome_usuario;
+
+        nome_usuario = lblNomeUsuario.getText();
+
+        int confirma = JOptionPane.showConfirmDialog(null, "Deseja apagar sua conta?", "Atenção", JOptionPane.YES_NO_OPTION);
+
+        if (confirma == JOptionPane.YES_OPTION) {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.excluir(nome_usuario);
+            dispose();
+            frmLoginVIEW loginVIEW = new frmLoginVIEW();
+            loginVIEW.setVisible(true);
+        }
+
+
 
     }
 

@@ -41,6 +41,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
         btnEntrarLogin = new javax.swing.JButton();
         txtSenhaUsuario = new javax.swing.JPasswordField();
         btnCadastrarUsuario = new javax.swing.JButton();
+        btnMudarSenha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,21 +63,34 @@ public class frmLoginVIEW extends javax.swing.JFrame {
             }
         });
 
+        btnMudarSenha.setText("mudar senha");
+        btnMudarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMudarSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEntrarLogin)
-                        .addGap(59, 59, 59)
-                        .addComponent(btnCadastrarUsuario))
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNomeUsuario)
-                    .addComponent(txtSenhaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(btnEntrarLogin)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnCadastrarUsuario))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(txtNomeUsuario)
+                            .addComponent(txtSenhaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(btnMudarSenha)))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,11 +104,13 @@ public class frmLoginVIEW extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtSenhaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEntrarLogin)
                     .addComponent(btnCadastrarUsuario))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnMudarSenha)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,6 +125,10 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     private void btnCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUsuarioActionPerformed
         cadastrarUsuario();
     }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
+
+    private void btnMudarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarSenhaActionPerformed
+       chamaTelaSenha();
+    }//GEN-LAST:event_btnMudarSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,6 +168,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarUsuario;
     private javax.swing.JButton btnEntrarLogin;
+    private javax.swing.JButton btnMudarSenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JTextField txtNomeUsuario;
@@ -202,6 +223,12 @@ public class frmLoginVIEW extends javax.swing.JFrame {
 
         objCadastroUsuario.setVisible(true);
         dispose();
+    }
+    
+    private void chamaTelaSenha(){
+    
+        frmMudarSenhaVIEW mudarSenhaVIEW = new frmMudarSenhaVIEW();
+        mudarSenhaVIEW.setVisible(true);
     }
     
     

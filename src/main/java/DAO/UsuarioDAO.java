@@ -82,22 +82,59 @@ public class UsuarioDAO {
         }
     }
 
-    public ResultSet alteraUsuario(String nomeUsuario) {
-        String sql = "update usuario set nome_usuario = ?, senha_usuario = ?, nome = ? where noe_usuario = ?";
+    public int alteraUsuario(String nomeUsuario, String nome, String senha) {
+        String sql = "update usuario set nome_usuario = ?, senha_usuario = ?, nome = ? where nome_usuario = ?";
+        conn = new ConexaoDAO().conectaBD();
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, nomeUsuario);
+            pstm.setString(3, nome);
+            pstm.setString(2, senha);
+            pstm.setString(4, nomeUsuario);
+
+            int alterado = pstm.executeUpdate();
+
+            return alterado;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ConsultaUsuario " + e);
+            return 0;
+        }
+
+    }
+
+    public int senha(String nome_usuario, String senha) {
+
+        String sql = "update usuario set senha_usuario = ? where nome_usuario = ?";
+
+        conn = new ConexaoDAO().conectaBD();
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(2, nome_usuario);
+            pstm.setString(1, senha);
+
+            int rs = pstm.executeUpdate();
+            return rs;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro nova senha " + e);
+            return 0;
+        }
+    }
+
+    public void excluir(String nome_usuario) {
+        String sql = "delete from usuario where nome_usuario = ?";
+
         conn = new ConexaoDAO().conectaBD();
         
         try {
             pstm = conn.prepareStatement(sql);
-            pstm. setString(1, nomeUsuario);
-            rs = pstm.executeQuery();
-            System.out.println(rs);
-            
-            return rs;
+            pstm.setString(1,nome_usuario);
+            pstm.executeUpdate();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ConsultaUsuario " + e);
-            return null;
-        }
-
+            JOptionPane.showMessageDialog(null, "erro excluir usuario " + e);
+        } 
     }
 
 }

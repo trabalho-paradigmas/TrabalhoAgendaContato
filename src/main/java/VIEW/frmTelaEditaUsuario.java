@@ -4,6 +4,10 @@
  */
 package VIEW;
 
+import DAO.UsuarioDAO;
+import DTO.UsuarioDTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Precision M6700
@@ -33,7 +37,7 @@ public class frmTelaEditaUsuario extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNomeUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -41,6 +45,11 @@ public class frmTelaEditaUsuario extends javax.swing.JInternalFrame {
         setTitle("Editar Usuario");
 
         btnSalvarEdicao.setText("Salvar");
+        btnSalvarEdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarEdicaoActionPerformed(evt);
+            }
+        });
 
         btnCancelaEdicao.setText("Cancelar");
         btnCancelaEdicao.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +85,7 @@ public class frmTelaEditaUsuario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addGap(58, 58, 58)
-                            .addComponent(jTextField1))
+                            .addComponent(txtSenha))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnSalvarEdicao)
                             .addGap(77, 77, 77)
@@ -101,7 +110,7 @@ public class frmTelaEditaUsuario extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvarEdicao)
@@ -120,6 +129,10 @@ public class frmTelaEditaUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
+    private void btnSalvarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarEdicaoActionPerformed
+        alterarUsuario();
+    }//GEN-LAST:event_btnSalvarEdicaoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelaEdicao;
@@ -127,9 +140,9 @@ public class frmTelaEditaUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField txtNome;
     public javax.swing.JTextField txtNomeUsuario;
+    private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 
 
@@ -145,5 +158,28 @@ public class frmTelaEditaUsuario extends javax.swing.JInternalFrame {
         txtNomeUsuario.setText(nome_usuario);
     }
     
-    private passa
+        
+    private void alterarUsuario(){
+        
+        String nome_usuario = txtNomeUsuario.getText();
+        String nome = txtNome.getText();
+        String senha = txtSenha.getText();
+       
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        int rs = usuarioDAO.alteraUsuario(nome_usuario, nome, senha);
+        
+        if(rs>0){
+            JOptionPane.showMessageDialog(null,"Salvo com sucesso");
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null,"erro no coco da edicao");
+        }
+        
+        
+        
+        
+        
+        
+        
+    }
 }
