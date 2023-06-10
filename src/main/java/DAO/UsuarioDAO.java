@@ -82,16 +82,16 @@ public class UsuarioDAO {
         }
     }
 
-    public int alteraUsuario(String nomeUsuario, String nome, String senha) {
-        String sql = "update usuario set nome_usuario = ?, senha_usuario = ?, nome = ? where nome_usuario = ?";
+    public int alteraUsuario(String nome_usuario, String nome, String senha) {
+        String sql = "update usuario set senha_usuario = ?, nome = ? where nome_usuario = ?";
         conn = new ConexaoDAO().conectaBD();
 
         try {
             pstm = conn.prepareStatement(sql);
-            pstm.setString(1, nomeUsuario);
-            pstm.setString(3, nome);
-            pstm.setString(2, senha);
-            pstm.setString(4, nomeUsuario);
+            pstm.setString(2, nome);
+            pstm.setString(1, senha);
+            pstm.setString(3, nome_usuario);
+            
 
             int alterado = pstm.executeUpdate();
 
@@ -135,6 +135,25 @@ public class UsuarioDAO {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro excluir usuario " + e);
         } 
+    }
+    
+    public ResultSet consultaSenha(String nome_usuario){
+        
+        String sql = "SELECT senha_usuario FROM usuario WHERE nome_usuario = ? ";
+        conn = new ConexaoDAO().conectaBD();
+        
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, nome_usuario);
+            rs = pstm.executeQuery();
+            return rs;
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro ao consultar senha" + e);
+            return null; 
+        }
+        
+        
     }
 
 }

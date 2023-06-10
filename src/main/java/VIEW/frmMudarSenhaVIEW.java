@@ -33,9 +33,9 @@ public class frmMudarSenhaVIEW extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnCancela = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        txtNovaSenha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
+        txtNovaSenha = new javax.swing.JPasswordField();
 
         jButton2.setText("jButton2");
 
@@ -57,12 +57,6 @@ public class frmMudarSenhaVIEW extends javax.swing.JFrame {
 
         jLabel1.setText("Nova Senha:");
 
-        txtNovaSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNovaSenhaActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Nome de usuario:");
 
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -76,53 +70,40 @@ public class frmMudarSenhaVIEW extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addComponent(jButton1)
-                                .addGap(51, 51, 51)
-                                .addComponent(btnCancela))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(157, 157, 157)
-                                .addComponent(jLabel1)))
-                        .addGap(0, 95, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(28, 28, 28)
-                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtNovaSenha))))
-                .addContainerGap())
+                        .addGap(72, 72, 72)
+                        .addComponent(jButton1)
+                        .addGap(65, 65, 65)
+                        .addComponent(btnCancela))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                        .addComponent(txtNovaSenha, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(btnCancela))
-                .addGap(111, 111, 111))
+                .addGap(89, 89, 89))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNovaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNovaSenhaActionPerformed
-        
-    }//GEN-LAST:event_txtNovaSenhaActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
@@ -177,23 +158,27 @@ public class frmMudarSenhaVIEW extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtNovaSenha;
+    private javax.swing.JPasswordField txtNovaSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void novaSenha(){
+    private void novaSenha() {
         String nome_usuario = txtUsuario.getText();
         String senha = txtNovaSenha.getText();
-        
+
+        if (nome_usuario.isEmpty() || senha.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         int rs = usuarioDAO.senha(nome_usuario, senha);
-        
-        if(rs > 0){
+
+        if (rs > 0) {
             JOptionPane.showMessageDialog(null, "Nova senha feita");
             dispose();
         }
-        
-    }
 
+    }
 
 }

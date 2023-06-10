@@ -40,7 +40,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnCadastrarContato = new javax.swing.JButton();
         txtNomeUsuario = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
         DesktopTela = new javax.swing.JDesktopPane();
@@ -66,13 +65,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Agenda de contatos");
         setResizable(false);
-
-        btnCadastrarContato.setText("Cadastrar Contato");
-        btnCadastrarContato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarContatoActionPerformed(evt);
-            }
-        });
 
         lblUsuario.setText("Usuario");
 
@@ -137,10 +129,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(btnCadastrarContato)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNomeUsuario)
@@ -164,20 +152,12 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(btnCadastrarContato)
-                .addGap(46, 46, 46))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         setSize(new java.awt.Dimension(828, 533));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCadastrarContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarContatoActionPerformed
-
-        cadastrarContato();
-
-    }//GEN-LAST:event_btnCadastrarContatoActionPerformed
 
     private void menOpcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menOpcActionPerformed
 
@@ -189,7 +169,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenSairActionPerformed
 
     private void menCadContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadContatoActionPerformed
-        cadastrarContato();
+        
     }//GEN-LAST:event_menCadContatoActionPerformed
 
     private void btnMenPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenPerfilActionPerformed
@@ -235,7 +215,6 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopTela;
-    private javax.swing.JButton btnCadastrarContato;
     private javax.swing.JRadioButtonMenuItem btnMenPerfil;
     private javax.swing.JRadioButtonMenuItem btnMenSair;
     private javax.swing.JPanel jPanel1;
@@ -248,13 +227,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel txtNomeUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void cadastrarContato() {
-
-        // chma a tela de cadastro de contato
-        frmTipoContatoVIEW objTipoContatoVIEW = new frmTipoContatoVIEW();
-        objTipoContatoVIEW.setVisible(true);
-        dispose();
-    }
 
     private void sair() {
         int sair = JOptionPane.showConfirmDialog(null, "Deseja sair do sistema?", "Atenção!", JOptionPane.YES_NO_OPTION);

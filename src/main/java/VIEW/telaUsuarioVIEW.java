@@ -47,7 +47,7 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("DesktopUsuario");
+        setTitle("Usuario");
         setPreferredSize(new java.awt.Dimension(595, 384));
 
         jLabel1.setText("Nome:");
@@ -135,7 +135,7 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
     public void recebeNomeUsuario(String nomeUsuario) {
 
         lblNomeUsuario.setText(nomeUsuario);
-        // lblSenha.setText(senha);
+        
 
     }
 
@@ -153,8 +153,10 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
         JDesktopPane desktopPane = getDesktopPane();
         frmTelaEditaUsuario telaEditaUsuario = new frmTelaEditaUsuario();
         telaEditaUsuario.recbeNomeeNomeUser(nome, nome_usuario);
+        telaEditaUsuario.recebeSenha();
         desktopPane.add(telaEditaUsuario);
         telaEditaUsuario.setVisible(true);
+        dispose();
 
     }
 
