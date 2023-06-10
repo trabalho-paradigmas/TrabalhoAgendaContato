@@ -172,7 +172,7 @@ public class frmTelaEditaUsuario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Salvo com sucesso");
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null,"erro no coco da edicao");
+            JOptionPane.showMessageDialog(null,"erro edicao");
         }
         
         

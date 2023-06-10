@@ -168,12 +168,9 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
         if (confirma == JOptionPane.YES_OPTION) {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.excluir(nome_usuario);
-            dispose();
-            frmLoginVIEW loginVIEW = new frmLoginVIEW();
-            loginVIEW.setVisible(true);
+           JOptionPane.showMessageDialog(null, "Usuario excluido com sucesso!");
+            
         }
-
-
 
     }
 

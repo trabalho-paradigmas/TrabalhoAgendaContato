@@ -259,7 +259,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void sair() {
         int sair = JOptionPane.showConfirmDialog(null, "Deseja sair do sistema?", "Atenção!", JOptionPane.YES_NO_OPTION);
         if (sair == JOptionPane.YES_OPTION) {
-            System.exit(0);
+            dispose();
+            frmLoginVIEW login = new frmLoginVIEW();
+            login.setVisible(true);
         }
     }
 
