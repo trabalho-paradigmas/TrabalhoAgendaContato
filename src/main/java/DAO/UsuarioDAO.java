@@ -44,7 +44,7 @@ public class UsuarioDAO {
 
     //Connection conn;
     //PreparedStatement pstm;
-    public void cadastroUsuario(UsuarioDTO objUsuarioDTO) {
+    public int cadastroUsuario(UsuarioDTO objUsuarioDTO) {
 
         String sql = "insert into usuario (nome_usuario, senha_usuario, nome) values (?, ?, ?)";
 
@@ -55,11 +55,12 @@ public class UsuarioDAO {
             pstm.setString(1, objUsuarioDTO.getNome_usuario());
             pstm.setString(2, objUsuarioDTO.getSenha_usuario());
             pstm.setString(3, objUsuarioDTO.getNome());
-
-            pstm.execute();
-            pstm.close();
+            int rs =pstm.executeUpdate();
+            
+            return rs;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "CadastroUsuario " + e);
+            return 0;
         }
 
     }

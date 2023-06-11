@@ -4,10 +4,10 @@
  */
 package VIEW;
 
-
 import DAO.UsuarioDAO;
 //import DTO.CadastroUsuarioDTO;
 import DTO.UsuarioDTO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -144,8 +144,7 @@ public class frmCadastroUsuarioVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastroUsuarioActionPerformed
 
     private void btnCancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCadastroActionPerformed
-        
-        
+
         cancelarCadastro();
     }//GEN-LAST:event_btnCancelarCadastroActionPerformed
 
@@ -201,6 +200,11 @@ public class frmCadastroUsuarioVIEW extends javax.swing.JFrame {
         nome = txtNome.getText();
         nome_usuario = txtNomeUsuario.getText();
         senha_usuario = txtSenhaUsuario.getText();
+        
+        if (nome_usuario.isEmpty() || senha_usuario .isEmpty() || nome.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         UsuarioDTO objUsuarioDTO = new UsuarioDTO();
 
@@ -209,17 +213,21 @@ public class frmCadastroUsuarioVIEW extends javax.swing.JFrame {
         objUsuarioDTO.setSenha_usuario(senha_usuario); // acessa senha
 
         UsuarioDAO objCadastroUsuarioDAO = new UsuarioDAO();
+        int rs = objCadastroUsuarioDAO.cadastroUsuario(objUsuarioDTO);
 
-        objCadastroUsuarioDAO.cadastroUsuario(objUsuarioDTO);
-        
-        frmCadastroUsuarioSucessoVIEW objLoginView = new frmCadastroUsuarioSucessoVIEW();
-        objLoginView.setVisible(true);
-        dispose();
-        
+        if (rs == 0) {
+            JOptionPane.showMessageDialog(null, "Esse usuario já existe. Se voce já possui conta, faça login. Caso não, mude o nome de usuario.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso");
+            dispose();
+            frmLoginVIEW loginVIEW = new frmLoginVIEW();
+            loginVIEW.setVisible(true);
+        }
+
     }
-    
-    private void cancelarCadastro(){
-        
+
+    private void cancelarCadastro() {
+
         frmLoginVIEW objcancelaCadastroVIEW = new frmLoginVIEW();
 
         objcancelaCadastroVIEW.setVisible(true);
