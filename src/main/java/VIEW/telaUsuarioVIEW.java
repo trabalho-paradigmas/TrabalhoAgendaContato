@@ -9,6 +9,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -120,6 +121,7 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
 
     private void btnExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirUsuarioActionPerformed
         excluirUsuario();
+        abreLogin();
     }//GEN-LAST:event_btnExcluirUsuarioActionPerformed
 
 
@@ -171,9 +173,16 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.excluir(nome_usuario);
            JOptionPane.showMessageDialog(null, "Usuario excluido com sucesso!");
-            
+           frmPrincipal frame = (frmPrincipal) SwingUtilities.getWindowAncestor(this);
+           frame.dispose();
         }
 
+    }
+    
+    private void abreLogin(){
+        frmLoginVIEW loginVIEW = new frmLoginVIEW();
+        loginVIEW.setVisible(true);
+        
     }
 
 }
