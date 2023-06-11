@@ -168,7 +168,7 @@ public class frmTelaEditaUsuario extends javax.swing.JInternalFrame {
         String nome = txtNome.getText();
         String senha = txtSenha.getText();
 
-        if (nome_usuario.isEmpty() || senha.isEmpty()) {
+        if (nome_usuario.isEmpty() || senha.isEmpty() || nome.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
