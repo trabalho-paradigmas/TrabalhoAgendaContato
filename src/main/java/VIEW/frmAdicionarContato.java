@@ -4,21 +4,33 @@
  */
 package VIEW;
 import DAO.ConexaoDAO;
-import DTO.ContatoDTO;
-import DAO.ContatoDAO;
-import java.sql.Connection;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
-
+import DTO.ContatoTrabalhoDTO;
+import DTO.ContatoSaudeDTO;
+import DTO.ContatoOutrosDTO;
 import DTO.ContatoFamiliaDTO;
-import DAO.ContatoFamiliaDAO;
+import DTO.ContatoEmergenciaDTO;
+import DTO.ContatoAmizadeTrabalhoService;
+import DTO.ContatoAmizadeDTO;
+import java.sql.SQLException;
+import DTO.ContatoDTO;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+import javax.swing.JButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import VIEW.frmPrincipal;
+
+
+
+
 
 
 public class frmAdicionarContato extends javax.swing.JFrame {
      Connection conn = new ConexaoDAO().conectaBD();
-    
+ 
 
     /**
      * Creates new form frmAmizade
@@ -37,14 +49,11 @@ public class frmAdicionarContato extends javax.swing.JFrame {
         TextApelido.setEnabled(false);
         TextEspecializacao.setEnabled(false);
         TextDepartamento.setEnabled(false);
-        TextContatoComercial.setEnabled(false);
+        TextTelefone_comercial.setEnabled(false);
     }
     
     
-    // ...
-
-
-   
+    // ..
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,7 +75,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
         TextApelido = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        TextContatoComercial = new javax.swing.JTextField();
+        TextTelefone_comercial = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         TextEspecializacao = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
@@ -149,9 +158,9 @@ public class frmAdicionarContato extends javax.swing.JFrame {
 
         jLabel8.setText("Número de contato comercial :");
 
-        TextContatoComercial.addActionListener(new java.awt.event.ActionListener() {
+        TextTelefone_comercial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextContatoComercialActionPerformed(evt);
+                TextTelefone_comercialActionPerformed(evt);
             }
         });
 
@@ -267,7 +276,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextContatoComercial, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextTelefone_comercial, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TextParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,7 +330,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextContatoComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextTelefone_comercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -364,20 +373,12 @@ public class frmAdicionarContato extends javax.swing.JFrame {
 
     private void btnAdicionarConatatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarConatatoActionPerformed
         
-        String nome = TextNome.getText();
-        String celular = TextContato.getText();
-        String email = TextEmail.getText();
-        String parentesco = TextParentesco.getText();
-        ContatoFamiliaDTO contato = new ContatoFamiliaDTO(0, nome, celular, email, parentesco);
-        ContatoFamiliaDAO contatoFamiliaDAO = new ContatoFamiliaDAO();
-        try {
-            contatoFamiliaDAO.cadastrarContatoFamiliaDAO(contato);
-            System.out.println("Contato de família inserido com sucesso!");
+         try {
+             AdicionarContato();
+         } catch (SQLException ex) {
+             Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+         }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
- 
     }//GEN-LAST:event_btnAdicionarConatatoActionPerformed
 
     private void TextParentescoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextParentescoActionPerformed
@@ -442,11 +443,13 @@ public class frmAdicionarContato extends javax.swing.JFrame {
             cbFamilia.setEnabled(false);
             cbSaude.setEnabled(false);
             cbOutros.setEnabled(false);
+
         } else {
 
             cbFamilia.setEnabled(true);
             cbSaude.setEnabled(true);
             cbOutros.setEnabled(true);
+           
         }
     }//GEN-LAST:event_cbTrabalhoActionPerformed
 
@@ -456,81 +459,19 @@ public class frmAdicionarContato extends javax.swing.JFrame {
 
             //bloqueando as checkbox
             cbOutros.setEnabled(false);
-            cbTrabalho.setEnabled(false);
             cbOutros.setEnabled(false);
 
         } else {
 
             cbOutros.setEnabled(true);
-            cbTrabalho.setEnabled(true);
             cbOutros.setEnabled(true);
         }
     }//GEN-LAST:event_cbEmergenciaActionPerformed
 
     private void btnConfirmarTipoContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarTipoContatoActionPerformed
-        // Verificar qual checkbox foi selecionada  
-        if (cbFamilia.isSelected()) {
-            TextNome.setEnabled(true);
-            TextContato.setEnabled(true);
-            TextEmail.setEnabled(true);
-            TextParentesco.setEnabled(true);
-            TextEspecializacao.setEnabled(false);
-            TextContatoComercial.setEnabled(false);
-            TextDepartamento.setEnabled(false);
-            TextApelido.setEnabled(false);
-            
-        } else if (cbAmizade.isSelected()) {
-            TextNome.setEnabled(true);
-            TextContato.setEnabled(true);
-            TextEmail.setEnabled(true);
-            TextApelido.setEnabled(true);
-            TextEspecializacao.setEnabled(false);
-            TextContatoComercial.setEnabled(false);
-            TextDepartamento.setEnabled(false);
-            TextParentesco.setEnabled(false);
-            
-        } else if (cbSaude.isSelected()) {
-            TextNome.setEnabled(true);
-            TextContato.setEnabled(true);
-            TextEmail.setEnabled(true);
-            TextEspecializacao.setEnabled(true);
-            TextContatoComercial.setEnabled(true);
-             TextParentesco.setEnabled(false); 
-            TextDepartamento.setEnabled(false);
-            TextApelido.setEnabled(false); 
-            
-        } else if (cbEmergencia.isSelected()) {
-            TextNome.setEnabled(true);
-            TextContato.setEnabled(true);
-            TextEmail.setEnabled(true);
-            TextParentesco.setEnabled(false); 
-            TextDepartamento.setEnabled(false);
-            TextApelido.setEnabled(false);
-            TextEspecializacao.setEnabled(false);
-            TextContatoComercial.setEnabled(false);
-            
-        } else if (cbTrabalho.isSelected()) {
-            TextNome.setEnabled(true);
-            TextContato.setEnabled(true);
-            TextEmail.setEnabled(true);
-            TextDepartamento.setEnabled(true);
-            TextContatoComercial.setEnabled(true);
-             TextParentesco.setEnabled(false); 
-            TextApelido.setEnabled(false);
-            TextEspecializacao.setEnabled(false);
-            
-        } else if (cbOutros.isSelected()) {
-            TextNome.setEnabled(true);
-            TextContato.setEnabled(true);
-            TextEmail.setEnabled(true);
-            TextParentesco.setEnabled(false); 
-            TextApelido.setEnabled(false);
-            TextEspecializacao.setEnabled(false);
-            TextDepartamento.setEnabled(false);
-            TextContatoComercial.setEnabled(false);
-        } 
         
-        
+        ConfirmarTipoContato();
+      
     }//GEN-LAST:event_btnConfirmarTipoContatoActionPerformed
 
     private void cbSaudeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSaudeActionPerformed
@@ -547,23 +488,45 @@ public class frmAdicionarContato extends javax.swing.JFrame {
             cbFamilia.setEnabled(true);
             cbAmizade.setEnabled(true);
             cbTrabalho.setEnabled(true);
+            cbOutros.setEnabled(true);
         }
     }//GEN-LAST:event_cbSaudeActionPerformed
 
     private void cbOutrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOutrosActionPerformed
-        // TODO add your handling code here:
+        if (cbOutros.isSelected()) {
+
+            //bloqueando as checkbox
+            cbFamilia.setEnabled(false);
+            cbAmizade.setEnabled(false);
+            cbTrabalho.setEnabled(false);
+            cbSaude.setEnabled(false);
+            cbEmergencia.setEnabled(false);
+        } else {
+
+            cbFamilia.setEnabled(true);
+            cbAmizade.setEnabled(true);
+            cbTrabalho.setEnabled(true);
+            cbSaude.setEnabled(true);
+            cbEmergencia.setEnabled(true);
+        }
     }//GEN-LAST:event_cbOutrosActionPerformed
 
     private void TextContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextContatoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextContatoActionPerformed
 
-    private void TextContatoComercialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextContatoComercialActionPerformed
+    private void TextTelefone_comercialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTelefone_comercialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextContatoComercialActionPerformed
+    }//GEN-LAST:event_TextTelefone_comercialActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Cancelar();
+         try {
+             Cancelar();
+         } catch (SQLException ex) {
+             Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (ExecutionException ex) {
+             Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
@@ -605,12 +568,12 @@ public class frmAdicionarContato extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextApelido;
     private javax.swing.JTextField TextContato;
-    private javax.swing.JTextField TextContatoComercial;
     private javax.swing.JTextField TextDepartamento;
     private javax.swing.JTextField TextEmail;
     private javax.swing.JTextField TextEspecializacao;
     private javax.swing.JTextField TextNome;
     private javax.swing.JTextField TextParentesco;
+    private javax.swing.JTextField TextTelefone_comercial;
     private javax.swing.JButton btnAdicionarConatato;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmarTipoContato;
@@ -638,9 +601,317 @@ public class frmAdicionarContato extends javax.swing.JFrame {
 
     
     
-    private void Cancelar() {
+    private void Cancelar() throws SQLException, ExecutionException {
         frmPrincipal objTelafrmPrincipalVIEW = new frmPrincipal();
         objTelafrmPrincipalVIEW.setVisible(true);
         dispose();
     }
+
+    private void AdicionarContato() throws SQLException {
+        String nome = TextNome.getText();
+        String celular = TextContato.getText();
+        String email = TextEmail.getText();
+
+        ContatoDTO contato = null;
+
+       
+        if (cbFamilia.isSelected()) {
+            String parentesco = TextParentesco.getText();
+            contato = new ContatoFamiliaDTO(0, nome, celular, email, parentesco);
+            
+        } else if (cbAmizade.isSelected()) {
+            String apelido = TextApelido.getText();
+            contato = new ContatoAmizadeDTO(0, nome, celular, email, apelido);
+            
+        } else if (cbEmergencia.isSelected()) {
+            contato = new ContatoEmergenciaDTO(0, nome, celular, email);
+            
+        } else if (cbOutros.isSelected()) {
+            String telefone_comercial = TextTelefone_comercial.getText();
+            
+            contato = new ContatoOutrosDTO(0, nome, celular, email, telefone_comercial);
+            
+        } else if (cbTrabalho.isSelected()) {
+            String telefone_comercial = TextTelefone_comercial.getText();
+            String departamento = TextDepartamento.getText();
+            contato = new ContatoTrabalhoDTO(0, nome, celular, email, telefone_comercial, departamento);
+            
+        } else if (cbSaude.isSelected()) {
+            String telefone_comercial = TextTelefone_comercial.getText();
+            String especializacao = TextEspecializacao.getText();
+            contato = new ContatoSaudeDTO(0, nome, celular, email, telefone_comercial, especializacao);
+            
+        }  /*else if (cbFamilia.isSelected() && cbEmergencia.isSelected()) {
+            String parentesco = TextParentesco.getText();
+            contato = new ContatoFamiliaDTO(0, nome, celular, email, parentesco);
+            
+
+           contato = new ContatoEmergenciaDTO(0, nome, celular, email);
+           
+          
+            
+         }  else if (cbAmizade.isSelected() && cbTrabalho.isSelected() && cbEmergencia.isSelected()) {
+                String apelido = TextApelido.getText();
+                contato = new ContatoAmizadeDTO(0, nome, celular, email, apelido);
+
+                String telefone_comercial = TextTelefone_comercial.getText();
+                String departamento = TextDepartamento.getText();
+                contato = new ContatoTrabalhoDTO(0, nome, celular, email, telefone_comercial, departamento);
+                
+                contato = new ContatoEmergenciaDTO(0, nome, celular, email);
+      
+        } else if (cbAmizade.isSelected() && cbEmergencia.isSelected()) {
+             String apelido = TextApelido.getText();
+             contato = new ContatoAmizadeDTO(0, nome, celular, email, apelido);
+             
+             contato = new ContatoEmergenciaDTO(0, nome, celular, email);       
+        } else if (cbSaude.isSelected() && cbEmergencia.isSelected()) {
+             String telefone_comercial = TextTelefone_comercial.getText();
+             String especializacao = TextEspecializacao.getText();
+             contato = new ContatoSaudeDTO(0, nome, celular, email, telefone_comercial, especializacao);
+             
+             contato = new ContatoEmergenciaDTO(0, nome, celular, email);
+             
+        }  else if ( cbTrabalho.isSelected() && cbEmergencia.isSelected()) {
+                String telefone_comercial = TextTelefone_comercial.getText();
+                String departamento = TextDepartamento.getText();
+                contato = new ContatoTrabalhoDTO(0, nome, celular, email, telefone_comercial, departamento);
+                
+                contato = new ContatoEmergenciaDTO(0, nome, celular, email);
+      
+        }  else if (cbAmizade.isSelected() && cbTrabalho.isSelected()) {
+                String telefone_comercial = TextTelefone_comercial.getText();
+                String departamento = TextDepartamento.getText();
+                ContatoTrabalhoDTO contato_trabalho = new ContatoTrabalhoDTO(0, nome, celular, email, telefone_comercial, departamento);
+                
+                String apelido = TextApelido.getText();
+                ContatoAmizadeDTO contato_amizade = new ContatoAmizadeDTO(0, nome, celular, email, apelido);
+                
+
+                try {
+                    ContatoAmizadeTrabalhoService.adicionarContatoAmizadeTrabalho(contato_amizade, contato_trabalho);
+                    System.out.println("Contato de amizade e trabalho inseridos com sucesso!");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }*/
+
+        
+        if (contato != null) {
+            try {
+                contato.cadastrar();
+                System.out.println("Contato inserido com sucesso!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        
+          ContatoAdicionado();
+          ExecutaMetodo();
+        
+    }
+    
+    
+    private void ConfirmarTipoContato(){
+        if (cbAmizade.isSelected() && cbTrabalho.isSelected() && cbEmergencia.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextTelefone_comercial.setEnabled(true);
+            TextApelido.setEnabled(true);
+            TextDepartamento.setEnabled(true);
+            TextParentesco.setEnabled(false); 
+            TextEspecializacao.setEnabled(false);
+            
+        } else if (cbFamilia.isSelected() && cbEmergencia.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextParentesco.setEnabled(true); 
+            TextTelefone_comercial.setEnabled(false);
+            TextApelido.setEnabled(false);
+            TextDepartamento.setEnabled(false);
+            TextEspecializacao.setEnabled(false); 
+            
+        } else if (cbAmizade.isSelected() && cbEmergencia.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextApelido.setEnabled(true);
+            TextTelefone_comercial.setEnabled(false);
+            TextDepartamento.setEnabled(false);
+            TextParentesco.setEnabled(false); 
+            TextEspecializacao.setEnabled(false);
+            
+        } else if (cbSaude.isSelected() && cbEmergencia.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextTelefone_comercial.setEnabled(true);
+            TextEspecializacao.setEnabled(true);
+            TextApelido.setEnabled(false);
+            TextDepartamento.setEnabled(false);
+            TextParentesco.setEnabled(false); 
+            
+        } else if (cbTrabalho.isSelected() && cbEmergencia.isSelected()) { 
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextTelefone_comercial.setEnabled(true);
+            TextDepartamento.setEnabled(true);
+            TextEspecializacao.setEnabled(false);
+            TextApelido.setEnabled(false);
+            TextParentesco.setEnabled(false); 
+            
+        } else if (cbTrabalho.isSelected() && cbAmizade.isSelected()) { 
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextTelefone_comercial.setEnabled(true);
+            TextDepartamento.setEnabled(true);
+            TextApelido.setEnabled(true);
+            TextEspecializacao.setEnabled(false);
+            TextParentesco.setEnabled(false); 
+            
+        } else if (cbFamilia.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextParentesco.setEnabled(true);
+            TextEspecializacao.setEnabled(false);
+            TextTelefone_comercial.setEnabled(false);
+            TextDepartamento.setEnabled(false);
+            TextApelido.setEnabled(false);
+            
+        } else if (cbAmizade.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextApelido.setEnabled(true);
+            TextEspecializacao.setEnabled(false);
+            TextTelefone_comercial.setEnabled(false);
+            TextDepartamento.setEnabled(false);
+            TextParentesco.setEnabled(false);
+            
+        } else if (cbSaude.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextEspecializacao.setEnabled(true);
+            TextTelefone_comercial.setEnabled(true);
+             TextParentesco.setEnabled(false); 
+            TextDepartamento.setEnabled(false);
+            TextApelido.setEnabled(false); 
+            
+        } else if (cbEmergencia.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextParentesco.setEnabled(false); 
+            TextDepartamento.setEnabled(false);
+            TextApelido.setEnabled(false);
+            TextEspecializacao.setEnabled(false);
+            TextTelefone_comercial.setEnabled(false);
+            
+        }  else if (cbOutros.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextTelefone_comercial.setEnabled(true);
+            TextParentesco.setEnabled(false); 
+            TextApelido.setEnabled(false);
+            TextDepartamento.setEnabled(false);
+            TextEspecializacao.setEnabled(false);
+            
+        } else if (cbTrabalho.isSelected()) {
+            TextNome.setEnabled(true);
+            TextContato.setEnabled(true);
+            TextEmail.setEnabled(true);
+            TextDepartamento.setEnabled(true);
+            TextTelefone_comercial.setEnabled(true);
+            TextParentesco.setEnabled(false); 
+            TextApelido.setEnabled(false);
+            TextEspecializacao.setEnabled(false);
+            
+        } else {
+            TextNome.setEnabled(false);
+            TextContato.setEnabled(false);
+            TextEmail.setEnabled(false);
+            TextTelefone_comercial.setEnabled(false);
+            TextEspecializacao.setEnabled(false);
+            TextApelido.setEnabled(false);
+            TextDepartamento.setEnabled(false);
+            TextParentesco.setEnabled(false);
+        }
+
+
+
+    }
+    
+    private void ContatoAdicionado() {
+    JButton buttonTelaPrincipal = new JButton("Adicionar mais contatos");
+    JButton buttonVoltar = new JButton("Tela Principal");
+
+    // Adicionar os ouvintes de evento aos botões
+    buttonTelaPrincipal.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frmAdicionarContato objTelaAdicionarContatoVIEW = new frmAdicionarContato();
+            objTelaAdicionarContatoVIEW.setVisible(true);
+            setVisible(false);
+            JOptionPane.getRootFrame().dispose();
+             
+        }
+    });
+
+    buttonVoltar.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Redirecionar para a tela frmPrincipal
+            frmPrincipal objTelafrmPrincipalVIEW = null;
+            try {
+                objTelafrmPrincipalVIEW = new frmPrincipal();
+            } catch (SQLException ex) {
+                Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExecutionException ex) {
+                Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            objTelafrmPrincipalVIEW.setVisible(true);
+            setVisible(false); // Oculta a tela atual
+            JOptionPane.getRootFrame().dispose();
+             
+            
+        }
+    });
+
+    // Adicionar os botões a um array de objetos
+    Object[] options = { buttonTelaPrincipal, buttonVoltar };
+
+    // Exibir o JOptionPane com os botões personalizados
+    int result = JOptionPane.showOptionDialog(null, "Contato adicionado com sucesso!", "Sucesso", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+    }
+    
+   private frmPrincipal principal;
+   public void MostrarTela(frmPrincipal frmprincipal){
+       this.principal = frmprincipal;
+       setVisible(true);
+   }
+   public void ExecutaMetodo(frmPrincipal aThis) throws SQLException{
+      //principal.readJTableFamilia();
+      //principal.readJTableAmizade();
+      principal.ChamarEmOutroFrame();
+   }
+
+    private void ExecutaMetodo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+   
+
+    
+   
+
 }
+    
+    
+

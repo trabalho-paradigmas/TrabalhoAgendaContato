@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package DTO;
 
-public class ContatoDTO {
+package DTO;
+import java.sql.SQLException;
+
+public abstract class ContatoDTO {
     private int id;
     private String nome;
     private String celular;
@@ -50,4 +48,6 @@ public class ContatoDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public abstract void cadastrar() throws SQLException;
 }

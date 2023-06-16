@@ -1,12 +1,17 @@
 package DAO;
-import DAO.ConexaoDAO;
+
+import DTO.ContatoDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import DTO.ContatoDTO;
 import DTO.ContatoFamiliaDTO;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.logging.Logger;
+
+
 
 public class ContatoFamiliaDAO {
       public Boolean cadastrarContatoFamiliaDAO(ContatoFamiliaDTO contato) throws SQLException {
@@ -69,4 +74,65 @@ public class ContatoFamiliaDAO {
             }
         }
     }
+    public List<ContatoFamiliaDTO> read() throws SQLException {
+    String sql = "SELECT c.nome, c.email, c.celular, cf.parentesco FROM contato c " +
+                 "JOIN contato_familia cf ON c.id = cf.id_contato " +
+                 "ORDER BY c.nome ASC";
+
+    List<ContatoFamiliaDTO> contatos = new ArrayList<>();
+    Connection conn = null;
+    PreparedStatement statement = null;
+    ResultSet resultSet = null;
+
+    try {
+        conn = ConexaoDAO.getConnection();
+        statement = conn.prepareStatement(sql);
+        resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            String nome = resultSet.getString("nome");
+            String email = resultSet.getString("email");
+            String celular = resultSet.getString("celular");
+            String parentesco = resultSet.getString("parentesco");
+
+            ContatoFamiliaDTO contato = new ContatoFamiliaDTO(0, nome, celular, email, parentesco);
+            contatos.add(contato);
+        }
+    } catch (SQLException e) {
+        // Lidar com a exceção, se necessário
+    } finally {
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                // Lidar com a exceção, se necessário
+            }
+        }
+
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                // Lidar com a exceção, se necessário
+            }
+        }
+
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                // Lidar com a exceção, se necessário
+            }
+        }
+    }
+
+    return contatos;
+}
+
+   
+
+    
+
+    
+
 }

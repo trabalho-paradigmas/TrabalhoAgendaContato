@@ -1,7 +1,7 @@
 package DTO;
+import DAO.ContatoFamiliaDAO;
+import java.sql.SQLException;
 
-import DTO.ContatoDTO;
-import DTO.ContatoDTO;
 
 public class ContatoFamiliaDTO extends ContatoDTO {
     private String parentesco;
@@ -22,5 +22,11 @@ public class ContatoFamiliaDTO extends ContatoDTO {
     public void setParentesco(String parentesco) {
         this.parentesco = parentesco;
     }
-     
+    
+    @Override
+        public void cadastrar() throws SQLException {
+        ContatoFamiliaDAO contatoFamiliaDAO = new ContatoFamiliaDAO();
+        contatoFamiliaDAO.cadastrarContatoFamiliaDAO(this);
+        System.out.println("Contato de família inserido com sucesso!");
+    }
 }

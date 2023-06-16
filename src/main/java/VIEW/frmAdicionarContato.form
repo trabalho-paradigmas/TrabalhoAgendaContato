@@ -100,7 +100,7 @@
                           <Component id="jLabel1" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="0" min="-2" pref="179" max="-2" attributes="0"/>
-                          <Component id="TextContatoComercial" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                          <Component id="TextTelefone_comercial" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="TextEmail" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                           <Component id="TextParentesco" alignment="0" min="-2" pref="211" max="-2" attributes="0"/>
@@ -168,7 +168,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="TextContatoComercial" min="-2" max="-2" attributes="0"/>
+              <Component id="TextTelefone_comercial" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -279,9 +279,9 @@
         <Property name="text" type="java.lang.String" value="N&#xfa;mero de contato comercial :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextContatoComercial">
+    <Component class="javax.swing.JTextField" name="TextTelefone_comercial">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextContatoComercialActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextTelefone_comercialActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">

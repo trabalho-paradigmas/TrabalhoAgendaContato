@@ -10,6 +10,9 @@ import DTO.UsuarioDTO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
@@ -116,7 +119,11 @@ public class frmLoginVIEW extends javax.swing.JFrame {
 
     //BOTAO DE ENTRAR
     private void btnEntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarLoginActionPerformed
-        Login();        //
+        try {
+            Login();        //
+        } catch (ExecutionException ex) {
+            Logger.getLogger(frmLoginVIEW.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnEntrarLoginActionPerformed
 
@@ -173,7 +180,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtSenhaUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void Login() {
+    private void Login() throws ExecutionException {
         try {
 
             String nome_usuario, senha_usuario;
