@@ -520,13 +520,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
     }//GEN-LAST:event_TextTelefone_comercialActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-         try {
-             Cancelar();
-         } catch (SQLException ex) {
-             Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (ExecutionException ex) {
-             Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

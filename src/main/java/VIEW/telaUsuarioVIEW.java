@@ -121,7 +121,7 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
 
     private void btnExcluirUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirUsuarioActionPerformed
         excluirUsuario();
-        abreLogin();
+        
     }//GEN-LAST:event_btnExcluirUsuarioActionPerformed
 
 
@@ -175,6 +175,7 @@ public class telaUsuarioVIEW extends javax.swing.JInternalFrame {
            JOptionPane.showMessageDialog(null, "Usuario excluido com sucesso!");
            frmPrincipal frame = (frmPrincipal) SwingUtilities.getWindowAncestor(this);
            frame.dispose();
+           abreLogin();
         }
 
     }
