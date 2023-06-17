@@ -13,6 +13,8 @@ public class ContatoFamiliaDTO extends ContatoDTO {
 ;
     }
 
+   
+
     // Getter e Setter para o atributo Apelido
 
     public String getParentesco() {

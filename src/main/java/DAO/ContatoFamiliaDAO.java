@@ -1,6 +1,6 @@
 package DAO;
 
-import DTO.ContatoDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,8 +8,7 @@ import java.sql.SQLException;
 import DTO.ContatoFamiliaDTO;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -46,38 +45,38 @@ public class ContatoFamiliaDAO {
         } catch (SQLException e) {
             System.out.println("Erro ao cadastrar contato de Família: " + e.getMessage());
             return false;
-        }
+        } 
     
     
     }
 
-    private ContatoFamiliaDTO obterContatoPorId(int idContato) throws SQLException {
-        String sql = "SELECT nome, email, celular FROM contato WHERE id = ?";
+    private int obterIdContatoPorID(int idContato) throws SQLException {
+    String sql = "SELECT id FROM contato WHERE id = ?";
+    Connection conn = null;
+    PreparedStatement statement = null;
+    ResultSet resultSet = null;
 
-        try (Connection conn = ConexaoDAO.getConnection();
-             PreparedStatement statement = conn.prepareStatement(sql)) {
+    try {
+        conn = ConexaoDAO.getConnection();
+        statement = conn.prepareStatement(sql);
+        statement.setInt(1, idContato);
+        resultSet = statement.executeQuery();
 
-            statement.setInt(1, idContato);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    String nome = resultSet.getString("nome");
-                    String email = resultSet.getString("email");
-                    String celular = resultSet.getString("celular");
-                    String parentesco = "Parentesco"; // Supondo que você obtenha o parentesco de alguma forma
-
-                    ContatoFamiliaDTO contato = new ContatoFamiliaDTO(0, nome, celular, email, parentesco);
-                    return contato;
-                } else {
-                    throw new SQLException("Contato não encontrado com o ID fornecido");
-                }
-            }
+        if (resultSet.next()) {
+            return resultSet.getInt("id");
+        } else {
+            return -1; // Retorna -1 se o contato não for encontrado
         }
-    }
+    } catch (SQLException e) {
+        throw new SQLException("Erro ao obter ID do contato: " + e);
+    } 
+}
+
+    
     public List<ContatoFamiliaDTO> read() throws SQLException {
-    String sql = "SELECT c.nome, c.email, c.celular, cf.parentesco FROM contato c " +
+    String sql = "SELECT c.id, c.nome, c.email, c.celular, cf.parentesco FROM contato c " +
                  "JOIN contato_familia cf ON c.id = cf.id_contato " +
-                 "ORDER BY c.nome ASC";
+                 "ORDER BY c.id ASC";
 
     List<ContatoFamiliaDTO> contatos = new ArrayList<>();
     Connection conn = null;
@@ -90,25 +89,41 @@ public class ContatoFamiliaDAO {
         resultSet = statement.executeQuery();
 
         while (resultSet.next()) {
+            int id = resultSet.getInt("id");
             String nome = resultSet.getString("nome");
             String email = resultSet.getString("email");
             String celular = resultSet.getString("celular");
             String parentesco = resultSet.getString("parentesco");
 
-            ContatoFamiliaDTO contato = new ContatoFamiliaDTO(0, nome, celular, email, parentesco);
+            ContatoFamiliaDTO contato = new ContatoFamiliaDTO(id, nome, celular, email, parentesco);
             contatos.add(contato);
         }
     } catch (SQLException e) {
         // Lidar com a exceção, se necessário
-    } finally {
-        if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException e) {
-                // Lidar com a exceção, se necessário
-            }
-        }
+    } 
 
+    return contatos;
+   }
+    
+   public void delete(int id) {
+    Connection conn = null;
+    PreparedStatement statement = null;
+
+    try {
+        conn = ConexaoDAO.getConnection();
+        statement = conn.prepareStatement("DELETE FROM contato_familia WHERE id_contato = ?");
+        statement.setInt(1, id);
+
+        int rowsAffected = statement.executeUpdate();
+
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(null, "Excluído com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha ao excluir o contato");
+        }
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Erro ao excluir: " + e);
+    } finally {
         if (statement != null) {
             try {
                 statement.close();
@@ -116,7 +131,6 @@ public class ContatoFamiliaDAO {
                 // Lidar com a exceção, se necessário
             }
         }
-
         if (conn != null) {
             try {
                 conn.close();
@@ -125,14 +139,15 @@ public class ContatoFamiliaDAO {
             }
         }
     }
-
-    return contatos;
 }
 
-   
+
+
+
+
+
 
     
 
-    
-
+  
 }

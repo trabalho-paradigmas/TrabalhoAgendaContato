@@ -23,13 +23,7 @@ import DTO.ContatoTrabalhoDTO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.InstantSource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -55,8 +49,10 @@ public final class frmPrincipal extends javax.swing.JFrame {
      * @throws java.sql.SQLException
      */
     public frmPrincipal() throws SQLException, ExecutionException {
+        
         initComponents();
-
+       //hamarEmOutroFrame();
+        readJTableFamilia();
         /*DefaultTableModel modelFamilia = (DefaultTableModel) TabelaFamilia.getModel();
         TableRowSorter<DefaultTableModel> sorterFamilia = new TableRowSorter<>(modelFamilia);
         TabelaFamilia.setRowSorter(sorterFamilia);*/
@@ -65,7 +61,7 @@ public final class frmPrincipal extends javax.swing.JFrame {
         TableRowSorter<DefaultTableModel> sorterAmizade = new TableRowSorter<>(modelAmizade);
         TabelaAmizade.setRowSorter(sorterAmizade);*/
 
-      ChamarEmOutroFrame();
+     
        
     }
 
@@ -113,6 +109,8 @@ public final class frmPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         menCadContato = new javax.swing.JMenu();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
@@ -209,17 +207,17 @@ public final class frmPrincipal extends javax.swing.JFrame {
 
         TabelaFamilia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Email", "Celular", "Parentesco"
+                "ID", "Nome", "Email", "Celular", "Parentesco"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -378,7 +376,7 @@ public final class frmPrincipal extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))
+                        .addGap(37, 37, 37))
                     .addGroup(DesktopTelaLayout.createSequentialGroup()
                         .addGroup(DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -403,17 +401,16 @@ public final class frmPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DesktopTelaLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DesktopTelaLayout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(156, 156, 156)
@@ -433,6 +430,20 @@ public final class frmPrincipal extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -485,18 +496,25 @@ public final class frmPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(605, 605, 605)
-                        .addComponent(txtNomeUsuario))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addComponent(DesktopTela, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblUsuario)))
+                        .addComponent(lblUsuario))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(605, 605, 605)
+                                .addComponent(txtNomeUsuario))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(82, 82, 82)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(115, 115, 115)
+                        .addComponent(jButton2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -510,7 +528,9 @@ public final class frmPrincipal extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
+                            .addComponent(jButton1)
+                            .addComponent(btnExcluir)
+                            .addComponent(jButton2))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
@@ -555,6 +575,25 @@ public final class frmPrincipal extends javax.swing.JFrame {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int selectedRow = TabelaFamilia.getSelectedRow(); // Obtém a linha selecionada na tabela
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
+            return;
+        }
+
+        int idContato = (int) TabelaFamilia.getValueAt(selectedRow, 0); // Obtém o ID do contato da coluna 0
+
+        ContatoFamiliaDAO contatoDAO = new ContatoFamiliaDAO();
+        contatoDAO.delete(idContato);
+
+     
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -606,9 +645,11 @@ public final class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable TabelaOutros;
     private javax.swing.JTable TabelaSaude;
     private javax.swing.JTable TabelaTrabalho;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JRadioButtonMenuItem btnMenPerfil;
     private javax.swing.JRadioButtonMenuItem btnMenSair;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
@@ -676,43 +717,11 @@ public final class frmPrincipal extends javax.swing.JFrame {
 
     }
 
-    private static class modelo {
-
-        private static void addRow(Object[] object) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        private static void setNumRows(int i) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        public modelo() {
-        }
-    }
     
-   
-    /*public void ChamarEmOutroFrame() throws ExecutionException {
-    ExecutorService executor = Executors.newFixedThreadPool(6);
-    
-    CompletableFuture<Void> familiaFuture = CompletableFuture.runAsync(this::readJTableFamilia, executor);
-    CompletableFuture<Void> amizadeFuture = CompletableFuture.runAsync(this::readJTableAmizade, executor);
-    CompletableFuture<Void> emergenciaFuture = CompletableFuture.runAsync(this::readJTableEmergencia, executor);
-    CompletableFuture<Void> saudeFuture = CompletableFuture.runAsync(this::readJTableSaude, executor);
-    CompletableFuture<Void> trabalhoFuture = CompletableFuture.runAsync(this::readJTableTrabalho, executor);
-    CompletableFuture<Void> outrosFuture = CompletableFuture.runAsync(this::readJTableOutros, executor);
 
-    try {
-        CompletableFuture.allOf(familiaFuture, amizadeFuture, emergenciaFuture, saudeFuture, trabalhoFuture, outrosFuture).get();
-    } catch (InterruptedException | ExecutionException e) {
-        e.printStackTrace();
-    } finally {
-        executor.shutdown();
-    }
-}*/
   
-
-
-
+  
+  
     public void readJTableFamilia() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) TabelaFamilia.getModel();
@@ -721,6 +730,7 @@ public final class frmPrincipal extends javax.swing.JFrame {
 
             for (ContatoFamiliaDTO c : contato.read()) {
                 modelo.addRow(new Object[]{
+                    c.getId(),
                     c.getNome(),
                     c.getEmail(),
                     c.getCelular(),
@@ -827,7 +837,8 @@ public final class frmPrincipal extends javax.swing.JFrame {
             e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
         }
     }
-    /*public void ChamarEmOutroFrame() {
+    public void ChamarEmOutroFrame() {
+            
         Thread threadFamilia = new Thread(() -> {
             SwingUtilities.invokeLater(() -> readJTableFamilia());
         });
@@ -846,7 +857,7 @@ public final class frmPrincipal extends javax.swing.JFrame {
         Thread threadOutros = new Thread(() -> {
             SwingUtilities.invokeLater(() -> readJTableOutros());
         });
-
+         
         threadFamilia.start();
         threadAmizade.start();
         threadEmergencia.start();
@@ -864,8 +875,8 @@ public final class frmPrincipal extends javax.swing.JFrame {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }*/
-    public void ChamarEmOutroFrame() {
+    }
+    /*public void ChamarEmOutroFrame() {
     
             readJTableFamilia();
             readJTableAmizade();
@@ -873,7 +884,7 @@ public final class frmPrincipal extends javax.swing.JFrame {
             readJTableSaude();
             readJTableTrabalho();
             readJTableOutros();       
-}
+}*/
   
 
 
