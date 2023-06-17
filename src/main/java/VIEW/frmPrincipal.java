@@ -111,9 +111,8 @@ public final class frmPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
-        menCadContato = new javax.swing.JMenu();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         menOpc = new javax.swing.JMenu();
         btnMenSair = new javax.swing.JRadioButtonMenuItem();
         btnMenPerfil = new javax.swing.JRadioButtonMenuItem();
@@ -368,7 +367,7 @@ public final class frmPrincipal extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                         .addGroup(DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -447,18 +446,12 @@ public final class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        menCadContato.setText("contato");
-        menCadContato.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menCadContatoActionPerformed(evt);
+                btnCadastrarActionPerformed(evt);
             }
         });
-
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("cadastrar");
-        menCadContato.add(jRadioButtonMenuItem1);
-
-        menu.add(menCadContato);
 
         menOpc.setText("opções");
         menOpc.addActionListener(new java.awt.event.ActionListener() {
@@ -497,7 +490,7 @@ public final class frmPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(DesktopTela, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
+                        .addComponent(DesktopTela, javax.swing.GroupLayout.DEFAULT_SIZE, 1119, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblUsuario))
                     .addGroup(layout.createSequentialGroup()
@@ -514,6 +507,8 @@ public final class frmPrincipal extends javax.swing.JFrame {
                                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(115, 115, 115)
                         .addComponent(jButton2)
+                        .addGap(74, 74, 74)
+                        .addComponent(btnCadastrar)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -530,7 +525,8 @@ public final class frmPrincipal extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1)
                             .addComponent(btnExcluir)
-                            .addComponent(jButton2))))
+                            .addComponent(jButton2)
+                            .addComponent(btnCadastrar))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
@@ -553,10 +549,6 @@ public final class frmPrincipal extends javax.swing.JFrame {
     private void btnMenSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenSairActionPerformed
         sair();
     }//GEN-LAST:event_btnMenSairActionPerformed
-
-    private void menCadContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadContatoActionPerformed
-
-    }//GEN-LAST:event_menCadContatoActionPerformed
 
     private void btnMenPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenPerfilActionPerformed
         //vai para a tela de perfil do usuario dentro do tesktopTela
@@ -594,6 +586,10 @@ public final class frmPrincipal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        adcUsuario();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -645,6 +641,7 @@ public final class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable TabelaOutros;
     private javax.swing.JTable TabelaSaude;
     private javax.swing.JTable TabelaTrabalho;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JRadioButtonMenuItem btnMenPerfil;
     private javax.swing.JRadioButtonMenuItem btnMenSair;
@@ -661,7 +658,6 @@ public final class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -672,7 +668,6 @@ public final class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextField jTextField1;
     public javax.swing.JLabel lblUsuario;
-    private javax.swing.JMenu menCadContato;
     private javax.swing.JMenu menOpc;
     private javax.swing.JMenuBar menu;
     private javax.swing.JLabel txtNomeUsuario;
@@ -837,6 +832,12 @@ public final class frmPrincipal extends javax.swing.JFrame {
             e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
         }
     }
+    private void adcUsuario(){
+        frmAdicionarContato contato = new frmAdicionarContato();
+        contato.setVisible(true);
+        DesktopTela.add(contato);
+    }
+    
     public void ChamarEmOutroFrame() {
             
         Thread threadFamilia = new Thread(() -> {
