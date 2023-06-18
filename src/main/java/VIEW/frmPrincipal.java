@@ -34,12 +34,11 @@ import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
-
-
 public class frmPrincipal extends javax.swing.JFrame {
+
     frmAdicionarContato AdicionarContato = new frmAdicionarContato();
     EditarContato EditarContato = new EditarContato();
-    
+
     public frmPrincipal() {
         initComponents();
         readJTableFamilia();
@@ -58,10 +57,10 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaFamilia = new javax.swing.JTable();
         lblUsuario = new javax.swing.JLabel();
         DesktopTela = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TabelaFamilia = new javax.swing.JTable();
         menuSair = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
@@ -96,6 +95,8 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblUsuario.setText("Usuario");
+
         TabelaFamilia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -117,17 +118,23 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TabelaFamilia);
 
-        lblUsuario.setText("Usuario");
+        DesktopTela.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout DesktopTelaLayout = new javax.swing.GroupLayout(DesktopTela);
         DesktopTela.setLayout(DesktopTelaLayout);
         DesktopTelaLayout.setHorizontalGroup(
             DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 353, Short.MAX_VALUE)
+            .addGroup(DesktopTelaLayout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         DesktopTelaLayout.setVerticalGroup(
             DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 323, Short.MAX_VALUE)
+            .addGroup(DesktopTelaLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         jMenu2.setText("Opções");
@@ -159,27 +166,22 @@ public class frmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(btnBuscar)
-                .addGap(58, 58, 58)
-                .addComponent(btnExcluir)
-                .addGap(89, 89, 89)
-                .addComponent(btnEditar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(398, 398, 398)
-                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(btnBuscar)
+                        .addGap(58, 58, 58)
+                        .addComponent(btnExcluir)
+                        .addGap(47, 47, 47)
+                        .addComponent(btnEditar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,8 +196,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(lblUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,7 +211,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-         int selectedRow = TabelaFamilia.getSelectedRow(); // Obtém a linha selecionada na tabela
+        int selectedRow = TabelaFamilia.getSelectedRow(); // Obtém a linha selecionada na tabela
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
             return;
@@ -220,7 +221,6 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         ContatoFamiliaDAO contatoDAO = new ContatoFamiliaDAO();
         contatoDAO.delete(idContato);
-
 
         DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
         model.removeRow(selectedRow);
@@ -232,7 +232,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-         int selectedRow = TabelaFamilia.getSelectedRow();
+        int selectedRow = TabelaFamilia.getSelectedRow();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
             return;
@@ -241,13 +241,13 @@ public class frmPrincipal extends javax.swing.JFrame {
             objTelaEditarContatoVIEW.setVisible(true);
             setVisible(false);
         }
-        
-         DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-        
-         String Nome = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(),0).toString();
-         String Email = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(),1).toString();
-         String Celular = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(),2).toString();
-         String Parentesco = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(),3).toString();
+
+        DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
+
+        String Nome = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(), 0).toString();
+        String Email = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(), 1).toString();
+        String Celular = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(), 2).toString();
+        String Parentesco = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(), 3).toString();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
@@ -308,9 +308,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuSair;
     // End of variables declaration//GEN-END:variables
 
-    
- 
-   private void sair() {
+    private void sair() {
         int sair = JOptionPane.showConfirmDialog(null, "Deseja sair do sistema?", "Atenção!", JOptionPane.YES_NO_OPTION);
         if (sair == JOptionPane.YES_OPTION) {
             dispose();
@@ -319,9 +317,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
 
-   private void retornaNomeUsuario() {
+    private void retornaNomeUsuario() {
 
-         String nomeUsuario = lblUsuario.getText();
+        String nomeUsuario = lblUsuario.getText();
 
         String nome_usuario = lblUsuario.getText();
         UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -339,18 +337,16 @@ public class frmPrincipal extends javax.swing.JFrame {
                     telaUsuarioVIEW.setVisible(true);
                     DesktopTela.add(telaUsuarioVIEW);
                 } catch (Exception erro) {
-                    JOptionPane.showMessageDialog(null, "MERDA DO NOME DE USUARIO" + erro);
+                    JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
                 }
 
             }
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "MERDA DO NOME DE USUARIO" + erro);
+            JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
         }
-   }
-    
+    }
 
-   
- public void readJTableFamilia() {
+    public void readJTableFamilia() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) TabelaFamilia.getModel();
             modelo.setNumRows(0);
@@ -370,5 +366,4 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
 
-    
 }
