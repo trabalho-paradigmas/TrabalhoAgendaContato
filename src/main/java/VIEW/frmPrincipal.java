@@ -35,13 +35,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     frmAdicionarContato AdicionarContato = new frmAdicionarContato();
     EditarContato EditarContato = new EditarContato();
-    
+
     public frmPrincipal() throws SQLException {
         initComponents();
         Tabelas();
-          
-         
-         
+
     }
 
     /**
@@ -327,51 +325,52 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(102, 102, 102)
+                                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(41, 41, 41)
-                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(77, 77, 77)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(188, 188, 188)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnBuscar)
-                                .addGap(464, 464, 464)
-                                .addComponent(btnExcluir)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnCadastrar)
-                                .addGap(63, 63, 63)
-                                .addComponent(btnEditar))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 196, Short.MAX_VALUE)))
+                        .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnBuscar)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnExcluir)
+                        .addGap(458, 458, 458)
+                        .addComponent(btnCadastrar)
+                        .addGap(63, 63, 63)
+                        .addComponent(btnEditar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(517, 517, 517)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(215, 215, 215))
         );
         layout.setVerticalGroup(
@@ -384,42 +383,38 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addComponent(btnExcluir)
                     .addComponent(btnCadastrar)
                     .addComponent(btnEditar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel2)
+                        .addGap(7, 7, 7))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(lblUsuario)))))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(89, 89, 89)
+                                .addComponent(lblUsuario))
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         pack();
@@ -443,29 +438,29 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    
+
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       // readJTableFamilia();
+        // readJTableFamilia();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void TextPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextPesquisarKeyPressed
-          if(evt.getKeyCode()== 10){ // enter pressionado
-           // readJTableFamilia();
+        if (evt.getKeyCode() == 10) { // enter pressionado
+            // readJTableFamilia();
         }
     }//GEN-LAST:event_TextPesquisarKeyPressed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-            frmAdicionarContato objTelafrmAdicionarContatoVIEW = null;
-            objTelafrmAdicionarContatoVIEW = new frmAdicionarContato();
-            objTelafrmAdicionarContatoVIEW.setVisible(true);
-            setVisible(false); // Oculta a tela atual
-            JOptionPane.getRootFrame().dispose();
+        frmAdicionarContato objTelafrmAdicionarContatoVIEW = null;
+        objTelafrmAdicionarContatoVIEW = new frmAdicionarContato();
+        objTelafrmAdicionarContatoVIEW.setVisible(true);
+        setVisible(false); // Oculta a tela atual
+        JOptionPane.getRootFrame().dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-          DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-         int selectedRow = TabelaFamilia.getSelectedRow();
-        
+        DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
+        int selectedRow = TabelaFamilia.getSelectedRow();
+
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
             return;
@@ -475,11 +470,9 @@ public class frmPrincipal extends javax.swing.JFrame {
             editarContato.pack();
             editarContato.setLocationRelativeTo(null);
             editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            
+
         }
 
-       
-        
         String nome = (String) TabelaFamilia.getValueAt(selectedRow, 0);
         String email = (String) TabelaFamilia.getValueAt(selectedRow, 1);
         String celular = (String) TabelaFamilia.getValueAt(selectedRow, 2);
@@ -557,8 +550,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 
-    
-private void sair() {
+    private void sair() {
         int sair = JOptionPane.showConfirmDialog(null, "Deseja sair do sistema?", "Atenção!", JOptionPane.YES_NO_OPTION);
         if (sair == JOptionPane.YES_OPTION) {
             dispose();
@@ -567,7 +559,7 @@ private void sair() {
         }
     }
 
-    private void retornaNomeUsuario() throws SQLException {
+    private void retornaNomeUsuario() {
 
         String nomeUsuario = lblUsuario.getText();
 
@@ -577,22 +569,26 @@ private void sair() {
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         ResultSet rs = usuarioDAO.consultarNome(usuarioDTO);
-        if (rs.next()) {
-            try {
-                String nome = rs.getString("nome");
-                telaUsuarioVIEW telaUsuarioVIEW = new telaUsuarioVIEW();
-                telaUsuarioVIEW.recebeNomeUsuario(nomeUsuario);
-                telaUsuarioVIEW.recebeNome(nome);
-                telaUsuarioVIEW.setVisible(true);
-                DesktopTela.add(telaUsuarioVIEW);
-            } catch (Exception erro) {
-                JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
+        try {
+            if (rs.next()) {
+                try {
+                    String nome = rs.getString("nome");
+                    telaUsuarioVIEW telaUsuarioVIEW = new telaUsuarioVIEW();
+                    telaUsuarioVIEW.recebeNomeUsuario(nomeUsuario);
+                    telaUsuarioVIEW.recebeNome(nome);
+                    telaUsuarioVIEW.setVisible(true);
+                    DesktopTela.add(telaUsuarioVIEW);
+                } catch (Exception erro) {
+                    JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
+                }
             }
-
+        } catch(SQLException erro){
+            JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
         }
+
     }
-    
- private static class DesktopTela {
+
+    private static class DesktopTela {
 
         private static void add(telaUsuarioVIEW telaUsuarioVIEW) {
             throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -601,11 +597,8 @@ private void sair() {
         public DesktopTela() {
         }
     }
- 
- 
- 
- 
-public void readJTableFamilia() {
+
+    public void readJTableFamilia() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) TabelaFamilia.getModel();
             modelo.setNumRows(0);
@@ -625,27 +618,27 @@ public void readJTableFamilia() {
         }
     }
 
-  public void readJTableAmizade() {
-    try {
-        DefaultTableModel modelo = (DefaultTableModel) TabelaAmizade.getModel();
-        modelo.setNumRows(0);
-        ContatoAmizadeDAO contato = new ContatoAmizadeDAO();
+    public void readJTableAmizade() {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) TabelaAmizade.getModel();
+            modelo.setNumRows(0);
+            ContatoAmizadeDAO contato = new ContatoAmizadeDAO();
 
-        for (ContatoAmizadeDTO c : contato.read()) {
-            modelo.addRow(new Object[]{
-                c.getId(),
-                c.getNome(),
-                c.getEmail(),
-                c.getCelular(),
-                c.getApelido()
-            });
+            for (ContatoAmizadeDTO c : contato.read()) {
+                modelo.addRow(new Object[]{
+                    c.getId(),
+                    c.getNome(),
+                    c.getEmail(),
+                    c.getCelular(),
+                    c.getApelido()
+                });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
         }
-    } catch (SQLException e) {
-        e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
     }
-    }
-  
-     public void readJTableEmergencia() {
+
+    public void readJTableEmergencia() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) TabelaEmergencia.getModel();
             modelo.setNumRows(0);
@@ -663,49 +656,48 @@ public void readJTableFamilia() {
             e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
         }
     }
-    
-       public void readJTableOutros() {
-            try {
-                DefaultTableModel modelo = (DefaultTableModel) TabelaOutros.getModel();
-                modelo.setNumRows(0);
-                ContatoOutrosDAO contato = new ContatoOutrosDAO();
 
-                for (ContatoOutrosDTO c : contato.read()) {
-                    modelo.addRow(new Object[]{
-                        c.getId(),
-                        c.getNome(),
-                        c.getEmail(),
-                        c.getCelular(),
-                        c.getTelefone_comercial()
-                    });
-                }
-            } catch (SQLException e) {
-                e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
-            }
-    }
-   
-        public void readJTableSaude() {
-            try {
-                DefaultTableModel modelo = (DefaultTableModel) TabelaSaude.getModel();
-                modelo.setNumRows(0);
-                ContatoSaudeDAO contato = new ContatoSaudeDAO();
+    public void readJTableOutros() {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) TabelaOutros.getModel();
+            modelo.setNumRows(0);
+            ContatoOutrosDAO contato = new ContatoOutrosDAO();
 
-                for (ContatoSaudeDTO c : contato.read()) {
-                    modelo.addRow(new Object[]{
-                        c.getId(),
-                        c.getNome(),
-                        c.getEmail(),
-                        c.getCelular(),
-                        c.getTelefone_comercial(),
-                        c.getEspecializacao()
-                    });
-                }
-            } catch (SQLException e) {
-                e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
+            for (ContatoOutrosDTO c : contato.read()) {
+                modelo.addRow(new Object[]{
+                    c.getId(),
+                    c.getNome(),
+                    c.getEmail(),
+                    c.getCelular(),
+                    c.getTelefone_comercial()
+                });
             }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
+        }
     }
 
-       
+    public void readJTableSaude() {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) TabelaSaude.getModel();
+            modelo.setNumRows(0);
+            ContatoSaudeDAO contato = new ContatoSaudeDAO();
+
+            for (ContatoSaudeDTO c : contato.read()) {
+                modelo.addRow(new Object[]{
+                    c.getId(),
+                    c.getNome(),
+                    c.getEmail(),
+                    c.getCelular(),
+                    c.getTelefone_comercial(),
+                    c.getEspecializacao()
+                });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
+        }
+    }
+
     public void readJTableTrabalho() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) TabelaTrabalho.getModel();
@@ -726,17 +718,15 @@ public void readJTableFamilia() {
             e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
         }
     }
-       
-  public  void Tabelas(){
-     /*  readJTableOutros();
+
+    public void Tabelas() {
+        /*  readJTableOutros();
        readJTableFamilia() ;
        readJTableAmizade();
        readJTableEmergencia();
        readJTableTrabalho();*/
-       readJTableSaude();
-       
-       
-   }
+        readJTableSaude();
 
+    }
 
 }

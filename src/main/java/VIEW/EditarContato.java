@@ -16,18 +16,16 @@ import javax.swing.table.DefaultTableModel;
  * @author sabri
  */
 public class EditarContato extends javax.swing.JFrame {
-  private EditarContato editarContato;
-  
-   
+
+    private EditarContato editarContato;
+
     /**
      * Creates new form EditarContato
      */
     public EditarContato() {
-     
+
         initComponents();
-       
-   
-    
+
     }
 
     /**
@@ -178,13 +176,6 @@ public class EditarContato extends javax.swing.JFrame {
     }//GEN-LAST:event_TextCelularActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-      
-      
-      
-    
-
-    
-
 
 
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -245,34 +236,29 @@ public class EditarContato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
- 
+    public void AtualizarContato(String nome, String email, String celular, String parentesco) {
 
-    public void AtualizarContato(int id, String nome, String email, String celular, String parentesco) {
-        
-        
-        TextNome.setText(nome);
-        TextEmail.setText(email);
-        TextCelular.setText(celular);
-        TextParentesco.setText(parentesco);
+        EditarContato editar = new EditarContato();
+        editarContato.preencherCampos(nome, email, celular, parentesco);
     }
-       
-    
-    
-     private frmPrincipal principal;
-   public void MostrarTela2(frmPrincipal frmprincipal){
-       this.principal = frmprincipal;
-       setVisible(true);
-   }
-   public void ExecutaMetodo2(frmPrincipal aThis) throws SQLException{
+
+    private frmPrincipal principal;
+
+    public void MostrarTela2(frmPrincipal frmprincipal) {
+        this.principal = frmprincipal;
+        setVisible(true);
+    }
+
+    public void ExecutaMetodo2(frmPrincipal aThis) throws SQLException {
         // principal.readJTableFamilia();
-     
-   }
+
+    }
 
     private void ExecutaMetodo2() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-     public EditarContato getEditarContato() {
+
+    public EditarContato getEditarContato() {
         return editarContato;
     }
 
@@ -281,18 +267,14 @@ public class EditarContato extends javax.swing.JFrame {
         /*TextNome.setText(editarContato.getName());
         TextCelular.setText(editarContato.getCelular());
         TextEmail.setText(editarContato.getEmail());*/
-        
-     }
 
-   
-   }
-        
-    
- 
- 
+    }
 
+    private void preencherCampos(String nome, String email, String celular, String parentesco) {
+        TextNome.setText(nome);
+        TextEmail.setText(email);
+        TextCelular.setText(celular);
+        TextParentesco.setText(parentesco);
+    }
 
-
-
-
-
+}
