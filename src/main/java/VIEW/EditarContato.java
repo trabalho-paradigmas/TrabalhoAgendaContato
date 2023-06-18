@@ -8,6 +8,7 @@ import DAO.ContatoFamiliaDAO;
 import DTO.ContatoDTO;
 import DTO.ContatoFamiliaDTO;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
  * @author sabri
  */
 public class EditarContato extends javax.swing.JFrame {
-    
+  private EditarContato editarContato;
+  
+   
     /**
      * Creates new form EditarContato
      */
@@ -23,6 +26,8 @@ public class EditarContato extends javax.swing.JFrame {
      
         initComponents();
        
+   
+    
     }
 
     /**
@@ -38,7 +43,7 @@ public class EditarContato extends javax.swing.JFrame {
         TextNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        TextCeleular = new javax.swing.JTextField();
+        TextCelular = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         TextComercial = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -67,9 +72,9 @@ public class EditarContato extends javax.swing.JFrame {
 
         jLabel3.setText("Número de contato :");
 
-        TextCeleular.addActionListener(new java.awt.event.ActionListener() {
+        TextCelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextCeleularActionPerformed(evt);
+                TextCelularActionPerformed(evt);
             }
         });
 
@@ -103,7 +108,7 @@ public class EditarContato extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextNome, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextCeleular)
+                    .addComponent(TextCelular)
                     .addComponent(TextComercial)
                     .addComponent(TextEmail)
                     .addComponent(TextParentesco)
@@ -131,7 +136,7 @@ public class EditarContato extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextCeleular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,12 +173,27 @@ public class EditarContato extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNomeActionPerformed
 
-    private void TextCeleularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCeleularActionPerformed
+    private void TextCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextCelularActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TextCeleularActionPerformed
+    }//GEN-LAST:event_TextCelularActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+       /* frmPrincipal.AddRowJTable(new Object[] {
+                                                
+                                                 TextNome.getText(),
+                                                 TextEmail.getText(),
+                                                 TextCelular.getText(),
+                                                 TextParentesco.getText(),
          
+         });*/
+       
+      
+    
+
+    
+
+
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
@@ -213,7 +233,7 @@ public class EditarContato extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextApelido;
-    private javax.swing.JTextField TextCeleular;
+    private javax.swing.JTextField TextCelular;
     private javax.swing.JTextField TextComercial;
     private javax.swing.JTextField TextDepartamento;
     private javax.swing.JTextField TextEmail;
@@ -234,12 +254,12 @@ public class EditarContato extends javax.swing.JFrame {
 
  
 
-    public void AtualizarContato(String nome, String email, String celular, String parentesco) {
+    public void AtualizarContato(int id, String nome, String email, String celular, String parentesco) {
         
-        // Definir os valores dos campos
+        
         TextNome.setText(nome);
         TextEmail.setText(email);
-        TextCeleular.setText(celular);
+        TextCelular.setText(celular);
         TextParentesco.setText(parentesco);
     }
        
@@ -258,8 +278,29 @@ public class EditarContato extends javax.swing.JFrame {
     private void ExecutaMetodo2() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
     
+     public EditarContato getEditarContato() {
+        return editarContato;
+    }
+
+    public void setEditarContato(EditarContato editarContato) {
+        this.editarContato = editarContato;
+        /*TextNome.setText(editarContato.getName());
+        TextCelular.setText(editarContato.getCelular());
+        TextEmail.setText(editarContato.getEmail());*/
+        
+     }
+
+    private String getEmail() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private String getCelular() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+     public void setTextNome(String nome) {
+        TextNome.setText(nome);
+    }
 
    }
         

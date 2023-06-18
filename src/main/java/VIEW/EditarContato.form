@@ -30,7 +30,7 @@
                   <Component id="jLabel5" min="-2" pref="142" max="-2" attributes="0"/>
                   <Component id="TextNome" pref="220" max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="186" max="-2" attributes="0"/>
-                  <Component id="TextCeleular" alignment="0" max="32767" attributes="0"/>
+                  <Component id="TextCelular" alignment="0" max="32767" attributes="0"/>
                   <Component id="TextComercial" alignment="0" max="32767" attributes="0"/>
                   <Component id="TextEmail" alignment="0" max="32767" attributes="0"/>
                   <Component id="TextParentesco" alignment="0" max="32767" attributes="0"/>
@@ -61,7 +61,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="TextCeleular" min="-2" max="-2" attributes="0"/>
+              <Component id="TextCelular" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -114,9 +114,9 @@
         <Property name="text" type="java.lang.String" value="N&#xfa;mero de contato :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="TextCeleular">
+    <Component class="javax.swing.JTextField" name="TextCelular">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextCeleularActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextCelularActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">

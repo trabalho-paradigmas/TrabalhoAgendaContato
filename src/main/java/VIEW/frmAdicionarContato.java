@@ -520,7 +520,13 @@ public class frmAdicionarContato extends javax.swing.JFrame {
     }//GEN-LAST:event_TextTelefone_comercialActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        dispose();
+         try {
+             Cancelar();
+         } catch (SQLException ex) {
+             Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (ExecutionException ex) {
+             Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
@@ -596,9 +602,11 @@ public class frmAdicionarContato extends javax.swing.JFrame {
     
     
     private void Cancelar() throws SQLException, ExecutionException {
-        frmPrincipal objTelafrmPrincipalVIEW = new frmPrincipal();
-        objTelafrmPrincipalVIEW.setVisible(true);
-        dispose();
+            frmPrincipal objTelafrmPrincipalVIEW = null;
+            objTelafrmPrincipalVIEW = new frmPrincipal();
+            objTelafrmPrincipalVIEW.setVisible(true);
+            setVisible(false); // Oculta a tela atual
+            JOptionPane.getRootFrame().dispose();
     }
 
     private void AdicionarContato() throws SQLException {
