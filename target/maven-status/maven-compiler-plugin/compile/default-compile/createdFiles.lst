@@ -1,10 +1,17 @@
 VIEW\frmLoginVIEW$2.class
+VIEW\frmPrincipal$3.class
+VIEW\frmPrincipal$7.class
+VIEW\frmPrincipal$DesktopTela.class
+VIEW\frmPrincipal$2.class
+VIEW\frmPrincipal$5.class
 DTO\UsuarioDTO.class
 VIEW\frmLoginVIEW.class
 DAO\UsuarioDAO.class
 VIEW\frmPrincipal.class
 VIEW\frmPrincipal$1.class
 VIEW\frmLoginVIEW$3.class
+VIEW\frmPrincipal$4.class
 VIEW\frmLoginVIEW$1.class
 com\mycompany\proejtoagenda\ProejtoAgenda.class
+VIEW\frmPrincipal$6.class
 DAO\ConexaoDAO.class

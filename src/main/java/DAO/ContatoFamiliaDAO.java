@@ -96,7 +96,7 @@ public class ContatoFamiliaDAO {
             // Lidar com a exceção, se necessário
         }
 
-<<<<<<< HEAD
+
     return contatos;
    }
     
@@ -135,13 +135,11 @@ public class ContatoFamiliaDAO {
 
     return contatos;
 }
+   
 
-=======
-        return contatos;
-    }
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
 
-    public void delete(int idContato) {
+
+  public void delete(int idContato) {
         Connection conn = null;
         PreparedStatement statementContatoFamilia = null;
         PreparedStatement statementContato = null;
@@ -242,5 +240,11 @@ public class ContatoFamiliaDAO {
         }
     }
    
-
 }
+
+
+
+       
+
+
+   

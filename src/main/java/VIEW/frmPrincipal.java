@@ -4,50 +4,27 @@
  */
 package VIEW;
 
-import DAO.ConexaoDAO;
-import DAO.ContatoAmizadeDAO;
-import DAO.ContatoEmergenciaDAO;
-import DAO.UsuarioDAO;
-import DTO.UsuarioDTO;
 import DAO.ContatoFamiliaDAO;
-import DAO.ContatoOutrosDAO;
-import DAO.ContatoSaudeDAO;
-import DAO.ContatoTrabalhoDAO;
-import DTO.ContatoAmizadeDTO;
-import DTO.ContatoDTO;
-import DTO.ContatoEmergenciaDTO;
+import DAO.UsuarioDAO;
 import DTO.ContatoFamiliaDTO;
-import DTO.ContatoOutrosDTO;
-import DTO.ContatoSaudeDTO;
-import DTO.ContatoTrabalhoDTO;
-import java.sql.Connection;
+import DTO.UsuarioDTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
+/**
+ *
+ * @author sabri
+ */
 public class frmPrincipal extends javax.swing.JFrame {
 
     frmAdicionarContato AdicionarContato = new frmAdicionarContato();
     EditarContato EditarContato = new EditarContato();
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
+    
     public frmPrincipal() {
         initComponents();
-        readJTableFamilia();
+         readJTableFamilia();
     }
 
     /**
@@ -62,28 +39,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         TextPesquisar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
-        lblUsuario = new javax.swing.JLabel();
-        DesktopTela = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaFamilia = new javax.swing.JTable();
-<<<<<<< HEAD
         lblUsuario = new javax.swing.JLabel();
-        btnCadastrar = new javax.swing.JButton();
-=======
-        menuSair = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        menuPerfil = new javax.swing.JRadioButtonMenuItem();
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        TextPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextPesquisarActionPerformed(evt);
-            }
-        });
         TextPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TextPesquisarKeyPressed(evt);
@@ -104,14 +67,19 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
             }
         });
-
-        lblUsuario.setText("Usuario");
 
         TabelaFamilia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,156 +100,60 @@ public class frmPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TabelaFamilia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TabelaFamiliaMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(TabelaFamilia);
 
-        DesktopTela.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout DesktopTelaLayout = new javax.swing.GroupLayout(DesktopTela);
-        DesktopTela.setLayout(DesktopTelaLayout);
-        DesktopTelaLayout.setHorizontalGroup(
-            DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DesktopTelaLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(91, Short.MAX_VALUE))
-        );
-        DesktopTelaLayout.setVerticalGroup(
-            DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DesktopTelaLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
-        );
-
-        jMenu2.setText("Opções");
-
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("sair");
-        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jCheckBoxMenuItem1);
-
-        menuPerfil.setSelected(true);
-        menuPerfil.setText("perfil");
-        menuPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuPerfilActionPerformed(evt);
-            }
-        });
-        jMenu2.add(menuPerfil);
-
-        menuSair.add(jMenu2);
-
-        setJMenuBar(menuSair);
-
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
-            }
-        });
+        lblUsuario.setText("Usuario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
-                .addGap(20, 20, 20)
-                .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscar)
-                .addGap(88, 88, 88)
-                .addComponent(btnExcluir)
-                .addGap(35, 35, 35)
-                .addComponent(btnCadastrar)
-                .addGap(48, 48, 48)
-                .addComponent(btnEditar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
-=======
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(398, 398, 398)
-                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addGap(18, 18, 18)
+                        .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addComponent(btnBuscar)
-                        .addGap(58, 58, 58)
+                        .addGap(44, 44, 44)
                         .addComponent(btnExcluir)
-                        .addGap(47, 47, 47)
-                        .addComponent(btnEditar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCadastrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEditar)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnEditar))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBuscar)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnExcluir)
-                                    .addComponent(btnCadastrar))))
-                        .addGap(75, 75, 75)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(69, 69, 69)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(btnEditar)
-                        .addGap(104, 104, 104)
+                        .addGap(100, 100, 100)
                         .addComponent(lblUsuario)))
-                .addContainerGap(21, Short.MAX_VALUE))
-=======
-                        .addGap(105, 105, 105)
-                        .addComponent(lblUsuario)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(39, Short.MAX_VALUE))))
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextPesquisarActionPerformed
-
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-<<<<<<< HEAD
-         int linha = TabelaFamilia.getSelectedRow(); // Obtém a linha selecionada na tabela
+        int linha = TabelaFamilia.getSelectedRow(); // Obtém a linha selecionada na tabela
         if (linha == -1) {
-=======
-        int selectedRow = TabelaFamilia.getSelectedRow(); // Obtém a linha selecionada na tabela
-        if (selectedRow == -1) {
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
             JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
             return;
         }
@@ -294,58 +166,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
         model.removeRow(linha);
         model.fireTableDataChanged();
+
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         readJTableFamilia();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-<<<<<<< HEAD
-        
-       DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-       int selectedRow = TabelaFamilia.getSelectedRow();
-=======
-        int selectedRow = TabelaFamilia.getSelectedRow();
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
-            return;
-        } else {
-            EditarContato editarContato = new EditarContato();
-            editarContato.setVisible(true);
-            editarContato.pack();
-            editarContato.setLocationRelativeTo(null);
-            editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            
-        }
-<<<<<<< HEAD
-       
-        
-        String nome = (String) TabelaFamilia.getValueAt(selectedRow, 0);
-        String email = (String) TabelaFamilia.getValueAt(selectedRow, 1);
-        String celular = (String) TabelaFamilia.getValueAt(selectedRow, 2);
-        String parentesco = (String) TabelaFamilia.getValueAt(selectedRow, 3);
-
-        // Define os valores nos campos de texto da tela EditarContato
-       /* editarContato.setTextNome(nome);
-        editarContato.setTextEmail(email);
-        editarContato.setTextCelular(celular);
-        editarContato.setTextParentesco(parentesco);*/
-          
-          
-        
-        
-         
-         
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void TabelaFamiliaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelaFamiliaMouseClicked
-       
-    }//GEN-LAST:event_TabelaFamiliaMouseClicked
-
     private void TextPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextPesquisarKeyPressed
-        if(evt.getKeyCode()== 10){ // enter pressionado
+          if(evt.getKeyCode()== 10){ // enter pressionado
             readJTableFamilia();
         }
     }//GEN-LAST:event_TextPesquisarKeyPressed
@@ -358,30 +188,10 @@ public class frmPrincipal extends javax.swing.JFrame {
             JOptionPane.getRootFrame().dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    public static void AddRowJTable(Object[] dataRow){
-         DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-         model.addRow(dataRow);
-         
-    }
-=======
-
-        DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-
-        String Nome = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(), 0).toString();
-        String Email = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(), 1).toString();
-        String Celular = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(), 2).toString();
-        String Parentesco = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(), 3).toString();
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        sair();
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
-
-    private void menuPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPerfilActionPerformed
-        retornaNomeUsuario();
-    }//GEN-LAST:event_menuPerfilActionPerformed
-
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
     /**
      * @param args the command line arguments
      */
@@ -412,48 +222,24 @@ public class frmPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                 frmPrincipal.inicializar();
+                new frmPrincipal().setVisible(true);
             }
         });
     }
-    
-    public static void inicializar(){
-         frmPrincipal principal =new frmPrincipal();
-                 
-             principal.setVisible(true);
-    
-    }
-    
-    /*public void pesquisar(){
-         ArrayList<ContatoFamiliaDTO> listaContato = ContatoFamiliaDAO.pesquisar(TextPesquisar.getText());
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
-    private static javax.swing.JTable TabelaFamilia;
-    private javax.swing.JTextField TextPesquisar;
-=======
-    private javax.swing.JDesktopPane DesktopTela;
     private javax.swing.JTable TabelaFamilia;
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
+    private javax.swing.JTextField TextPesquisar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JScrollPane jScrollPane1;
-<<<<<<< HEAD
-    private javax.swing.JLabel lblUsuario;
-=======
-    private javax.swing.JTextField jTextField1;
-    public javax.swing.JLabel lblUsuario;
-    private javax.swing.JRadioButtonMenuItem menuPerfil;
-    private javax.swing.JMenuBar menuSair;
->>>>>>> c012066aaefdd6e6ea26870fbd1f01da55c8a316
+    public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void sair() {
+    
+private void sair() {
         int sair = JOptionPane.showConfirmDialog(null, "Deseja sair do sistema?", "Atenção!", JOptionPane.YES_NO_OPTION);
         if (sair == JOptionPane.YES_OPTION) {
             dispose();
@@ -462,7 +248,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
 
-    private void retornaNomeUsuario() {
+    private void retornaNomeUsuario() throws SQLException {
 
         String nomeUsuario = lblUsuario.getText();
 
@@ -472,26 +258,35 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         ResultSet rs = usuarioDAO.consultarNome(usuarioDTO);
-        try {
-            if (rs.next()) {
-                try {
-                    String nome = rs.getString("nome");
-                    telaUsuarioVIEW telaUsuarioVIEW = new telaUsuarioVIEW();
-                    telaUsuarioVIEW.recebeNomeUsuario(nomeUsuario);
-                    telaUsuarioVIEW.recebeNome(nome);
-                    telaUsuarioVIEW.setVisible(true);
-                    DesktopTela.add(telaUsuarioVIEW);
-                } catch (Exception erro) {
-                    JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
-                }
-
+        if (rs.next()) {
+            try {
+                String nome = rs.getString("nome");
+                telaUsuarioVIEW telaUsuarioVIEW = new telaUsuarioVIEW();
+                telaUsuarioVIEW.recebeNomeUsuario(nomeUsuario);
+                telaUsuarioVIEW.recebeNome(nome);
+                telaUsuarioVIEW.setVisible(true);
+                DesktopTela.add(telaUsuarioVIEW);
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
             }
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
+
         }
     }
+    
+ private static class DesktopTela {
 
-    public void readJTableFamilia() {
+        private static void add(telaUsuarioVIEW telaUsuarioVIEW) {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public DesktopTela() {
+        }
+    }
+ 
+ 
+ 
+ 
+public void readJTableFamilia() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) TabelaFamilia.getModel();
             modelo.setNumRows(0);
@@ -510,5 +305,8 @@ public class frmPrincipal extends javax.swing.JFrame {
             e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
         }
     }
+
+   
+
 
 }
