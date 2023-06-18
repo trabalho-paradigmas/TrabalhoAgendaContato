@@ -61,6 +61,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaFamilia = new javax.swing.JTable();
         lblUsuario = new javax.swing.JLabel();
+        DesktopTela = new javax.swing.JDesktopPane();
+        menuSair = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        menuPerfil = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +119,41 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         lblUsuario.setText("Usuario");
 
+        javax.swing.GroupLayout DesktopTelaLayout = new javax.swing.GroupLayout(DesktopTela);
+        DesktopTela.setLayout(DesktopTelaLayout);
+        DesktopTelaLayout.setHorizontalGroup(
+            DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 353, Short.MAX_VALUE)
+        );
+        DesktopTelaLayout.setVerticalGroup(
+            DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 323, Short.MAX_VALUE)
+        );
+
+        jMenu2.setText("Opções");
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("sair");
+        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jCheckBoxMenuItem1);
+
+        menuPerfil.setSelected(true);
+        menuPerfil.setText("perfil");
+        menuPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPerfilActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuPerfil);
+
+        menuSair.add(jMenu2);
+
+        setJMenuBar(menuSair);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,13 +167,19 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addComponent(btnExcluir)
                 .addGap(89, 89, 89)
                 .addComponent(btnEditar)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(32, 32, 32)
+                .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(398, 398, 398)
+                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,12 +192,14 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addComponent(btnEditar))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(105, 105, 105)
+                        .addComponent(lblUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(lblUsuario)))
-                .addContainerGap(206, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
+                        .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(39, Short.MAX_VALUE))))
         );
 
         pack();
@@ -202,6 +250,14 @@ public class frmPrincipal extends javax.swing.JFrame {
          String Parentesco = TabelaFamilia.getValueAt(TabelaFamilia.getSelectedRow(),3).toString();
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        sair();
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+
+    private void menuPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPerfilActionPerformed
+        retornaNomeUsuario();
+    }//GEN-LAST:event_menuPerfilActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,13 +294,18 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane DesktopTela;
     private javax.swing.JTable TabelaFamilia;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel lblUsuario;
+    public javax.swing.JLabel lblUsuario;
+    private javax.swing.JRadioButtonMenuItem menuPerfil;
+    private javax.swing.JMenuBar menuSair;
     // End of variables declaration//GEN-END:variables
 
     
@@ -258,9 +319,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
 
-   /* private void retornaNomeUsuario() {
+   private void retornaNomeUsuario() {
 
-        String nomeUsuario = lblUsuario.getText();
+         String nomeUsuario = lblUsuario.getText();
 
         String nome_usuario = lblUsuario.getText();
         UsuarioDTO usuarioDTO = new UsuarioDTO();
@@ -285,9 +346,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "MERDA DO NOME DE USUARIO" + erro);
         }
-
-    }*/
-
+   }
     
 
    
