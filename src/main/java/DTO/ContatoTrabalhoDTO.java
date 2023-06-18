@@ -38,7 +38,7 @@ public class ContatoTrabalhoDTO extends ContatoDTO {
         System.out.println("Contato de família inserido com sucesso!");
     }
 
-    public Object getDeparatamento() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
+
+    
 }

@@ -178,15 +178,8 @@ public class EditarContato extends javax.swing.JFrame {
     }//GEN-LAST:event_TextCelularActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-       /* frmPrincipal.AddRowJTable(new Object[] {
-                                                
-                                                 TextNome.getText(),
-                                                 TextEmail.getText(),
-                                                 TextCelular.getText(),
-                                                 TextParentesco.getText(),
-         
-         });*/
-       
+      
+      
       
     
 
@@ -271,7 +264,7 @@ public class EditarContato extends javax.swing.JFrame {
        setVisible(true);
    }
    public void ExecutaMetodo2(frmPrincipal aThis) throws SQLException{
-     
+        // principal.readJTableFamilia();
      
    }
 
@@ -291,17 +284,7 @@ public class EditarContato extends javax.swing.JFrame {
         
      }
 
-    private String getEmail() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    private String getCelular() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-     public void setTextNome(String nome) {
-        TextNome.setText(nome);
-    }
-
+   
    }
         
     

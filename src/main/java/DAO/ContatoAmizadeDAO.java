@@ -50,85 +50,61 @@ public class ContatoAmizadeDAO {
     
     }
 
-    private ContatoAmizadeDTO obterContatoPorId(int idContato) throws SQLException {
-        String sql = "SELECT nome, email, celular FROM contato WHERE id = ?";
+    public int obterIdContatoPorId(int idContato) throws SQLException {
+        int id = -1;
 
-        try (Connection conn = ConexaoDAO.getConnection();
-             PreparedStatement statement = conn.prepareStatement(sql)) {
-
-            statement.setInt(1, idContato);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    String nome = resultSet.getString("nome");
-                    String email = resultSet.getString("email");
-                    String celular = resultSet.getString("celular");
-                    String apelido = "Apelido"; // Supondo que você obtenha o apelido de alguma forma
-
-                    ContatoAmizadeDTO contato = new ContatoAmizadeDTO(0, nome, celular, email, apelido);
-                    return contato;
-                } else {
-                    throw new SQLException("Contato não encontrado com o ID fornecido");
-                }
-            }
-        }
-    }
-    
-     public List<ContatoAmizadeDTO> read() throws SQLException {
-        String sql = "SELECT c.nome, c.email, c.celular, cf.apelido FROM contato c " +
-                     "JOIN contato_amizade cf ON c.id = cf.id_contato " +
-                     "ORDER BY c.nome ASC";
-
-        List<ContatoAmizadeDTO> contatos = new ArrayList<>();
         Connection conn = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
         try {
             conn = ConexaoDAO.getConnection();
-            statement = conn.prepareStatement(sql);
+            statement = conn.prepareStatement("SELECT id FROM contato WHERE id = ?");
+            statement.setInt(1, idContato);
             resultSet = statement.executeQuery();
 
-            while (resultSet.next()) {
-                String nome = resultSet.getString("nome");
-                String email = resultSet.getString("email");
-                String celular = resultSet.getString("celular");
-                String apelido = resultSet.getString("apelido");
-
-                ContatoAmizadeDTO contato = new ContatoAmizadeDTO(0, nome, celular, email, apelido);
-                contatos.add(contato);
+            if (resultSet.next()) {
+                id = resultSet.getInt("id");
             }
         } catch (SQLException e) {
             // Lidar com a exceção, se necessário
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    // Lidar com a exceção, se necessário
-                }
-            }
-
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    // Lidar com a exceção, se necessário
-                }
-            }
-
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    // Lidar com a exceção, se necessário
-                }
-            }
         }
+        return id;
+    }
+    
+    public List<ContatoAmizadeDTO> read() throws SQLException {
+    String sql = "SELECT cf.id, c.nome, c.email, c.celular, cf.apelido FROM contato_amizade cf "
+                + "JOIN contato c ON c.id = cf.id_contato "
+                + "ORDER BY cf.id ASC";
 
-        return contatos;
+    List<ContatoAmizadeDTO> contatos = new ArrayList<>();
+    Connection conn = null;
+    PreparedStatement statement = null;
+    ResultSet resultSet = null;
+
+    try {
+        conn = ConexaoDAO.getConnection();
+        statement = conn.prepareStatement(sql);
+        resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String nome = resultSet.getString("nome");
+            String email = resultSet.getString("email");
+            String celular = resultSet.getString("celular");
+            String apelido = resultSet.getString("apelido");
+
+            ContatoAmizadeDTO contato = new ContatoAmizadeDTO(id, nome, celular, email, apelido);
+            contatos.add(contato);
+        }
+    } catch (SQLException e) {
+        // Lidar com a exceção, se necessário
     }
 
+    return contatos;
+}
+
+   
     
 
    

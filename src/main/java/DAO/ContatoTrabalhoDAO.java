@@ -1,6 +1,7 @@
 package DAO;
 
 import DTO.ContatoDTO;
+import DTO.ContatoFamiliaDTO;
 import DTO.ContatoSaudeDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,86 +51,61 @@ public class ContatoTrabalhoDAO {
     
     }
 
-    private ContatoTrabalhoDTO obterContatoPorId(int idContato) throws SQLException {
-        String sql = "SELECT nome, email, celular FROM contato WHERE id = ?";
+   public int obterIdContatoPorId(int idContato) throws SQLException {
+        int id = -1;
 
-        try (Connection conn = ConexaoDAO.getConnection();
-             PreparedStatement statement = conn.prepareStatement(sql)) {
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
 
+        try {
+            conn = ConexaoDAO.getConnection();
+            statement = conn.prepareStatement("SELECT id FROM contato WHERE id = ?");
             statement.setInt(1, idContato);
+            resultSet = statement.executeQuery();
 
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    String nome = resultSet.getString("nome");
-                    String email = resultSet.getString("email");
-                    String celular = resultSet.getString("celular");
-                    String telefone_comercial = "telefone_comercial"; // Supondo que você obtenha o telefone comercial e departamento de alguma forma
-                    String departamento = "departamento";
-                    
-                    ContatoTrabalhoDTO contato = new ContatoTrabalhoDTO(0, nome, celular, email, telefone_comercial, departamento);
-                    return contato;
-                } else {
-                    throw new SQLException("Contato não encontrado com o ID fornecido");
-                }
+            if (resultSet.next()) {
+                id = resultSet.getInt("id");
             }
+        } catch (SQLException e) {
+            // Lidar com a exceção, se necessário
         }
+        return id;
     }
-    
+
     public List<ContatoTrabalhoDTO> read() throws SQLException {
-    String sql = "SELECT c.nome, c.email, c.celular, cf.telefone_comercial, cf.departamento FROM contato c " +
-                 "JOIN contato_saude cf ON c.id = cf.id_contato " +
-                 "ORDER BY c.nome ASC";
+        String sql = "SELECT cf.id, c.nome, c.email, c.celular, cf.telefone_comercial, cf.departamento FROM contato_trabalho cf "
+                + "JOIN contato c ON c.id = cf.id_contato "
+                + "ORDER BY cf.id ASC";
 
-    List<ContatoTrabalhoDTO> contatos = new ArrayList<>();
-    Connection conn = null;
-    PreparedStatement statement = null;
-    ResultSet resultSet = null;
+        List<ContatoTrabalhoDTO> contatos = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
 
-    try {
-        conn = ConexaoDAO.getConnection();
-        statement = conn.prepareStatement(sql);
-        resultSet = statement.executeQuery();
+        try {
+            conn = ConexaoDAO.getConnection();
+            statement = conn.prepareStatement(sql);
+            resultSet = statement.executeQuery();
 
-        while (resultSet.next()) {
-            String nome = resultSet.getString("nome");
-            String email = resultSet.getString("email");
-            String celular = resultSet.getString("celular");
-            String telefone_comercial = resultSet.getString("telefone_comercial");
-            String departamento = resultSet.getString("departamento");
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nome = resultSet.getString("nome");
+                String email = resultSet.getString("email");
+                String celular = resultSet.getString("celular");
+                String telefone_comercial = resultSet.getString("telefone_comercial");
+                String departamento = resultSet.getString("departamento");
 
-            ContatoTrabalhoDTO contato = new ContatoTrabalhoDTO(0, nome, celular, email, telefone_comercial, departamento);
-            contatos.add(contato);
-        }
-    } catch (SQLException e) {
-        // Lidar com a exceção, se necessário
-    } finally {
-        if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException e) {
-                // Lidar com a exceção, se necessário
+                ContatoTrabalhoDTO contato = new ContatoTrabalhoDTO(id, nome, celular, email,telefone_comercial, departamento );
+                contatos.add(contato);
             }
+        } catch (SQLException e) {
+            // Lidar com a exceção, se necessário
         }
 
-        if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                // Lidar com a exceção, se necessário
-            }
-        }
-
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                // Lidar com a exceção, se necessário
-            }
-        }
-    }
 
     return contatos;
-}
+   }
     
 }
  

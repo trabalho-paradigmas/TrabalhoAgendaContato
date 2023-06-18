@@ -1,4 +1,5 @@
 package DAO;
+import DTO.ContatoAmizadeDTO;
 import DTO.ContatoDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,33 +47,32 @@ public class ContatoEmergenciaDAO {
     
     }
 
-    private ContatoEmergenciaDTO obterContatoPorId(int idContato) throws SQLException {
-        String sql = "SELECT nome, email, celular FROM contato WHERE id = ?";
+   public int obterIdContatoPorId(int idContato) throws SQLException {
+        int id = -1;
 
-        try (Connection conn = ConexaoDAO.getConnection();
-             PreparedStatement statement = conn.prepareStatement(sql)) {
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
 
+        try {
+            conn = ConexaoDAO.getConnection();
+            statement = conn.prepareStatement("SELECT id FROM contato WHERE id = ?");
             statement.setInt(1, idContato);
+            resultSet = statement.executeQuery();
 
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    String nome = resultSet.getString("nome");
-                    String email = resultSet.getString("email");
-                    String celular = resultSet.getString("celular");
-    
-
-                    ContatoEmergenciaDTO contato = new ContatoEmergenciaDTO(0, nome, celular, email);
-                    return contato;
-                } else {
-                    throw new SQLException("Contato não encontrado com o ID fornecido");
-                }
+            if (resultSet.next()) {
+                id = resultSet.getInt("id");
             }
+        } catch (SQLException e) {
+            // Lidar com a exceção, se necessário
         }
+        return id;
     }
-    public List<ContatoEmergenciaDTO> read() throws SQLException {
-    String sql = "SELECT c.nome, c.email, c.celular FROM contato c " +
-                 "JOIN contato_emergencia cf ON c.id = cf.id_contato " +
-                 "ORDER BY c.nome ASC";
+   
+     public List<ContatoEmergenciaDTO> read() throws SQLException {
+    String sql = "SELECT cf.id, c.nome, c.email, c.celular FROM contato_emergencia cf "
+                + "JOIN contato c ON c.id = cf.id_contato "
+                + "ORDER BY cf.id ASC";
 
     List<ContatoEmergenciaDTO> contatos = new ArrayList<>();
     Connection conn = null;
@@ -85,44 +85,21 @@ public class ContatoEmergenciaDAO {
         resultSet = statement.executeQuery();
 
         while (resultSet.next()) {
+            int id = resultSet.getInt("id");
             String nome = resultSet.getString("nome");
             String email = resultSet.getString("email");
             String celular = resultSet.getString("celular");
+           
 
-            ContatoEmergenciaDTO contato = new ContatoEmergenciaDTO(0, nome, celular, email);
+            ContatoEmergenciaDTO contato = new ContatoEmergenciaDTO(id, nome, celular, email);
             contatos.add(contato);
         }
     } catch (SQLException e) {
         // Lidar com a exceção, se necessário
-    } finally {
-        if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException e) {
-                // Lidar com a exceção, se necessário
-            }
-        }
-
-        if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                // Lidar com a exceção, se necessário
-            }
-        }
-
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                // Lidar com a exceção, se necessário
-            }
-        }
     }
 
     return contatos;
 }
-
     
     
 

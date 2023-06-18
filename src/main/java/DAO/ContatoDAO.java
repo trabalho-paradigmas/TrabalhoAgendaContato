@@ -31,7 +31,7 @@ public class ContatoDAO {
 
     }
 
-    private void recebeNomeUsuario() {
+    private void recebeNomeUsuario() throws SQLException {
         Connection conn;
         PreparedStatement pstm;
         ResultSet rs;
