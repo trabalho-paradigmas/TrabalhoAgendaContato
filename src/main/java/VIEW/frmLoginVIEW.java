@@ -118,20 +118,20 @@ public class frmLoginVIEW extends javax.swing.JFrame {
 
     //BOTAO DE ENTRAR
     private void btnEntrarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarLoginActionPerformed
-        try {
+       /* try {
             Login();        //
         } catch (ExecutionException ex) {
             Logger.getLogger(frmLoginVIEW.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
     }//GEN-LAST:event_btnEntrarLoginActionPerformed
 
     private void btnCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUsuarioActionPerformed
-        cadastrarUsuario();
+       /* cadastrarUsuario();*/
     }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
 
     private void btnMudarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarSenhaActionPerformed
-       chamaTelaSenha();
+      /* chamaTelaSenha();*/
     }//GEN-LAST:event_btnMudarSenhaActionPerformed
 
     /**
@@ -179,7 +179,8 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtSenhaUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void Login() throws ExecutionException {
+  
+   /* private void Login() throws ExecutionException {
         try {
 
             String nome_usuario, senha_usuario;
@@ -233,7 +234,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
     
         frmMudarSenhaVIEW mudarSenhaVIEW = new frmMudarSenhaVIEW();
         mudarSenhaVIEW.setVisible(true);
-    }
+    }*/
     
     
 }

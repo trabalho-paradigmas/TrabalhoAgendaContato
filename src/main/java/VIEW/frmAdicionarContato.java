@@ -863,13 +863,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             // Redirecionar para a tela frmPrincipal
             frmPrincipal objTelafrmPrincipalVIEW = null;
-            try {
-                objTelafrmPrincipalVIEW = new frmPrincipal();
-            } catch (SQLException ex) {
-                Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ExecutionException ex) {
-                Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            objTelafrmPrincipalVIEW = new frmPrincipal();
             objTelafrmPrincipalVIEW.setVisible(true);
             setVisible(false); // Oculta a tela atual
             JOptionPane.getRootFrame().dispose();
@@ -891,9 +885,9 @@ public class frmAdicionarContato extends javax.swing.JFrame {
        setVisible(true);
    }
    public void ExecutaMetodo(frmPrincipal aThis) throws SQLException{
-      //principal.readJTableFamilia();
+      principal.readJTableFamilia();
       //principal.readJTableAmizade();
-      principal.ChamarEmOutroFrame();
+      
    }
 
     private void ExecutaMetodo() {
