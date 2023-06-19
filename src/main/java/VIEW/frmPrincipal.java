@@ -39,7 +39,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     public frmPrincipal() throws SQLException {
         initComponents();
         Tabelas();
-
+        //readJTableAmizade();
     }
 
     /**
@@ -108,6 +108,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        TextPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextPesquisarActionPerformed(evt);
+            }
+        });
         TextPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TextPesquisarKeyPressed(evt);
@@ -421,31 +426,43 @@ public class frmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        int linha = TabelaFamilia.getSelectedRow(); // Obtém a linha selecionada na tabela
-        if (linha == -1) {
-            JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
-            return;
+       if (TabelaFamilia.getSelectedRow() != -1) {
+            int linha = TabelaFamilia.getSelectedRow();
+            int idContato = (int) TabelaFamilia.getValueAt(linha, 0);
+
+            ContatoFamiliaDAO contatoDAO = new ContatoFamiliaDAO();
+            contatoDAO.delete(idContato);
+
+            DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
+            model.removeRow(linha);
+            model.fireTableDataChanged(); 
+            
+        } else if(TabelaAmizade.getSelectedRow() != -1){
+            int linha = TabelaAmizade.getSelectedRow();
+            int idContato = (int) TabelaAmizade.getValueAt(linha, 0);
+
+            ContatoAmizadeDAO contatoDAO = new ContatoAmizadeDAO();
+            contatoDAO.delete(idContato);
+
+            DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
+            model.removeRow(linha);
+            model.fireTableDataChanged();
         }
 
-        int idContato = (int) TabelaFamilia.getValueAt(linha, 0); // Obtém o ID do contato da coluna 0
-
-        ContatoFamiliaDAO contatoDAO = new ContatoFamiliaDAO();
-        contatoDAO.delete(idContato);
-
-        DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-        model.removeRow(linha);
-        model.fireTableDataChanged();
+    
+           
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
         // readJTableFamilia();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void TextPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextPesquisarKeyPressed
-        if (evt.getKeyCode() == 10) { // enter pressionado
-            // readJTableFamilia();
+          if(evt.getKeyCode()== 10){ // enter pressionado  
+             Tabelas();
         }
     }//GEN-LAST:event_TextPesquisarKeyPressed
 
@@ -479,6 +496,10 @@ public class frmPrincipal extends javax.swing.JFrame {
         String parentesco = (String) TabelaFamilia.getValueAt(selectedRow, 3);
 
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void TextPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -623,7 +644,6 @@ public class frmPrincipal extends javax.swing.JFrame {
             DefaultTableModel modelo = (DefaultTableModel) TabelaAmizade.getModel();
             modelo.setNumRows(0);
             ContatoAmizadeDAO contato = new ContatoAmizadeDAO();
-
             for (ContatoAmizadeDTO c : contato.read()) {
                 modelo.addRow(new Object[]{
                     c.getId(),
@@ -635,10 +655,11 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         } catch (SQLException e) {
             e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
+
         }
     }
 
-    public void readJTableEmergencia() {
+   public void readJTableEmergencia() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) TabelaEmergencia.getModel();
             modelo.setNumRows(0);
@@ -719,6 +740,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
 
+
     public void Tabelas() {
         /*  readJTableOutros();
        readJTableFamilia() ;
@@ -726,7 +748,11 @@ public class frmPrincipal extends javax.swing.JFrame {
        readJTableEmergencia();
        readJTableTrabalho();*/
         readJTableSaude();
+    }
+       
+  
+
 
     }
 
-}
+
