@@ -163,8 +163,6 @@ public class ContatoEmergenciaDAO {
 
             // Confirmar a transação
             conn.commit();
-
-            JOptionPane.showMessageDialog(null, "Contato excluído com sucesso");
         } catch (SQLException e) {
             // Rollback em caso de erro
             if (conn != null) {

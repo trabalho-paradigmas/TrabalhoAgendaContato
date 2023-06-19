@@ -18,10 +18,13 @@ import DTO.ContatoOutrosDTO;
 import DTO.ContatoSaudeDTO;
 import DTO.ContatoTrabalhoDTO;
 import DTO.UsuarioDTO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -426,32 +429,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-       if (TabelaFamilia.getSelectedRow() != -1) {
-            int linha = TabelaFamilia.getSelectedRow();
-            int idContato = (int) TabelaFamilia.getValueAt(linha, 0);
 
-            ContatoFamiliaDAO contatoDAO = new ContatoFamiliaDAO();
-            contatoDAO.delete(idContato);
-
-            DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged(); 
-            
-        } else if(TabelaAmizade.getSelectedRow() != -1){
-            int linha = TabelaAmizade.getSelectedRow();
-            int idContato = (int) TabelaAmizade.getValueAt(linha, 0);
-
-            ContatoAmizadeDAO contatoDAO = new ContatoAmizadeDAO();
-            contatoDAO.delete(idContato);
-
-            DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged();
-        }
-
-    
+       ConfirmaExcluir();
+        Excluir();
            
-
     }//GEN-LAST:event_btnExcluirActionPerformed
 
 
@@ -644,7 +625,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             DefaultTableModel modelo = (DefaultTableModel) TabelaAmizade.getModel();
             modelo.setNumRows(0);
             ContatoAmizadeDAO contato = new ContatoAmizadeDAO();
-            for (ContatoAmizadeDTO c : contato.read()) {
+            for (ContatoAmizadeDTO c : contato.pesquisar(TextPesquisar.getText())) {
                 modelo.addRow(new Object[]{
                     c.getId(),
                     c.getNome(),
@@ -665,7 +646,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             modelo.setNumRows(0);
             ContatoEmergenciaDAO contato = new ContatoEmergenciaDAO();
 
-            for (ContatoEmergenciaDTO c : contato.read()) {
+            for (ContatoEmergenciaDTO c : contato.pesquisar(TextPesquisar.getText())) {
                 modelo.addRow(new Object[]{
                     c.getId(),
                     c.getNome(),
@@ -684,7 +665,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             modelo.setNumRows(0);
             ContatoOutrosDAO contato = new ContatoOutrosDAO();
 
-            for (ContatoOutrosDTO c : contato.read()) {
+            for (ContatoOutrosDTO c : contato.pesquisar(TextPesquisar.getText())) {
                 modelo.addRow(new Object[]{
                     c.getId(),
                     c.getNome(),
@@ -704,7 +685,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             modelo.setNumRows(0);
             ContatoSaudeDAO contato = new ContatoSaudeDAO();
 
-            for (ContatoSaudeDTO c : contato.read()) {
+            for (ContatoSaudeDTO c : contato.pesquisar(TextPesquisar.getText())) {
                 modelo.addRow(new Object[]{
                     c.getId(),
                     c.getNome(),
@@ -725,7 +706,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             modelo.setNumRows(0);
             ContatoTrabalhoDAO contato = new ContatoTrabalhoDAO();
 
-            for (ContatoTrabalhoDTO c : contato.read()) {
+            for (ContatoTrabalhoDTO c : contato.pesquisar(TextPesquisar.getText())) {
                 modelo.addRow(new Object[]{
                     c.getId(),
                     c.getNome(),
@@ -742,17 +723,121 @@ public class frmPrincipal extends javax.swing.JFrame {
 
 
     public void Tabelas() {
-        /*  readJTableOutros();
+       readJTableOutros();
        readJTableFamilia() ;
        readJTableAmizade();
        readJTableEmergencia();
-       readJTableTrabalho();*/
+       readJTableTrabalho();
         readJTableSaude();
     }
        
-  
+    public void Excluir() { 
+        
+    if (TabelaFamilia.getSelectedRow() != -1) {
+        int linha = TabelaFamilia.getSelectedRow();
+        int idContato = (int) TabelaFamilia.getValueAt(linha, 0);
+
+        ContatoFamiliaDAO contatoFamiliaDAO = new ContatoFamiliaDAO();
+        contatoFamiliaDAO.delete(idContato);
+
+        DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
+        model.removeRow(linha);
+        model.fireTableDataChanged();
+        
+    } else if (TabelaAmizade.getSelectedRow() != -1) {
+        int linha = TabelaAmizade.getSelectedRow();
+        int idContato = (int) TabelaAmizade.getValueAt(linha, 0);
+
+        ContatoAmizadeDAO contatoAmizadeDAO = new ContatoAmizadeDAO();
+        contatoAmizadeDAO.delete(idContato);
+
+        DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
+        model.removeRow(linha);
+        model.fireTableDataChanged();
+        
+    } else if (TabelaEmergencia.getSelectedRow() != -1) {
+        int linha = TabelaEmergencia.getSelectedRow();
+        int idContato = (int) TabelaEmergencia.getValueAt(linha, 0);
+
+        ContatoEmergenciaDAO contatoEmergenciaDAO = new ContatoEmergenciaDAO();
+        contatoEmergenciaDAO.delete(idContato);
+
+        DefaultTableModel model = (DefaultTableModel) TabelaEmergencia.getModel();
+        model.removeRow(linha);
+        model.fireTableDataChanged();
+        
+    } else if (TabelaSaude.getSelectedRow() != -1) {
+        int linha = TabelaSaude.getSelectedRow();
+        int idContato = (int) TabelaSaude.getValueAt(linha, 0);
+
+        ContatoSaudeDAO contatoSaudeDAO = new ContatoSaudeDAO();
+        contatoSaudeDAO.delete(idContato);
+
+        DefaultTableModel model = (DefaultTableModel) TabelaSaude.getModel();
+        model.removeRow(linha);
+        model.fireTableDataChanged();
+        
+    } else if (TabelaTrabalho.getSelectedRow() != -1) {
+        int linha = TabelaTrabalho.getSelectedRow();
+        int idContato = (int) TabelaTrabalho.getValueAt(linha, 0);
+
+        ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
+        contatoTrabalhoDAO.delete(idContato);
+
+        DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
+        model.removeRow(linha);
+        model.fireTableDataChanged();
+        
+    }  else if (TabelaOutros.getSelectedRow() != -1) {
+        int linha = TabelaOutros.getSelectedRow();
+        int idContato = (int) TabelaOutros.getValueAt(linha, 0);
+
+        ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
+        contatoTrabalhoDAO.delete(idContato);
+
+        DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
+        model.removeRow(linha);
+        model.fireTableDataChanged();
+    }  
+}
 
 
+    private void ConfirmaExcluir() {
+    JButton buttonConfirmar = new JButton("Confirmar");
+    JButton buttonCancelar = new JButton("Cancelar");
+
+    // Adicionar os ouvintes de evento aos botões
+    buttonConfirmar.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+             Excluir();
+            JOptionPane.getRootFrame().dispose();
+             
+        }
+    });
+
+    buttonCancelar.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Redirecionar para a tela frmPrincipal
+            frmPrincipal objTelafrmPrincipalVIEW = null;
+            try {
+                objTelafrmPrincipalVIEW = new frmPrincipal();
+            } catch (SQLException ex) {
+                Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            objTelafrmPrincipalVIEW.setVisible(true);
+            setVisible(false); // Oculta a tela atual
+            JOptionPane.getRootFrame().dispose();    
+        }
+    });
+
+    // Adicionar os botões a um array de objetos
+    Object[] options = { buttonConfirmar, buttonCancelar };
+
+    // Exibir o JOptionPane com os botões personalizados
+    int result = JOptionPane.showOptionDialog(null, "Certeza ao excluir?", "Excluir", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
     }
+ }
 
 

@@ -1,5 +1,6 @@
 DTO\ContatoFamiliaDTO.class
 VIEW\frmLoginVIEW$2.class
+VIEW\frmPrincipal$15.class
 VIEW\frmPrincipal$3.class
 VIEW\frmCadastroUsuarioVIEW.class
 VIEW\frmAdicionarContato$2.class
@@ -24,6 +25,7 @@ VIEW\frmAdicionarContato$16.class
 VIEW\frmTelaEditaUsuario$2.class
 VIEW\frmAdicionarContato$3.class
 VIEW\frmPrincipal$2.class
+VIEW\frmPrincipal$14.class
 VIEW\frmAdicionarContato$9.class
 VIEW\frmPrincipal$8.class
 VIEW\frmAdicionarContato$19.class

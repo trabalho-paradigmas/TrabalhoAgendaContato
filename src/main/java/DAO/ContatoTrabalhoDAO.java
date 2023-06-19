@@ -11,6 +11,7 @@ import DTO.ContatoTrabalhoDTO;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ContatoTrabalhoDAO {
       public Boolean cadastrarContatoTrabalhoDAO(ContatoTrabalhoDTO contato) throws SQLException {
@@ -106,6 +107,85 @@ public class ContatoTrabalhoDAO {
 
     return contatos;
    }
+    
+     public List<ContatoTrabalhoDTO> pesquisar(String filtro) throws SQLException {
+    String sql = "SELECT cf.id, c.nome, c.email, c.celular, cf.telefone_comercial, cf.departamento FROM contato_trabalho cf " +
+                 "JOIN contato c ON c.id = cf.id_contato " +
+                 "WHERE c.nome LIKE ? OR c.email LIKE ? " +
+                 "ORDER BY cf.id ASC";
+
+    List<ContatoTrabalhoDTO> contatos = new ArrayList<>();
+    Connection conn = null;
+    PreparedStatement statement = null;
+    ResultSet resultSet = null;
+
+    try {
+        conn = ConexaoDAO.getConnection();
+        statement = conn.prepareStatement(sql);
+        String pesquisa = "%" + filtro + "%";
+        statement.setString(1, pesquisa);
+        statement.setString(2, pesquisa);
+        resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String nome = resultSet.getString("nome");
+            String email = resultSet.getString("email");
+            String celular = resultSet.getString("celular");
+            String telefone_comercial = resultSet.getString("telefone_comercial");
+            String departamento = resultSet.getString("departamento");
+
+            ContatoTrabalhoDTO contato = new ContatoTrabalhoDTO(id, nome, celular, email, telefone_comercial, departamento);
+            contatos.add(contato);
+        }
+    } catch (SQLException e) {
+        // Lidar com a exceção, se necessário
+    } 
+
+    return contatos;
+}
+   
+
+
+
+  public void delete(int idContato) {
+        Connection conn = null;
+        PreparedStatement statementContatoTrabalho = null;
+        PreparedStatement statementContato = null;
+
+        try {
+            conn = ConexaoDAO.getConnection();
+            conn.setAutoCommit(false); // Desabilitar o commit automático
+
+            // Excluir o registro da tabela "contato_familia" com base no ID do contato
+            statementContatoTrabalho = conn.prepareStatement("DELETE FROM contato_trabalho WHERE id = ?");
+            statementContatoTrabalho.setInt(1, idContato);
+            statementContatoTrabalho.executeUpdate();
+
+            // Excluir o registro correspondente na tabela "contato"
+            statementContato = conn.prepareStatement("DELETE FROM contato WHERE id= ?");
+            statementContato.setInt(1, idContato);
+            statementContato.executeUpdate();
+
+            // Confirmar a transação
+            conn.commit();
+
+        } catch (SQLException e) {
+            // Rollback em caso de erro
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    // Lidar com a exceção, se necessário
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Erro ao excluir o contato: " + e);
+        } finally {
+            // Fechar os recursos
+            // ...
+        }
+    }
+
     
 }
  

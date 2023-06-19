@@ -897,9 +897,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
        setVisible(true);
    }
    public void ExecutaMetodo(frmPrincipal aThis) throws SQLException{
-      //principal.readJTableFamilia();
-      //principal.readJTableAmizade();
-     // principal.Tabelas();
+      principal.Tabelas();
       
    }
 
