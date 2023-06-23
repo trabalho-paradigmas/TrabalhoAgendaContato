@@ -176,7 +176,7 @@ public class ContatoFamiliaDAO {
         }
     }
 
-    public void atualizar(ContatoFamiliaDTO contato) {
+    public int atualizar(int id, String nome, String email, String parentesco, String celular) {
         Connection conn = null;
         PreparedStatement statementContato = null;
         PreparedStatement statementContatoFamilia = null;
@@ -186,15 +186,17 @@ public class ContatoFamiliaDAO {
             conn.setAutoCommit(false); // Desabilitar o commit automático
 
             // Atualizar o registro na tabela "contato"
-            statementContato = conn.prepareStatement("UPDATE contato SET nome = ?, email = ?, celular = ? ");
-            statementContato.setString(1, contato.getNome());
-            statementContato.setString(2, contato.getEmail());
-            statementContato.setString(3, contato.getCelular());
+            statementContato = conn.prepareStatement("UPDATE contato SET nome = ?, email = ?, celular = ? where id = ? ");
+            statementContato.setString(1, nome);
+            statementContato.setString(2, email);
+            statementContato.setString(3, celular);
+            statementContato.setInt(4, id);
             statementContato.executeUpdate();
 
             // Atualizar o registro na tabela "contato_familia"
-            statementContatoFamilia = conn.prepareStatement("UPDATE contato_familia SET parentesco = ? ");
-            statementContatoFamilia.setString(1, contato.getParentesco());
+            statementContatoFamilia = conn.prepareStatement("UPDATE contato_familia SET parentesco = ? where id = ?");
+            statementContatoFamilia.setString(1, parentesco);
+            statementContatoFamilia.setInt(2, id);
             statementContatoFamilia.executeUpdate();
 
             // Confirmar a transação
@@ -236,6 +238,7 @@ public class ContatoFamiliaDAO {
                 }
             }
         }
+        return 0;
     }
    
 }

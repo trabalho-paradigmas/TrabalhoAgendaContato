@@ -5,17 +5,16 @@
 package VIEW;
 
 import DAO.ContatoAmizadeDAO;
-import DAO.ContatoEmergenciaDAO;
+
 import DAO.ContatoFamiliaDAO;
 import DAO.ContatoOutrosDAO;
-import DAO.ContatoSaudeDAO;
+
 import DAO.ContatoTrabalhoDAO;
 import DAO.UsuarioDAO;
 import DTO.ContatoAmizadeDTO;
-import DTO.ContatoEmergenciaDTO;
 import DTO.ContatoFamiliaDTO;
 import DTO.ContatoOutrosDTO;
-import DTO.ContatoSaudeDTO;
+
 import DTO.ContatoTrabalhoDTO;
 import DTO.UsuarioDTO;
 import java.awt.event.ActionEvent;
@@ -72,16 +71,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         TabelaTrabalho = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        TabelaEmergencia = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        TabelaSaude = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         TabelaOutros = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
+        DesktopTela = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        menuEditarUser = new javax.swing.JRadioButtonMenuItem();
+        menuSairUser = new javax.swing.JRadioButtonMenuItem();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -178,6 +176,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TabelaFamilia);
 
+        lblUsuario.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lblUsuario.setText("Usuario");
 
         TabelaAmizade.setModel(new javax.swing.table.DefaultTableModel(
@@ -233,67 +232,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Amizade");
 
-        jLabel3.setText("Emergencia");
-
-        TabelaEmergencia.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nome", "Emeil", "Celular"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane6.setViewportView(TabelaEmergencia);
-
         jLabel4.setText("Trabalho");
-
-        TabelaSaude.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nome", "Email", "Celular", "Tel. Comercial", "Especialização"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane7.setViewportView(TabelaSaude);
-
-        jLabel5.setText("Saude");
 
         TabelaOutros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -325,104 +264,118 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jLabel6.setText("Outros");
 
+        javax.swing.GroupLayout DesktopTelaLayout = new javax.swing.GroupLayout(DesktopTela);
+        DesktopTela.setLayout(DesktopTelaLayout);
+        DesktopTelaLayout.setHorizontalGroup(
+            DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 606, Short.MAX_VALUE)
+        );
+        DesktopTelaLayout.setVerticalGroup(
+            DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 169, Short.MAX_VALUE)
+        );
+
+        jMenu2.setText("Opções de usuário");
+
+        menuEditarUser.setSelected(true);
+        menuEditarUser.setText("Editar");
+        menuEditarUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEditarUserActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuEditarUser);
+
+        menuSairUser.setSelected(true);
+        menuSairUser.setText("Sair");
+        menuSairUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSairUserActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuSairUser);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(102, 102, 102)
-                                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addGap(31, 31, 31)
                         .addComponent(btnBuscar)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnExcluir)
-                        .addGap(458, 458, 458)
-                        .addComponent(btnCadastrar)
-                        .addGap(63, 63, 63)
-                        .addComponent(btnEditar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(517, 517, 517)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(215, 215, 215))
+                        .addComponent(btnCadastrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar)
+                        .addGap(305, 305, 305)
+                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(121, 121, 121))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnCadastrar)
-                    .addComponent(btnEditar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel2)
-                        .addGap(7, 7, 7))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar)
+                            .addComponent(btnExcluir)
+                            .addComponent(btnCadastrar)
+                            .addComponent(btnEditar))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(lblUsuario))
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(106, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addComponent(lblUsuario)
+                        .addGap(50, 50, 50)
+                        .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1, 1, 1)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         pack();
@@ -430,20 +383,20 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
-       ConfirmaExcluir();
+        ConfirmaExcluir();
         Excluir();
-           
+
     }//GEN-LAST:event_btnExcluirActionPerformed
 
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        Tabelas();
 
-        // readJTableFamilia();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void TextPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextPesquisarKeyPressed
-          if(evt.getKeyCode()== 10){ // enter pressionado  
-             Tabelas();
+        if (evt.getKeyCode() == 10) { // enter pressionado  
+            Tabelas();
         }
     }//GEN-LAST:event_TextPesquisarKeyPressed
 
@@ -456,31 +409,25 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-        int selectedRow = TabelaFamilia.getSelectedRow();
 
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
-            return;
-        } else {
-            EditarContato editarContato = new EditarContato();
-            editarContato.setVisible(true);
-            editarContato.pack();
-            editarContato.setLocationRelativeTo(null);
-            editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        }
-
-        String nome = (String) TabelaFamilia.getValueAt(selectedRow, 0);
-        String email = (String) TabelaFamilia.getValueAt(selectedRow, 1);
-        String celular = (String) TabelaFamilia.getValueAt(selectedRow, 2);
-        String parentesco = (String) TabelaFamilia.getValueAt(selectedRow, 3);
-
+       
+        enviaDadoTabela();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void TextPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPesquisarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextPesquisarActionPerformed
+
+    private void menuSairUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairUserActionPerformed
+        //Deslogar
+        sair();
+    }//GEN-LAST:event_menuSairUserActionPerformed
+
+    private void menuEditarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditarUserActionPerformed
+        //Envia para tela de edição do usuario
+        retornaNomeUsuario();
+
+    }//GEN-LAST:event_menuEditarUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -522,12 +469,11 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TabelaAmizade;
-    private javax.swing.JTable TabelaEmergencia;
-    private javax.swing.JTable TabelaFamilia;
-    private javax.swing.JTable TabelaOutros;
-    private javax.swing.JTable TabelaSaude;
-    private javax.swing.JTable TabelaTrabalho;
+    private javax.swing.JDesktopPane DesktopTela;
+    public javax.swing.JTable TabelaAmizade;
+    public javax.swing.JTable TabelaFamilia;
+    public javax.swing.JTable TabelaOutros;
+    public javax.swing.JTable TabelaTrabalho;
     private javax.swing.JTextField TextPesquisar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
@@ -535,21 +481,21 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     public static javax.swing.JLabel lblUsuario;
+    private javax.swing.JRadioButtonMenuItem menuEditarUser;
+    private javax.swing.JRadioButtonMenuItem menuSairUser;
     // End of variables declaration//GEN-END:variables
 
     private void sair() {
@@ -584,7 +530,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
                 }
             }
-        } catch(SQLException erro){
+        } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
         }
 
@@ -640,25 +586,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
 
-   public void readJTableEmergencia() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) TabelaEmergencia.getModel();
-            modelo.setNumRows(0);
-            ContatoEmergenciaDAO contato = new ContatoEmergenciaDAO();
-
-            for (ContatoEmergenciaDTO c : contato.pesquisar(TextPesquisar.getText())) {
-                modelo.addRow(new Object[]{
-                    c.getId(),
-                    c.getNome(),
-                    c.getEmail(),
-                    c.getCelular()
-                });
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
-        }
-    }
-
     public void readJTableOutros() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) TabelaOutros.getModel();
@@ -672,27 +599,6 @@ public class frmPrincipal extends javax.swing.JFrame {
                     c.getEmail(),
                     c.getCelular(),
                     c.getTelefone_comercial()
-                });
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
-        }
-    }
-
-    public void readJTableSaude() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) TabelaSaude.getModel();
-            modelo.setNumRows(0);
-            ContatoSaudeDAO contato = new ContatoSaudeDAO();
-
-            for (ContatoSaudeDTO c : contato.pesquisar(TextPesquisar.getText())) {
-                modelo.addRow(new Object[]{
-                    c.getId(),
-                    c.getNome(),
-                    c.getEmail(),
-                    c.getCelular(),
-                    c.getTelefone_comercial(),
-                    c.getEspecializacao()
                 });
             }
         } catch (SQLException e) {
@@ -721,123 +627,220 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }
 
-
     public void Tabelas() {
-       readJTableOutros();
-       readJTableFamilia() ;
-       readJTableAmizade();
-       readJTableEmergencia();
-       readJTableTrabalho();
-        readJTableSaude();
+        readJTableOutros();
+        readJTableFamilia();
+        readJTableAmizade();
+        readJTableTrabalho();
+
     }
-       
-    public void Excluir() { 
-        
-    if (TabelaFamilia.getSelectedRow() != -1) {
-        int linha = TabelaFamilia.getSelectedRow();
-        int idContato = (int) TabelaFamilia.getValueAt(linha, 0);
 
-        ContatoFamiliaDAO contatoFamiliaDAO = new ContatoFamiliaDAO();
-        contatoFamiliaDAO.delete(idContato);
+    public void Excluir() {
 
-        DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-        model.removeRow(linha);
-        model.fireTableDataChanged();
-        
-    } else if (TabelaAmizade.getSelectedRow() != -1) {
-        int linha = TabelaAmizade.getSelectedRow();
-        int idContato = (int) TabelaAmizade.getValueAt(linha, 0);
+        if (TabelaFamilia.getSelectedRow() != -1) {
+            int linha = TabelaFamilia.getSelectedRow();
+            int idContato = (int) TabelaFamilia.getValueAt(linha, 0);
 
-        ContatoAmizadeDAO contatoAmizadeDAO = new ContatoAmizadeDAO();
-        contatoAmizadeDAO.delete(idContato);
+            ContatoFamiliaDAO contatoFamiliaDAO = new ContatoFamiliaDAO();
+            contatoFamiliaDAO.delete(idContato);
 
-        DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
-        model.removeRow(linha);
-        model.fireTableDataChanged();
-        
-    } else if (TabelaEmergencia.getSelectedRow() != -1) {
-        int linha = TabelaEmergencia.getSelectedRow();
-        int idContato = (int) TabelaEmergencia.getValueAt(linha, 0);
+            DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
+            model.removeRow(linha);
+            model.fireTableDataChanged();
 
-        ContatoEmergenciaDAO contatoEmergenciaDAO = new ContatoEmergenciaDAO();
-        contatoEmergenciaDAO.delete(idContato);
+        } else if (TabelaAmizade.getSelectedRow() != -1) {
+            int linha = TabelaAmizade.getSelectedRow();
+            int idContato = (int) TabelaAmizade.getValueAt(linha, 0);
 
-        DefaultTableModel model = (DefaultTableModel) TabelaEmergencia.getModel();
-        model.removeRow(linha);
-        model.fireTableDataChanged();
-        
-    } else if (TabelaSaude.getSelectedRow() != -1) {
-        int linha = TabelaSaude.getSelectedRow();
-        int idContato = (int) TabelaSaude.getValueAt(linha, 0);
+            ContatoAmizadeDAO contatoAmizadeDAO = new ContatoAmizadeDAO();
+            contatoAmizadeDAO.delete(idContato);
 
-        ContatoSaudeDAO contatoSaudeDAO = new ContatoSaudeDAO();
-        contatoSaudeDAO.delete(idContato);
+            DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
+            model.removeRow(linha);
+            model.fireTableDataChanged();
 
-        DefaultTableModel model = (DefaultTableModel) TabelaSaude.getModel();
-        model.removeRow(linha);
-        model.fireTableDataChanged();
-        
-    } else if (TabelaTrabalho.getSelectedRow() != -1) {
-        int linha = TabelaTrabalho.getSelectedRow();
-        int idContato = (int) TabelaTrabalho.getValueAt(linha, 0);
+        } else if (TabelaTrabalho.getSelectedRow() != -1) {
+            int linha = TabelaTrabalho.getSelectedRow();
+            int idContato = (int) TabelaTrabalho.getValueAt(linha, 0);
 
-        ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
-        contatoTrabalhoDAO.delete(idContato);
+            ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
+            contatoTrabalhoDAO.delete(idContato);
 
-        DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
-        model.removeRow(linha);
-        model.fireTableDataChanged();
-        
-    }  else if (TabelaOutros.getSelectedRow() != -1) {
-        int linha = TabelaOutros.getSelectedRow();
-        int idContato = (int) TabelaOutros.getValueAt(linha, 0);
+            DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
+            model.removeRow(linha);
+            model.fireTableDataChanged();
 
-        ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
-        contatoTrabalhoDAO.delete(idContato);
+        } else if (TabelaOutros.getSelectedRow() != -1) {
+            int linha = TabelaOutros.getSelectedRow();
+            int idContato = (int) TabelaOutros.getValueAt(linha, 0);
 
-        DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
-        model.removeRow(linha);
-        model.fireTableDataChanged();
-    }  
-}
+            ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
+            contatoTrabalhoDAO.delete(idContato);
 
+            DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
+            model.removeRow(linha);
+            model.fireTableDataChanged();
+        }
+    }
 
     private void ConfirmaExcluir() {
-    JButton buttonConfirmar = new JButton("Confirmar");
-    JButton buttonCancelar = new JButton("Cancelar");
+        JButton buttonConfirmar = new JButton("Confirmar");
+        JButton buttonCancelar = new JButton("Cancelar");
 
-    // Adicionar os ouvintes de evento aos botões
-    buttonConfirmar.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-             Excluir();
-            JOptionPane.getRootFrame().dispose();
-             
-        }
-    });
+        // Adicionar os ouvintes de evento aos botões
+        buttonConfirmar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Excluir();
+                JOptionPane.getRootFrame().dispose();
 
-    buttonCancelar.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            // Redirecionar para a tela frmPrincipal
-            frmPrincipal objTelafrmPrincipalVIEW = null;
-            try {
-                objTelafrmPrincipalVIEW = new frmPrincipal();
-            } catch (SQLException ex) {
-                Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
             }
-            objTelafrmPrincipalVIEW.setVisible(true);
-            setVisible(false); // Oculta a tela atual
-            JOptionPane.getRootFrame().dispose();    
-        }
-    });
+        });
 
-    // Adicionar os botões a um array de objetos
-    Object[] options = { buttonConfirmar, buttonCancelar };
+        buttonCancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Redirecionar para a tela frmPrincipal
+                frmPrincipal objTelafrmPrincipalVIEW = null;
+                try {
+                    objTelafrmPrincipalVIEW = new frmPrincipal();
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                objTelafrmPrincipalVIEW.setVisible(true);
+                setVisible(false); // Oculta a tela atual
+                JOptionPane.getRootFrame().dispose();
+            }
+        });
 
-    // Exibir o JOptionPane com os botões personalizados
-    int result = JOptionPane.showOptionDialog(null, "Certeza ao excluir?", "Excluir", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        // Adicionar os botões a um array de objetos
+        Object[] options = {buttonConfirmar, buttonCancelar};
+
+        // Exibir o JOptionPane com os botões personalizados
+        int result = JOptionPane.showOptionDialog(null, "Certeza ao excluir?", "Excluir", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
     }
- }
 
+    private void enviaDadoTabela() {
+        if (TabelaFamilia.getSelectedRow() != -1) {
+            DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
+            int selectedRow = TabelaFamilia.getSelectedRow();
 
+            int id = Integer.parseInt(TabelaFamilia.getValueAt(selectedRow, 0).toString());
+            String nome = (String) TabelaFamilia.getValueAt(selectedRow, 1);
+            String email = (String) TabelaFamilia.getValueAt(selectedRow, 2);
+            String celular = (String) TabelaFamilia.getValueAt(selectedRow, 3);
+            String parentesco = (String) TabelaFamilia.getValueAt(selectedRow, 4);
+
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
+                return;
+            } else {
+                EditarContato editarContato = new EditarContato();
+                editarContato.TextNome.setText(nome);
+                editarContato.lblId.setText(String.valueOf(id));
+                editarContato.TextCelular.setText(celular);
+                editarContato.TextEmail.setText(email);
+                editarContato.TextParentesco.setText(parentesco);
+                editarContato.TextComercial.setEnabled(false);
+                editarContato.TextDepartamento.setEditable(false);
+                editarContato.TextApelido.setEditable(false);
+                editarContato.TextComercial.setEditable(false);
+                editarContato.setVisible(true);
+                editarContato.pack();
+                editarContato.setLocationRelativeTo(null);
+                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+            }
+        } else if (TabelaAmizade.getSelectedRow() != -1) {
+            DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
+            int selectedRow = TabelaAmizade.getSelectedRow();
+
+            int id = Integer.parseInt(TabelaAmizade.getValueAt(selectedRow, 0).toString());
+            String nome = (String) TabelaAmizade.getValueAt(selectedRow, 1);
+            String email = (String) TabelaAmizade.getValueAt(selectedRow, 2);
+            String celular = (String) TabelaAmizade.getValueAt(selectedRow, 3);
+            String parentesco = (String) TabelaAmizade.getValueAt(selectedRow, 4);
+
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
+                return;
+            } else {
+                EditarContato editarContato = new EditarContato();
+                editarContato.TextNome.setText(nome);
+                editarContato.lblId.setText(String.valueOf(id));
+                editarContato.TextCelular.setText(celular);
+                editarContato.TextEmail.setText(email);
+                editarContato.TextApelido.setText(parentesco);
+                editarContato.TextDepartamento.setEditable(false);
+                editarContato.TextComercial.setEditable(false);
+                editarContato.TextParentesco.setEditable(false);
+                editarContato.setVisible(true);
+                editarContato.pack();
+                editarContato.setLocationRelativeTo(null);
+                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+            }
+        } else if (TabelaTrabalho.getSelectedRow() != -1) {
+            DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
+            int selectedRow = TabelaTrabalho.getSelectedRow();
+
+            int id = Integer.parseInt(TabelaOutros.getValueAt(selectedRow, 0).toString());
+            String nome = (String) TabelaTrabalho.getValueAt(selectedRow, 1);
+            String email = (String) TabelaTrabalho.getValueAt(selectedRow, 2);
+            String celular = (String) TabelaTrabalho.getValueAt(selectedRow, 3);
+            String parentesco = (String) TabelaTrabalho.getValueAt(selectedRow, 4);
+
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
+                return;
+            } else {
+                EditarContato editarContato = new EditarContato();
+                editarContato.TextNome.setText(nome);
+                editarContato.lblId.setText(String.valueOf(id));
+                editarContato.TextCelular.setText(celular);
+                editarContato.TextEmail.setText(email);
+                editarContato.TextComercial.setText(parentesco);
+                editarContato.TextDepartamento.setText(parentesco);
+                editarContato.TextParentesco.setEditable(false);
+                editarContato.TextApelido.setEditable(false);
+                editarContato.setVisible(true);
+                editarContato.pack();
+                editarContato.setLocationRelativeTo(null);
+                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+            }
+        } else if (TabelaOutros.getSelectedRow() != -1) {
+            DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
+            int selectedRow = TabelaOutros.getSelectedRow();
+
+            int id = Integer.parseInt(TabelaOutros.getValueAt(selectedRow, 0).toString());
+            String nome = (String) TabelaOutros.getValueAt(selectedRow, 1);
+            String email = (String) TabelaOutros.getValueAt(selectedRow, 2);
+            String celular = (String) TabelaOutros.getValueAt(selectedRow, 3);
+            String parentesco = (String) TabelaOutros.getValueAt(selectedRow, 4);
+
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
+                return;
+            } else {
+                EditarContato editarContato = new EditarContato();
+                editarContato.lblId.setText(String.valueOf(id));
+                editarContato.TextNome.setText(nome);
+                editarContato.TextCelular.setText(celular);
+                editarContato.TextEmail.setText(email);
+                editarContato.TextComercial.setText(parentesco);
+                editarContato.TextApelido.setEditable(false);
+                editarContato.TextParentesco.setEditable(false);
+                editarContato.TextDepartamento.setEditable(false);
+                editarContato.setVisible(true);
+                editarContato.pack();
+                editarContato.setLocationRelativeTo(null);
+                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+            }
+        }
+
+    }
+     
+   
+}

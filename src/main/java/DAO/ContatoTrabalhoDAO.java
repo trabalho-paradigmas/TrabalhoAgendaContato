@@ -2,7 +2,6 @@ package DAO;
 
 import DTO.ContatoDTO;
 import DTO.ContatoFamiliaDTO;
-import DTO.ContatoSaudeDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
