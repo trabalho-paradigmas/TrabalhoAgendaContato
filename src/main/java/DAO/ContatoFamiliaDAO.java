@@ -67,7 +67,7 @@ public class ContatoFamiliaDAO {
         return id;
     }
 
-    public List<ContatoFamiliaDTO> read() throws SQLException {
+    public List<ContatoFamiliaDTO> ler() throws SQLException {
         String sql = "SELECT cf.id, c.nome, c.email, c.celular, cf.parentesco FROM contato_familia cf "
                 + "JOIN contato c ON c.id = cf.id_contato "
                 + "ORDER BY cf.id ASC";

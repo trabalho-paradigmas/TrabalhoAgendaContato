@@ -330,7 +330,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
     private void btnAdicionarConatatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarConatatoActionPerformed
 
         try {
-            AdicionarContato();
+            adicionarContato();
         } catch (SQLException ex) {
             Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -356,7 +356,6 @@ public class frmAdicionarContato extends javax.swing.JFrame {
     private void cbFamiliaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFamiliaActionPerformed
 
         if (cbFamilia.isSelected()) {
-
             //bloqueando as checkbox
             cbTrabalho.setEnabled(false);
             cbAmizade.setEnabled(false);
@@ -368,7 +367,6 @@ public class frmAdicionarContato extends javax.swing.JFrame {
 
             cbTrabalho.setEnabled(true);
             cbAmizade.setEnabled(true);
-
             cbOutros.setEnabled(true);
 
         }
@@ -414,7 +412,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
 
     private void btnConfirmarTipoContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarTipoContatoActionPerformed
 
-        ConfirmarTipoContato();
+        confirmarTipoContato();
 
     }//GEN-LAST:event_btnConfirmarTipoContatoActionPerformed
 
@@ -445,7 +443,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         try {
-            Cancelar();
+            cancelar();
         } catch (SQLException ex) {
             Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
@@ -521,7 +519,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 
-    private void Cancelar() throws SQLException, ExecutionException {
+    private void cancelar() throws SQLException, ExecutionException {
         frmPrincipal objTelafrmPrincipalVIEW = null;
         objTelafrmPrincipalVIEW = new frmPrincipal();
         objTelafrmPrincipalVIEW.setVisible(true);
@@ -529,7 +527,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
         JOptionPane.getRootFrame().dispose();
     }
 
-    private void AdicionarContato() throws SQLException {
+    private void adicionarContato() throws SQLException {
         String nome = TextNome.getText();
         String celular = TextContato.getText();
         String email = TextEmail.getText();
@@ -550,6 +548,8 @@ public class frmAdicionarContato extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Por favor, preencha com um número valido.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        
 
         ContatoDTO contato = null;
 
@@ -582,11 +582,12 @@ public class frmAdicionarContato extends javax.swing.JFrame {
             }
         }
 
-        ContatoAdicionado();
+        contatoAdicionado();
 
     }
 
-    private void ConfirmarTipoContato() {
+    
+    private void confirmarTipoContato() {
         if (cbFamilia.isSelected()) {
             TextNome.setEnabled(true);
             TextContato.setEnabled(true);
@@ -645,7 +646,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
 
     }
 
-    private void ContatoAdicionado() {
+    private void contatoAdicionado() {
         JButton buttonTelaPrincipal = new JButton("Adicionar mais contatos");
         JButton buttonVoltar = new JButton("Tela Principal");
 
@@ -686,16 +687,7 @@ public class frmAdicionarContato extends javax.swing.JFrame {
         int result = JOptionPane.showOptionDialog(null, "Contato adicionado com sucesso!", "Sucesso", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
     }
 
-    private frmPrincipal principal;
-
-    public void MostrarTela(frmPrincipal frmprincipal) {
-        this.principal = frmprincipal;
-        setVisible(true);
-    }
-
-    public void ExecutaMetodo(frmPrincipal aThis) throws SQLException {
-        principal.Tabelas();
-    }
+  
 
     private boolean validaEmail() {
         String email = TextEmail.getText();

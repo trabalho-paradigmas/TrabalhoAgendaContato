@@ -7,16 +7,14 @@ package VIEW;
 import DAO.ContatoAmizadeDAO;
 
 import DAO.ContatoFamiliaDAO;
-import DAO.ContatoOutrosDAO;
-
 import DAO.ContatoTrabalhoDAO;
 import DAO.UsuarioDAO;
-import DTO.ContatoAmizadeDTO;
-import DTO.ContatoFamiliaDTO;
-import DTO.ContatoOutrosDTO;
-
-import DTO.ContatoTrabalhoDTO;
 import DTO.UsuarioDTO;
+import Interfaces.ObservarDadosTabela;
+import Interfaces.ObservarDadosTabelaAmizade;
+import Interfaces.ObservarDadosTabelaFamilia;
+import Interfaces.ObservarDadosTabelaOutros;
+import Interfaces.ObservarDadosTabelaTrabalho;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -26,7 +24,8 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,8 +39,8 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     public frmPrincipal() throws SQLException {
         initComponents();
-        Tabelas();
-        //readJTableAmizade();
+         lerTabelas();
+        
     }
 
     /**
@@ -390,27 +389,31 @@ public class frmPrincipal extends javax.swing.JFrame {
 
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        Tabelas();
+        try {
+            
+            lerTabelas();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void TextPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextPesquisarKeyPressed
-        if (evt.getKeyCode() == 10) { // enter pressionado  
-            Tabelas();
+        if (evt.getKeyCode() == 10) { try {
+            // enter pressionado
+               lerTabelas();
+            } catch (SQLException ex) {
+                Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_TextPesquisarKeyPressed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        frmAdicionarContato objTelafrmAdicionarContatoVIEW = null;
-        objTelafrmAdicionarContatoVIEW = new frmAdicionarContato();
-        objTelafrmAdicionarContatoVIEW.setVisible(true);
-        setVisible(false); // Oculta a tela atual
-        JOptionPane.getRootFrame().dispose();
+       cadastrarContatos();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
-       
         enviaDadoTabela();
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -536,105 +539,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     }
 
-    private static class DesktopTela {
-
-        private static void add(telaUsuarioVIEW telaUsuarioVIEW) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        public DesktopTela() {
-        }
-    }
-
-    public void readJTableFamilia() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) TabelaFamilia.getModel();
-            modelo.setNumRows(0);
-            ContatoFamiliaDAO contato = new ContatoFamiliaDAO();
-            modelo.setRowCount(0);//limpar os registros da tabela
-            for (ContatoFamiliaDTO c : contato.pesquisar(TextPesquisar.getText())) {
-                modelo.addRow(new Object[]{
-                    c.getId(),
-                    c.getNome(),
-                    c.getEmail(),
-                    c.getCelular(),
-                    c.getParentesco()
-                });
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
-        }
-    }
-
-    public void readJTableAmizade() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) TabelaAmizade.getModel();
-            modelo.setNumRows(0);
-            ContatoAmizadeDAO contato = new ContatoAmizadeDAO();
-            for (ContatoAmizadeDTO c : contato.pesquisar(TextPesquisar.getText())) {
-                modelo.addRow(new Object[]{
-                    c.getId(),
-                    c.getNome(),
-                    c.getEmail(),
-                    c.getCelular(),
-                    c.getApelido()
-                });
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
-
-        }
-    }
-
-    public void readJTableOutros() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) TabelaOutros.getModel();
-            modelo.setNumRows(0);
-            ContatoOutrosDAO contato = new ContatoOutrosDAO();
-
-            for (ContatoOutrosDTO c : contato.pesquisar(TextPesquisar.getText())) {
-                modelo.addRow(new Object[]{
-                    c.getId(),
-                    c.getNome(),
-                    c.getEmail(),
-                    c.getCelular(),
-                    c.getTelefone_comercial()
-                });
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
-        }
-    }
-
-    public void readJTableTrabalho() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) TabelaTrabalho.getModel();
-            modelo.setNumRows(0);
-            ContatoTrabalhoDAO contato = new ContatoTrabalhoDAO();
-
-            for (ContatoTrabalhoDTO c : contato.pesquisar(TextPesquisar.getText())) {
-                modelo.addRow(new Object[]{
-                    c.getId(),
-                    c.getNome(),
-                    c.getEmail(),
-                    c.getCelular(),
-                    c.getTelefone_comercial(),
-                    c.getDepartamento()
-                });
-            }
-        } catch (SQLException e) {
-            e.printStackTrace(); // Lida com a exceção de alguma forma apropriada, como exibir uma mensagem de erro.
-        }
-    }
-
-    public void Tabelas() {
-        readJTableOutros();
-        readJTableFamilia();
-        readJTableAmizade();
-        readJTableTrabalho();
-
-    }
-
+    
     public void Excluir() {
 
         if (TabelaFamilia.getSelectedRow() != -1) {
@@ -841,6 +746,34 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
 
     }
+    
+    public void cadastrarContatos(){   // Encaminhando para a tela de adicionar contato
+        frmAdicionarContato objTelafrmAdicionarContatoVIEW = null;
+        objTelafrmAdicionarContatoVIEW = new frmAdicionarContato();
+        objTelafrmAdicionarContatoVIEW.setVisible(true);
+        setVisible(false); // Oculta a tela atual
+        JOptionPane.getRootFrame().dispose();
+    }
      
+    
+     /* Esses métodos tem como objetivo atualizar a tabela com 
+    os dados mais recentes obtidos do banco de dados, refletindo 
+    assim as alterações realizadas nos contatos e tambem para o campo de pesquisa */
+    public void lerTabela(ObservarDadosTabela observador, JTable tabela, JTextField campoPesquisa) throws SQLException {
+    
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        observador.lerDados(modelo, campoPesquisa.getText());
+    
+   }
+
+   public void lerTabelas() throws SQLException {
+        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaFamilia(), TabelaFamilia, TextPesquisar );
+        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaAmizade(), TabelaAmizade, TextPesquisar );
+        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaTrabalho(), TabelaTrabalho, TextPesquisar );
+        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaOutros(), TabelaOutros, TextPesquisar );
+        
+    }
+
    
 }
