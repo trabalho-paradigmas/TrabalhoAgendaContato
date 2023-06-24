@@ -34,13 +34,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmPrincipal extends javax.swing.JFrame {
 
-    frmAdicionarContato AdicionarContato = new frmAdicionarContato();
-    EditarContato EditarContato = new EditarContato();
-
+//    frmAdicionarContato AdicionarContato = new frmAdicionarContato();
+//    EditarContato EditarContato = new EditarContato();
     public frmPrincipal() throws SQLException {
         initComponents();
-         lerTabelas();
-        
+        getContentPane().add(panelPrincipal);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
+
     }
 
     /**
@@ -56,25 +58,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        TextPesquisar = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
-        btnCadastrar = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TabelaFamilia = new javax.swing.JTable();
         lblUsuario = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        TabelaAmizade = new javax.swing.JTable();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        TabelaTrabalho = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        TabelaOutros = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        DesktopTela = new javax.swing.JDesktopPane();
+        panelPrincipal = new javax.swing.JPanel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         menuEditarUser = new javax.swing.JRadioButtonMenuItem();
@@ -108,170 +94,31 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        TextPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextPesquisarActionPerformed(evt);
-            }
-        });
-        TextPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TextPesquisarKeyPressed(evt);
-            }
-        });
-
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarActionPerformed(evt);
-            }
-        });
-
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
-        TabelaFamilia.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nome", "Email", "Celular", "Parentesco"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(TabelaFamilia);
-
         lblUsuario.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lblUsuario.setText("Usuario");
 
-        TabelaAmizade.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nome", "Email", "Celular", "Apelido"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
+        panelPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(TabelaAmizade);
-
-        TabelaTrabalho.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nome", "Emeil", "Celular", "Tel. Comercial", "Departamento"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane5.setViewportView(TabelaTrabalho);
-
-        jLabel1.setText("Familia");
-
-        jLabel2.setText("Amizade");
-
-        jLabel4.setText("Trabalho");
-
-        TabelaOutros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nome", "Emeil", "Celular", "Tel. Comercial"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane8.setViewportView(TabelaOutros);
-
-        jLabel6.setText("Outros");
-
-        javax.swing.GroupLayout DesktopTelaLayout = new javax.swing.GroupLayout(DesktopTela);
-        DesktopTela.setLayout(DesktopTelaLayout);
-        DesktopTelaLayout.setHorizontalGroup(
-            DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1123, Short.MAX_VALUE)
         );
-        DesktopTelaLayout.setVerticalGroup(
-            DesktopTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 169, Short.MAX_VALUE)
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 658, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 439, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 148, Short.MAX_VALUE)
         );
 
         jMenu2.setText("Opções de usuário");
@@ -303,123 +150,35 @@ public class frmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnBuscar)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnExcluir)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCadastrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEditar)
-                        .addGap(305, 305, 305)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(121, 121, 121))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(177, 177, 177))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TextPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuscar)
-                            .addComponent(btnExcluir)
-                            .addComponent(btnCadastrar)
-                            .addComponent(btnEditar))
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel2))
+                        .addGap(102, 102, 102)
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125)
+                        .addComponent(lblUsuario))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(lblUsuario)
-                        .addGap(50, 50, 50)
-                        .addComponent(DesktopTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(1, 1, 1)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 85, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-
-        ConfirmaExcluir();
-        Excluir();
-
-    }//GEN-LAST:event_btnExcluirActionPerformed
-
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        try {
-            
-            lerTabelas();
-        } catch (SQLException ex) {
-            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void TextPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TextPesquisarKeyPressed
-        if (evt.getKeyCode() == 10) { try {
-            // enter pressionado
-               lerTabelas();
-            } catch (SQLException ex) {
-                Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_TextPesquisarKeyPressed
-
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-       cadastrarContatos();
-    }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-
-        enviaDadoTabela();
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void TextPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextPesquisarActionPerformed
 
     private void menuSairUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairUserActionPerformed
         //Deslogar
@@ -472,33 +231,17 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane DesktopTela;
-    public javax.swing.JTable TabelaAmizade;
-    public javax.swing.JTable TabelaFamilia;
-    public javax.swing.JTable TabelaOutros;
-    public javax.swing.JTable TabelaTrabalho;
-    private javax.swing.JTextField TextPesquisar;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnExcluir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     public static javax.swing.JLabel lblUsuario;
     private javax.swing.JRadioButtonMenuItem menuEditarUser;
     private javax.swing.JRadioButtonMenuItem menuSairUser;
+    public javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 
     private void sair() {
@@ -528,7 +271,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     telaUsuarioVIEW.recebeNomeUsuario(nomeUsuario);
                     telaUsuarioVIEW.recebeNome(nome);
                     telaUsuarioVIEW.setVisible(true);
-                    DesktopTela.add(telaUsuarioVIEW);
+                    jDesktopPane1.add(telaUsuarioVIEW);
                 } catch (Exception erro) {
                     JOptionPane.showMessageDialog(null, "NOME DE USUARIO" + erro);
                 }
@@ -538,242 +281,242 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
 
     }
-
-    
-    public void Excluir() {
-
-        if (TabelaFamilia.getSelectedRow() != -1) {
-            int linha = TabelaFamilia.getSelectedRow();
-            int idContato = (int) TabelaFamilia.getValueAt(linha, 0);
-
-            ContatoFamiliaDAO contatoFamiliaDAO = new ContatoFamiliaDAO();
-            contatoFamiliaDAO.delete(idContato);
-
-            DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged();
-
-        } else if (TabelaAmizade.getSelectedRow() != -1) {
-            int linha = TabelaAmizade.getSelectedRow();
-            int idContato = (int) TabelaAmizade.getValueAt(linha, 0);
-
-            ContatoAmizadeDAO contatoAmizadeDAO = new ContatoAmizadeDAO();
-            contatoAmizadeDAO.delete(idContato);
-
-            DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged();
-
-        } else if (TabelaTrabalho.getSelectedRow() != -1) {
-            int linha = TabelaTrabalho.getSelectedRow();
-            int idContato = (int) TabelaTrabalho.getValueAt(linha, 0);
-
-            ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
-            contatoTrabalhoDAO.delete(idContato);
-
-            DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged();
-
-        } else if (TabelaOutros.getSelectedRow() != -1) {
-            int linha = TabelaOutros.getSelectedRow();
-            int idContato = (int) TabelaOutros.getValueAt(linha, 0);
-
-            ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
-            contatoTrabalhoDAO.delete(idContato);
-
-            DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged();
-        }
-    }
-
-    private void ConfirmaExcluir() {
-        JButton buttonConfirmar = new JButton("Confirmar");
-        JButton buttonCancelar = new JButton("Cancelar");
-
-        // Adicionar os ouvintes de evento aos botões
-        buttonConfirmar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Excluir();
-                JOptionPane.getRootFrame().dispose();
-
-            }
-        });
-
-        buttonCancelar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Redirecionar para a tela frmPrincipal
-                frmPrincipal objTelafrmPrincipalVIEW = null;
-                try {
-                    objTelafrmPrincipalVIEW = new frmPrincipal();
-                } catch (SQLException ex) {
-                    Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                objTelafrmPrincipalVIEW.setVisible(true);
-                setVisible(false); // Oculta a tela atual
-                JOptionPane.getRootFrame().dispose();
-            }
-        });
-
-        // Adicionar os botões a um array de objetos
-        Object[] options = {buttonConfirmar, buttonCancelar};
-
-        // Exibir o JOptionPane com os botões personalizados
-        int result = JOptionPane.showOptionDialog(null, "Certeza ao excluir?", "Excluir", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-    }
-
-    private void enviaDadoTabela() {
-        if (TabelaFamilia.getSelectedRow() != -1) {
-            DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
-            int selectedRow = TabelaFamilia.getSelectedRow();
-
-            int id = Integer.parseInt(TabelaFamilia.getValueAt(selectedRow, 0).toString());
-            String nome = (String) TabelaFamilia.getValueAt(selectedRow, 1);
-            String email = (String) TabelaFamilia.getValueAt(selectedRow, 2);
-            String celular = (String) TabelaFamilia.getValueAt(selectedRow, 3);
-            String parentesco = (String) TabelaFamilia.getValueAt(selectedRow, 4);
-
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
-                return;
-            } else {
-                EditarContato editarContato = new EditarContato();
-                editarContato.TextNome.setText(nome);
-                editarContato.lblId.setText(String.valueOf(id));
-                editarContato.TextCelular.setText(celular);
-                editarContato.TextEmail.setText(email);
-                editarContato.TextParentesco.setText(parentesco);
-                editarContato.TextComercial.setEnabled(false);
-                editarContato.TextDepartamento.setEditable(false);
-                editarContato.TextApelido.setEditable(false);
-                editarContato.TextComercial.setEditable(false);
-                editarContato.setVisible(true);
-                editarContato.pack();
-                editarContato.setLocationRelativeTo(null);
-                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-            }
-        } else if (TabelaAmizade.getSelectedRow() != -1) {
-            DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
-            int selectedRow = TabelaAmizade.getSelectedRow();
-
-            int id = Integer.parseInt(TabelaAmizade.getValueAt(selectedRow, 0).toString());
-            String nome = (String) TabelaAmizade.getValueAt(selectedRow, 1);
-            String email = (String) TabelaAmizade.getValueAt(selectedRow, 2);
-            String celular = (String) TabelaAmizade.getValueAt(selectedRow, 3);
-            String parentesco = (String) TabelaAmizade.getValueAt(selectedRow, 4);
-
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
-                return;
-            } else {
-                EditarContato editarContato = new EditarContato();
-                editarContato.TextNome.setText(nome);
-                editarContato.lblId.setText(String.valueOf(id));
-                editarContato.TextCelular.setText(celular);
-                editarContato.TextEmail.setText(email);
-                editarContato.TextApelido.setText(parentesco);
-                editarContato.TextDepartamento.setEditable(false);
-                editarContato.TextComercial.setEditable(false);
-                editarContato.TextParentesco.setEditable(false);
-                editarContato.setVisible(true);
-                editarContato.pack();
-                editarContato.setLocationRelativeTo(null);
-                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-            }
-        } else if (TabelaTrabalho.getSelectedRow() != -1) {
-            DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
-            int selectedRow = TabelaTrabalho.getSelectedRow();
-
-            int id = Integer.parseInt(TabelaOutros.getValueAt(selectedRow, 0).toString());
-            String nome = (String) TabelaTrabalho.getValueAt(selectedRow, 1);
-            String email = (String) TabelaTrabalho.getValueAt(selectedRow, 2);
-            String celular = (String) TabelaTrabalho.getValueAt(selectedRow, 3);
-            String parentesco = (String) TabelaTrabalho.getValueAt(selectedRow, 4);
-
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
-                return;
-            } else {
-                EditarContato editarContato = new EditarContato();
-                editarContato.TextNome.setText(nome);
-                editarContato.lblId.setText(String.valueOf(id));
-                editarContato.TextCelular.setText(celular);
-                editarContato.TextEmail.setText(email);
-                editarContato.TextComercial.setText(parentesco);
-                editarContato.TextDepartamento.setText(parentesco);
-                editarContato.TextParentesco.setEditable(false);
-                editarContato.TextApelido.setEditable(false);
-                editarContato.setVisible(true);
-                editarContato.pack();
-                editarContato.setLocationRelativeTo(null);
-                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-            }
-        } else if (TabelaOutros.getSelectedRow() != -1) {
-            DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
-            int selectedRow = TabelaOutros.getSelectedRow();
-
-            int id = Integer.parseInt(TabelaOutros.getValueAt(selectedRow, 0).toString());
-            String nome = (String) TabelaOutros.getValueAt(selectedRow, 1);
-            String email = (String) TabelaOutros.getValueAt(selectedRow, 2);
-            String celular = (String) TabelaOutros.getValueAt(selectedRow, 3);
-            String parentesco = (String) TabelaOutros.getValueAt(selectedRow, 4);
-
-            if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
-                return;
-            } else {
-                EditarContato editarContato = new EditarContato();
-                editarContato.lblId.setText(String.valueOf(id));
-                editarContato.TextNome.setText(nome);
-                editarContato.TextCelular.setText(celular);
-                editarContato.TextEmail.setText(email);
-                editarContato.TextComercial.setText(parentesco);
-                editarContato.TextApelido.setEditable(false);
-                editarContato.TextParentesco.setEditable(false);
-                editarContato.TextDepartamento.setEditable(false);
-                editarContato.setVisible(true);
-                editarContato.pack();
-                editarContato.setLocationRelativeTo(null);
-                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-            }
-        }
-
-    }
-    
-    public void cadastrarContatos(){   // Encaminhando para a tela de adicionar contato
-        frmAdicionarContato objTelafrmAdicionarContatoVIEW = null;
-        objTelafrmAdicionarContatoVIEW = new frmAdicionarContato();
-        objTelafrmAdicionarContatoVIEW.setVisible(true);
-        setVisible(false); // Oculta a tela atual
-        JOptionPane.getRootFrame().dispose();
-    }
-     
-    
-     /* Esses métodos tem como objetivo atualizar a tabela com 
-    os dados mais recentes obtidos do banco de dados, refletindo 
-    assim as alterações realizadas nos contatos e tambem para o campo de pesquisa */
-    public void lerTabela(ObservarDadosTabela observador, JTable tabela, JTextField campoPesquisa) throws SQLException {
-    
-        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
-        modelo.setNumRows(0);
-        observador.lerDados(modelo, campoPesquisa.getText());
-    
-   }
-
-   public void lerTabelas() throws SQLException {
-        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaFamilia(), TabelaFamilia, TextPesquisar );
-        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaAmizade(), TabelaAmizade, TextPesquisar );
-        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaTrabalho(), TabelaTrabalho, TextPesquisar );
-        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaOutros(), TabelaOutros, TextPesquisar );
-        
-    }
-
-   
+//
+//    
+//    public void Excluir() {
+//
+//        if (TabelaFamilia.getSelectedRow() != -1) {
+//            int linha = TabelaFamilia.getSelectedRow();
+//            int idContato = (int) TabelaFamilia.getValueAt(linha, 0);
+//
+//            ContatoFamiliaDAO contatoFamiliaDAO = new ContatoFamiliaDAO();
+//            contatoFamiliaDAO.delete(idContato);
+//
+//            DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
+//            model.removeRow(linha);
+//            model.fireTableDataChanged();
+//
+//        } else if (TabelaAmizade.getSelectedRow() != -1) {
+//            int linha = TabelaAmizade.getSelectedRow();
+//            int idContato = (int) TabelaAmizade.getValueAt(linha, 0);
+//
+//            ContatoAmizadeDAO contatoAmizadeDAO = new ContatoAmizadeDAO();
+//            contatoAmizadeDAO.delete(idContato);
+//
+//            DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
+//            model.removeRow(linha);
+//            model.fireTableDataChanged();
+//
+//        } else if (TabelaTrabalho.getSelectedRow() != -1) {
+//            int linha = TabelaTrabalho.getSelectedRow();
+//            int idContato = (int) TabelaTrabalho.getValueAt(linha, 0);
+//
+//            ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
+//            contatoTrabalhoDAO.delete(idContato);
+//
+//            DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
+//            model.removeRow(linha);
+//            model.fireTableDataChanged();
+//
+//        } else if (TabelaOutros.getSelectedRow() != -1) {
+//            int linha = TabelaOutros.getSelectedRow();
+//            int idContato = (int) TabelaOutros.getValueAt(linha, 0);
+//
+//            ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
+//            contatoTrabalhoDAO.delete(idContato);
+//
+//            DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
+//            model.removeRow(linha);
+//            model.fireTableDataChanged();
+//        }
+//    }
+//
+//    private void confirmaExcluirContato() {
+//        JButton buttonConfirmar = new JButton("Confirmar");
+//        JButton buttonCancelar = new JButton("Cancelar");
+//
+//        // Adicionar os ouvintes de evento aos botões
+//        buttonConfirmar.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                Excluir();
+//                JOptionPane.getRootFrame().dispose();
+//
+//            }
+//        });
+//
+//        buttonCancelar.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                // Redirecionar para a tela frmPrincipal
+//                frmPrincipal objTelafrmPrincipalVIEW = null;
+//                try {
+//                    objTelafrmPrincipalVIEW = new frmPrincipal();
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                objTelafrmPrincipalVIEW.setVisible(true);
+//                setVisible(false); // Oculta a tela atual
+//                JOptionPane.getRootFrame().dispose();
+//            }
+//        });
+//
+//        // Adicionar os botões a um array de objetos
+//        Object[] options = {buttonConfirmar, buttonCancelar};
+//
+//        // Exibir o JOptionPane com os botões personalizados
+//        int result = JOptionPane.showOptionDialog(null, "Certeza ao excluir?", "Excluir", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+//    }
+//
+//    private void enviaDadoTabela() {
+//        if (TabelaFamilia.getSelectedRow() != -1) {
+//            DefaultTableModel model = (DefaultTableModel) TabelaFamilia.getModel();
+//            int selectedRow = TabelaFamilia.getSelectedRow();
+//
+//            int id = Integer.parseInt(TabelaFamilia.getValueAt(selectedRow, 0).toString());
+//            String nome = (String) TabelaFamilia.getValueAt(selectedRow, 1);
+//            String email = (String) TabelaFamilia.getValueAt(selectedRow, 2);
+//            String celular = (String) TabelaFamilia.getValueAt(selectedRow, 3);
+//            String parentesco = (String) TabelaFamilia.getValueAt(selectedRow, 4);
+//
+//            if (selectedRow == -1) {
+//                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
+//                return;
+//            } else {
+//                EditarContato editarContato = new EditarContato();
+//                editarContato.TextNome.setText(nome);
+//                editarContato.lblId.setText(String.valueOf(id));
+//                editarContato.TextCelular.setText(celular);
+//                editarContato.TextEmail.setText(email);
+//                editarContato.TextParentesco.setText(parentesco);
+//                editarContato.TextComercial.setEnabled(false);
+//                editarContato.TextDepartamento.setEditable(false);
+//                editarContato.TextApelido.setEditable(false);
+//                editarContato.TextComercial.setEditable(false);
+//                editarContato.setVisible(true);
+//                editarContato.pack();
+//                editarContato.setLocationRelativeTo(null);
+//                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//            }
+//        } else if (TabelaAmizade.getSelectedRow() != -1) {
+//            DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
+//            int selectedRow = TabelaAmizade.getSelectedRow();
+//
+//            int id = Integer.parseInt(TabelaAmizade.getValueAt(selectedRow, 0).toString());
+//            String nome = (String) TabelaAmizade.getValueAt(selectedRow, 1);
+//            String email = (String) TabelaAmizade.getValueAt(selectedRow, 2);
+//            String celular = (String) TabelaAmizade.getValueAt(selectedRow, 3);
+//            String parentesco = (String) TabelaAmizade.getValueAt(selectedRow, 4);
+//
+//            if (selectedRow == -1) {
+//                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
+//                return;
+//            } else {
+//                EditarContato editarContato = new EditarContato();
+//                editarContato.TextNome.setText(nome);
+//                editarContato.lblId.setText(String.valueOf(id));
+//                editarContato.TextCelular.setText(celular);
+//                editarContato.TextEmail.setText(email);
+//                editarContato.TextApelido.setText(parentesco);
+//                editarContato.TextDepartamento.setEditable(false);
+//                editarContato.TextComercial.setEditable(false);
+//                editarContato.TextParentesco.setEditable(false);
+//                editarContato.setVisible(true);
+//                editarContato.pack();
+//                editarContato.setLocationRelativeTo(null);
+//                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//            }
+//        } else if (TabelaTrabalho.getSelectedRow() != -1) {
+//            DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
+//            int selectedRow = TabelaTrabalho.getSelectedRow();
+//
+//            int id = Integer.parseInt(TabelaOutros.getValueAt(selectedRow, 0).toString());
+//            String nome = (String) TabelaTrabalho.getValueAt(selectedRow, 1);
+//            String email = (String) TabelaTrabalho.getValueAt(selectedRow, 2);
+//            String celular = (String) TabelaTrabalho.getValueAt(selectedRow, 3);
+//            String parentesco = (String) TabelaTrabalho.getValueAt(selectedRow, 4);
+//
+//            if (selectedRow == -1) {
+//                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
+//                return;
+//            } else {
+//                EditarContato editarContato = new EditarContato();
+//                editarContato.TextNome.setText(nome);
+//                editarContato.lblId.setText(String.valueOf(id));
+//                editarContato.TextCelular.setText(celular);
+//                editarContato.TextEmail.setText(email);
+//                editarContato.TextComercial.setText(parentesco);
+//                editarContato.TextDepartamento.setText(parentesco);
+//                editarContato.TextParentesco.setEditable(false);
+//                editarContato.TextApelido.setEditable(false);
+//                editarContato.setVisible(true);
+//                editarContato.pack();
+//                editarContato.setLocationRelativeTo(null);
+//                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//            }
+//        } else if (TabelaOutros.getSelectedRow() != -1) {
+//            DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
+//            int selectedRow = TabelaOutros.getSelectedRow();
+//
+//            int id = Integer.parseInt(TabelaOutros.getValueAt(selectedRow, 0).toString());
+//            String nome = (String) TabelaOutros.getValueAt(selectedRow, 1);
+//            String email = (String) TabelaOutros.getValueAt(selectedRow, 2);
+//            String celular = (String) TabelaOutros.getValueAt(selectedRow, 3);
+//            String parentesco = (String) TabelaOutros.getValueAt(selectedRow, 4);
+//
+//            if (selectedRow == -1) {
+//                JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
+//                return;
+//            } else {
+//                EditarContato editarContato = new EditarContato();
+//                editarContato.lblId.setText(String.valueOf(id));
+//                editarContato.TextNome.setText(nome);
+//                editarContato.TextCelular.setText(celular);
+//                editarContato.TextEmail.setText(email);
+//                editarContato.TextComercial.setText(parentesco);
+//                editarContato.TextApelido.setEditable(false);
+//                editarContato.TextParentesco.setEditable(false);
+//                editarContato.TextDepartamento.setEditable(false);
+//                editarContato.setVisible(true);
+//                editarContato.pack();
+//                editarContato.setLocationRelativeTo(null);
+//                editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//
+//            }
+//        }
+//
+//    }
+//    
+//    public void cadastrarContatos(){   // Encaminhando para a tela de adicionar contato
+//        frmAdicionarContato objTelafrmAdicionarContatoVIEW = null;
+//        objTelafrmAdicionarContatoVIEW = new frmAdicionarContato();
+//        objTelafrmAdicionarContatoVIEW.setVisible(true);
+//        setVisible(false); // Oculta a tela atual
+//        JOptionPane.getRootFrame().dispose();
+//    }
+//     
+//    
+//     /* Esses métodos tem como objetivo atualizar a tabela com 
+//    os dados mais recentes obtidos do banco de dados, refletindo 
+//    assim as alterações realizadas nos contatos e tambem para o campo de pesquisa */
+//    public void lerTabela(ObservarDadosTabela observador, JTable tabela, JTextField campoPesquisa) throws SQLException {
+//    
+//        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+//        modelo.setNumRows(0);
+//        observador.lerDados(modelo, campoPesquisa.getText());
+//    
+//   }
+//
+//   public void lerTabelas() throws SQLException {
+//        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaFamilia(), TabelaFamilia, TextPesquisar );
+//        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaAmizade(), TabelaAmizade, TextPesquisar );
+//        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaTrabalho(), TabelaTrabalho, TextPesquisar );
+//        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaOutros(), TabelaOutros, TextPesquisar );
+//        
+//    }
+//
+//   
 }
