@@ -7,6 +7,7 @@ package VIEW;
 import DAO.ConexaoDAO;
 import DAO.UsuarioDAO;
 import DTO.UsuarioDTO;
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -170,7 +171,7 @@ public class frmLoginVIEW extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmLoginVIEW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        FlatDarkLaf.setup();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
