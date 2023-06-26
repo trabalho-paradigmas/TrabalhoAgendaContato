@@ -431,7 +431,6 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
-        
         Excluir();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -559,6 +558,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         if (tabelaFamilia.getSelectedRow() != -1) {
             int linha = tabelaFamilia.getSelectedRow();
             int idContato = (int) tabelaFamilia.getValueAt(linha, 0);
+            
             int confirma = JOptionPane.showConfirmDialog(null, "Deseja apagar contato?", "Atenção", JOptionPane.YES_NO_OPTION);
 
             if (confirma == JOptionPane.YES_OPTION) {

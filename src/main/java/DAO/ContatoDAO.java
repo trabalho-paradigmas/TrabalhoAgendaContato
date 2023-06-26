@@ -12,21 +12,20 @@ public class ContatoDAO {
 
     public Boolean cadastrarContatoDAO(ContatoDTO contato) throws SQLException {
         
-        frmPrincipal principal = new frmPrincipal();
+        
         
         
         
         String sql
-                = "INSERT INTO contato (nome, email, celular, nome_usuario)"
+                = "INSERT INTO contato (nome, email, celular)"
                 + "VALUES"
-                + "(?, ?, ?,?)";
+                + "(?, ?, ?)";
 
         try (Connection conn = ConexaoDAO.getConnection(); PreparedStatement statement = conn.prepareStatement(sql)) {
 
             statement.setString(1, contato.getNome());
             statement.setString(2, contato.getEmail());
             statement.setString(3, contato.getCelular());
-            statement.setString(4, principal.passaNomeUsuario());
             statement.executeUpdate();
             System.out.println("Contato inserido com sucesso!");
             return true;
