@@ -39,7 +39,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     public frmPrincipal() throws SQLException {
         initComponents();
         lerTabelas();
-        
+
     }
 
     /**
@@ -151,7 +151,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nome", "Title 3", "Title 4"
             }
         ));
         jScrollPane4.setViewportView(tabelaFamilia);
@@ -325,10 +325,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGap(0, 804, Short.MAX_VALUE)
         );
 
         jMenu2.setText("Opções de usuário");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         menuEditarUser.setSelected(true);
         menuEditarUser.setText("Editar");
@@ -361,25 +366,24 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1003, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(83, Short.MAX_VALUE))
+                        .addGap(498, 498, 498)
+                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(216, 216, 216))))
+                        .addGap(26, 26, 26)
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112)
-                .addComponent(lblUsuario)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblUsuario)
+                        .addGap(14, 14, 14)
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -427,7 +431,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
-        confirmaExcluirContato();
+        
         Excluir();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -435,6 +439,10 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         enviaDadoTabela();
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -546,91 +554,66 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     }
 
-    
     public void Excluir() {
 
         if (tabelaFamilia.getSelectedRow() != -1) {
             int linha = tabelaFamilia.getSelectedRow();
             int idContato = (int) tabelaFamilia.getValueAt(linha, 0);
+            int confirma = JOptionPane.showConfirmDialog(null, "Deseja apagar contato?", "Atenção", JOptionPane.YES_NO_OPTION);
 
-            ContatoFamiliaDAO contatoFamiliaDAO = new ContatoFamiliaDAO();
-            contatoFamiliaDAO.delete(idContato);
+            if (confirma == JOptionPane.YES_OPTION) {
+                ContatoFamiliaDAO contatoFamiliaDAO = new ContatoFamiliaDAO();
+                contatoFamiliaDAO.delete(idContato);
 
-            DefaultTableModel model = (DefaultTableModel) tabelaFamilia.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged();
+                DefaultTableModel model = (DefaultTableModel) tabelaFamilia.getModel();
+                model.removeRow(linha);
+                model.fireTableDataChanged();
+            }
 
         } else if (TabelaAmizade.getSelectedRow() != -1) {
             int linha = TabelaAmizade.getSelectedRow();
             int idContato = (int) TabelaAmizade.getValueAt(linha, 0);
+            int confirma = JOptionPane.showConfirmDialog(null, "Deseja apagar contato?", "Atenção", JOptionPane.YES_NO_OPTION);
+            if (confirma == JOptionPane.YES_OPTION) {
+                ContatoAmizadeDAO contatoAmizadeDAO = new ContatoAmizadeDAO();
+                contatoAmizadeDAO.delete(idContato);
 
-            ContatoAmizadeDAO contatoAmizadeDAO = new ContatoAmizadeDAO();
-            contatoAmizadeDAO.delete(idContato);
-
-            DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged();
+                DefaultTableModel model = (DefaultTableModel) TabelaAmizade.getModel();
+                model.removeRow(linha);
+                model.fireTableDataChanged();
+            }
 
         } else if (TabelaTrabalho.getSelectedRow() != -1) {
             int linha = TabelaTrabalho.getSelectedRow();
             int idContato = (int) TabelaTrabalho.getValueAt(linha, 0);
 
-            ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
-            contatoTrabalhoDAO.delete(idContato);
+            int confirma = JOptionPane.showConfirmDialog(null, "Deseja apagar contato?", "Atenção", JOptionPane.YES_NO_OPTION);
+            
+            if (confirma == JOptionPane.YES_OPTION) {
+                ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
+                contatoTrabalhoDAO.delete(idContato);
 
-            DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged();
-
+                DefaultTableModel model = (DefaultTableModel) TabelaTrabalho.getModel();
+                model.removeRow(linha);
+                model.fireTableDataChanged();
+            }
+            
         } else if (TabelaOutros.getSelectedRow() != -1) {
             int linha = TabelaOutros.getSelectedRow();
             int idContato = (int) TabelaOutros.getValueAt(linha, 0);
+            int confirma = JOptionPane.showConfirmDialog(null, "Deseja apagar contato?", "Atenção", JOptionPane.YES_NO_OPTION);
+            
+            if (confirma == JOptionPane.YES_OPTION) {
+                ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
+                contatoTrabalhoDAO.delete(idContato);
 
-            ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
-            contatoTrabalhoDAO.delete(idContato);
-
-            DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
-            model.removeRow(linha);
-            model.fireTableDataChanged();
+                DefaultTableModel model = (DefaultTableModel) TabelaOutros.getModel();
+                model.removeRow(linha);
+                model.fireTableDataChanged();
+            }
         }
     }
 
-    private void confirmaExcluirContato() {
-        JButton buttonConfirmar = new JButton("Confirmar");
-        JButton buttonCancelar = new JButton("Cancelar");
-
-        // Adicionar os ouvintes de evento aos botões
-        buttonConfirmar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Excluir();
-                JOptionPane.getRootFrame().dispose();
-
-            }
-        });
-
-        buttonCancelar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Redirecionar para a tela frmPrincipal
-                frmPrincipal objTelafrmPrincipalVIEW = null;
-                try {
-                    objTelafrmPrincipalVIEW = new frmPrincipal();
-                } catch (SQLException ex) {
-                    Logger.getLogger(frmAdicionarContato.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                objTelafrmPrincipalVIEW.setVisible(true);
-                setVisible(false); // Oculta a tela atual
-                JOptionPane.getRootFrame().dispose();
-            }
-        });
-
-        // Adicionar os botões a um array de objetos
-        Object[] options = {buttonConfirmar, buttonCancelar};
-
-        // Exibir o JOptionPane com os botões personalizados
-        int result = JOptionPane.showOptionDialog(null, "Certeza ao excluir?", "Excluir", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-    }
 
     private void enviaDadoTabela() {
         if (tabelaFamilia.getSelectedRow() != -1) {
@@ -647,7 +630,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
                 return;
             } else {
-                EditarContato editarContato = new EditarContato();
+                frmAttContato editarContato = new frmAttContato();
                 editarContato.TextNome.setText(nome);
                 editarContato.lblId.setText(String.valueOf(id));
                 editarContato.TextCelular.setText(celular);
@@ -658,8 +641,8 @@ public class frmPrincipal extends javax.swing.JFrame {
                 editarContato.TextApelido.setEditable(false);
                 editarContato.TextComercial.setEditable(false);
                 editarContato.setVisible(true);
-                editarContato.pack();
-                editarContato.setLocationRelativeTo(null);
+                jDesktopPane1.add(editarContato);
+                //editarContato.setLocationRelativeTo(null);
                 editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             }
@@ -677,7 +660,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
                 return;
             } else {
-                EditarContato editarContato = new EditarContato();
+                frmAttContato editarContato = new frmAttContato();
                 editarContato.TextNome.setText(nome);
                 editarContato.lblId.setText(String.valueOf(id));
                 editarContato.TextCelular.setText(celular);
@@ -687,8 +670,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 editarContato.TextComercial.setEditable(false);
                 editarContato.TextParentesco.setEditable(false);
                 editarContato.setVisible(true);
-                editarContato.pack();
-                editarContato.setLocationRelativeTo(null);
+                jDesktopPane1.add(editarContato);
                 editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             }
@@ -752,35 +734,30 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
 
     }
-    
-    public void cadastrarContatos(){   // Encaminhando para a tela de adicionar contato
-        frmAdicionarContato objTelafrmAdicionarContatoVIEW = null;
 
-    objTelafrmAdicionarContatoVIEW = new frmAdicionarContato();
-        objTelafrmAdicionarContatoVIEW.setVisible(true);
-        setVisible(false); // Oculta a tela atual
-        JOptionPane.getRootFrame().dispose();
+    public void cadastrarContatos() {   // Encaminhando para a tela de adicionar contato
+        frmAdcContato adicionarContato = new frmAdcContato();
+        adicionarContato.setVisible(true);
+        jDesktopPane1.add(adicionarContato);
     }
-     
-    
-     /* Esses métodos tem como objetivo atualizar a tabela com 
+
+    /* Esses métodos tem como objetivo atualizar a tabela com 
     os dados mais recentes obtidos do banco de dados, refletindo 
     assim as alterações realizadas nos contatos e tambem para o campo de pesquisa */
     public void lerTabela(ObservarDadosTabela observador, JTable tabela, JTextField campoPesquisa) throws SQLException {
-    
+
         DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
         modelo.setNumRows(0);
         observador.lerDados(modelo, campoPesquisa.getText());
-    
-  }
 
-   public void lerTabelas() throws SQLException {
-        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaFamilia(), TabelaFamilia, TextPesquisar );
-        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaAmizade(), TabelaAmizade, TextPesquisar );
-        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaTrabalho(), TabelaTrabalho, TextPesquisar );
-        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaOutros(), TabelaOutros, TextPesquisar );
-        
     }
 
-   
+    public void lerTabelas() throws SQLException {
+        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaFamilia(), tabelaFamilia, TextPesquisar);
+        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaAmizade(), TabelaAmizade, TextPesquisar);
+        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaTrabalho(), TabelaTrabalho, TextPesquisar);
+        lerTabela((ObservarDadosTabela) new ObservarDadosTabelaOutros(), TabelaOutros, TextPesquisar);
+
+    }
+
 }
