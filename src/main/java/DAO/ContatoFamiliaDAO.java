@@ -170,9 +170,6 @@ public class ContatoFamiliaDAO {
                 }
             }
             JOptionPane.showMessageDialog(null, "Erro ao excluir o contato: " + e);
-        } finally {
-            // Fechar os recursos
-            // ...
         }
     }
 

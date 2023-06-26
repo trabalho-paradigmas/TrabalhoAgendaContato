@@ -29,6 +29,8 @@ public class frmAdcContato extends javax.swing.JInternalFrame {
      */
     public frmAdcContato() {
         initComponents();
+        desativarCamposTexto();
+
     }
 
     /**
@@ -470,8 +472,6 @@ public class frmAdcContato extends javax.swing.JInternalFrame {
             }
         }
 
-       
-
         JOptionPane.showMessageDialog(null, "Contato adicionado com sucesso!");
         dispose();
     }
@@ -530,8 +530,6 @@ public class frmAdcContato extends javax.swing.JInternalFrame {
 
     }
 
-   
-
     private boolean validaEmail() {
         String email = TextEmail.getText();
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
@@ -541,11 +539,28 @@ public class frmAdcContato extends javax.swing.JInternalFrame {
     private boolean validaNumero() {
         String numero = TextContato.getText();
         String numeroApenasNumeros = numero.replaceAll("[^0-9]", "");
+
+        if (numeroApenasNumeros.length() != 9) {
+            return false;
+        }
+
         return numero.equals(numeroApenasNumeros);
     }
 
     private void cancelar() throws SQLException, ExecutionException {
         dispose();
     }
+
+    private void desativarCamposTexto() {
+        TextNome.setEnabled(false);
+        TextContato.setEnabled(false);
+        TextEmail.setEnabled(false);
+        TextParentesco.setEnabled(false);
+        TextApelido.setEnabled(false);
+        TextDepartamento.setEnabled(false);
+        TextTelefone_comercial.setEnabled(false);
+    }
+
+    
 
 }
