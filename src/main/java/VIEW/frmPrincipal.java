@@ -4,6 +4,7 @@
  */
 package VIEW;
 
+import DAO.ConexaoDAO;
 import DAO.ContatoAmizadeDAO;
 
 import DAO.ContatoFamiliaDAO;
@@ -17,6 +18,8 @@ import Interfaces.ObservarDadosTabelaOutros;
 import Interfaces.ObservarDadosTabelaTrabalho;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -535,10 +538,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TabelaAmizade;
+    public static javax.swing.JTable TabelaAmizade;
     public javax.swing.JTable TabelaFamilia;
-    private javax.swing.JTable TabelaOutros;
-    private javax.swing.JTable TabelaTrabalho;
+    public static javax.swing.JTable TabelaOutros;
+    public static javax.swing.JTable TabelaTrabalho;
     private javax.swing.JTextField TextPesquisar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCadastrar;
@@ -566,7 +569,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem menuEditarUser;
     private javax.swing.JRadioButtonMenuItem menuSairUser;
     public javax.swing.JPanel panelPrincipal;
-    private javax.swing.JTable tabelaFamilia;
+    public static javax.swing.JTable tabelaFamilia;
     // End of variables declaration//GEN-END:variables
 
     private void sair() {
@@ -751,7 +754,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 editarContato.TextParentesco.setEditable(false);
                 editarContato.TextApelido.setEditable(false);
                 editarContato.setVisible(true);
-                editarContato.pack();
+                jDesktopPane1.add(editarContato);
                 //editarContato.setLocationRelativeTo(null);
                 editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -780,7 +783,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 editarContato.TextParentesco.setEditable(false);
                 editarContato.TextDepartamento.setEditable(false);
                 editarContato.setVisible(true);
-                editarContato.pack();
+               jDesktopPane1.add(editarContato);
                 //editarContato.setLocationRelativeTo(null);
                 editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -814,6 +817,35 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     }
     
-    
+    public static void attTableFamilia(){
+        Connection conn;
+        DefaultTableModel model = (DefaultTableModel)tabelaFamilia.getModel();
+        String sql01 = "select parentesco from contato_familia";
+        String sql02 = "select id, nome, email,celular from contato";
+        
+        try {
+            conn = new ConexaoDAO().conectaBD();
+            PreparedStatement pstm01 = conn.prepareCall(sql01);
+            PreparedStatement pstm02 = conn.prepareCall(sql02);
+            
+            ResultSet rs01 = pstm01.executeQuery();
+            ResultSet rs02 = pstm02.executeQuery();
+            
+            while(rs01.next() && rs02.next()){
+                Object[] dataRow = new Object[4];
+                
+                dataRow[0] = rs02.getInt("id");
+                dataRow[1] = rs02.getString("nome");
+                dataRow[2] = rs02.getString("email");
+                dataRow[3] = rs02.getString("celular");
+                dataRow[4] = rs01.getString("parentesco");
+                model.addRow(dataRow);
+            }
+            
+        } catch (Exception e) {
+        }
+        
+        
+    }
 
 }
