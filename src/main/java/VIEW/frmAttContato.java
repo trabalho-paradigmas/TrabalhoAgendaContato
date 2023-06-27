@@ -203,13 +203,7 @@ public class frmAttContato extends javax.swing.JInternalFrame {
 
     private void btnCancelarAttContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAttContActionPerformed
 
-        try {
-            dispose();
-            frmPrincipal principal = new frmPrincipal();
-            principal.setVisible(true);
-        } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro tela principal" + erro);
-        }
+     dispose();
     }//GEN-LAST:event_btnCancelarAttContActionPerformed
 
 
