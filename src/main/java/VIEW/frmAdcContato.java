@@ -457,12 +457,23 @@ public class frmAdcContato extends javax.swing.JInternalFrame {
 
         } else if (cbOutros.isSelected()) {
             String telefone_comercial = TextTelefone_comercial.getText();
+            boolean validanumComercial = validaNumeroComercial();
+            if (validanumComercial == false) {
+                JOptionPane.showMessageDialog(null, "Por favor, preencha com um número valido.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             contato = new ContatoOutrosDTO(0, nome, celular, email, telefone_comercial);
 
         } else if (cbTrabalho.isSelected()) {
             String telefone_comercial = TextTelefone_comercial.getText();
             String departamento = TextDepartamento.getText();
+
+            boolean validanumComercial = validaNumeroComercial();
+            if (validanumComercial == false) {
+                JOptionPane.showMessageDialog(null, "Por favor, preencha com um número valido.", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             contato = new ContatoTrabalhoDTO(0, nome, celular, email, telefone_comercial, departamento);
 
         }
@@ -551,6 +562,17 @@ public class frmAdcContato extends javax.swing.JInternalFrame {
         return numero.equals(numeroApenasNumeros);
     }
 
+    private boolean validaNumeroComercial() {
+        String numero = TextTelefone_comercial.getText();
+        String numeroApenasNumeros = numero.replaceAll("[^0-9]", "");
+
+        if (numeroApenasNumeros.length() != 9) {
+            return false;
+        }
+
+        return numero.equals(numeroApenasNumeros);
+    }
+
     private void cancelar() throws SQLException, ExecutionException {
         dispose();
     }
@@ -564,7 +586,5 @@ public class frmAdcContato extends javax.swing.JInternalFrame {
         TextDepartamento.setEnabled(false);
         TextTelefone_comercial.setEnabled(false);
     }
-
-    
 
 }

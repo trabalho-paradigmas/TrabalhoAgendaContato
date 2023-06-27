@@ -813,5 +813,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         lerTabela((ObservarDadosTabela) new ObservarDadosTabelaOutros(), TabelaOutros, TextPesquisar);
 
     }
+    
+    
 
 }
