@@ -72,15 +72,15 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         TabelaTrabalho = new javax.swing.JTable();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        TabelaAmizade = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        TabelaOutros = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TabelaAmizade = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        TabelaOutros = new javax.swing.JTable();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -208,43 +208,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(TabelaTrabalho);
 
-        TabelaAmizade.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Nome", "Email", "Celular", "Apelido"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane6.setViewportView(TabelaAmizade);
-
         jLabel1.setText("Amizade");
-
-        TabelaOutros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Nome", "Email", "Celular", "Celular comercial"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane7.setViewportView(TabelaOutros);
 
         jLabel2.setText("Outros");
 
@@ -269,19 +233,55 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        TabelaAmizade.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome", "Email", "Celular", "Apelido"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(TabelaAmizade);
+
+        TabelaOutros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome", "Email", "Celular", "Celular comercial"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(TabelaOutros);
+
         jDesktopPane2.setLayer(TextPesquisar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(btnBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(lblFamilia, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jScrollPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(btnCadastrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(btnExcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(btnEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(jScrollPane6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(jScrollPane7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
         jDesktopPane2.setLayout(jDesktopPane2Layout);
@@ -297,23 +297,23 @@ public class frmPrincipal extends javax.swing.JFrame {
                     .addGroup(jDesktopPane2Layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblFamilia)
                             .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel2)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
-                                .addComponent(jScrollPane5)
-                                .addComponent(jScrollPane4))))
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
+                                .addComponent(jScrollPane4)
+                                .addComponent(jScrollPane6))
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                        .addGap(331, 331, 331)
+                        .addGap(374, 374, 374)
                         .addComponent(btnCadastrar)
                         .addGap(18, 18, 18)
                         .addComponent(btnExcluir)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditar)))
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
         jDesktopPane2Layout.setVerticalGroup(
             jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,11 +334,11 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnExcluir)
@@ -361,10 +361,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(276, 276, 276)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -414,31 +418,29 @@ public class frmPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1003, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(47, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(198, 198, 198))))
+                        .addGap(98, 98, 98)
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(296, 296, 296)
+                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(lblUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 22, Short.MAX_VALUE)))
+                .addGap(34, 34, 34)
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUsuario)
+                .addGap(18, 18, 18)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
 
         pack();
@@ -539,7 +541,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable TabelaAmizade;
-    public javax.swing.JTable TabelaFamilia;
+    private javax.swing.JTable TabelaFamilia;
     public static javax.swing.JTable TabelaOutros;
     public static javax.swing.JTable TabelaTrabalho;
     private javax.swing.JTextField TextPesquisar;
@@ -568,7 +570,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     public static javax.swing.JLabel lblUsuario;
     private javax.swing.JRadioButtonMenuItem menuEditarUser;
     private javax.swing.JRadioButtonMenuItem menuSairUser;
-    public javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelPrincipal;
     public static javax.swing.JTable tabelaFamilia;
     // End of variables declaration//GEN-END:variables
 
@@ -615,7 +617,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         if (tabelaFamilia.getSelectedRow() != -1) {
             int linha = tabelaFamilia.getSelectedRow();
             int idContato = (int) tabelaFamilia.getValueAt(linha, 0);
-            
+
             int confirma = JOptionPane.showConfirmDialog(null, "Deseja apagar contato?", "Atenção", JOptionPane.YES_NO_OPTION);
 
             if (confirma == JOptionPane.YES_OPTION) {
@@ -645,7 +647,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             int idContato = (int) TabelaTrabalho.getValueAt(linha, 0);
 
             int confirma = JOptionPane.showConfirmDialog(null, "Deseja apagar contato?", "Atenção", JOptionPane.YES_NO_OPTION);
-            
+
             if (confirma == JOptionPane.YES_OPTION) {
                 ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
                 contatoTrabalhoDAO.delete(idContato);
@@ -654,12 +656,12 @@ public class frmPrincipal extends javax.swing.JFrame {
                 model.removeRow(linha);
                 model.fireTableDataChanged();
             }
-            
+
         } else if (TabelaOutros.getSelectedRow() != -1) {
             int linha = TabelaOutros.getSelectedRow();
             int idContato = (int) TabelaOutros.getValueAt(linha, 0);
             int confirma = JOptionPane.showConfirmDialog(null, "Deseja apagar contato?", "Atenção", JOptionPane.YES_NO_OPTION);
-            
+
             if (confirma == JOptionPane.YES_OPTION) {
                 ContatoTrabalhoDAO contatoTrabalhoDAO = new ContatoTrabalhoDAO();
                 contatoTrabalhoDAO.delete(idContato);
@@ -670,7 +672,6 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         }
     }
-
 
     private void enviaDadoTabela() {
         if (tabelaFamilia.getSelectedRow() != -1) {
@@ -783,7 +784,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 editarContato.TextParentesco.setEditable(false);
                 editarContato.TextDepartamento.setEditable(false);
                 editarContato.setVisible(true);
-               jDesktopPane1.add(editarContato);
+                jDesktopPane1.add(editarContato);
                 //editarContato.setLocationRelativeTo(null);
                 editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -815,37 +816,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         lerTabela((ObservarDadosTabela) new ObservarDadosTabelaTrabalho(), TabelaTrabalho, TextPesquisar);
         lerTabela((ObservarDadosTabela) new ObservarDadosTabelaOutros(), TabelaOutros, TextPesquisar);
 
-    }
-    
-    public static void attTableFamilia(){
-        Connection conn;
-        DefaultTableModel model = (DefaultTableModel)tabelaFamilia.getModel();
-        String sql01 = "select parentesco from contato_familia";
-        String sql02 = "select id, nome, email,celular from contato";
-        
-        try {
-            conn = new ConexaoDAO().conectaBD();
-            PreparedStatement pstm01 = conn.prepareCall(sql01);
-            PreparedStatement pstm02 = conn.prepareCall(sql02);
-            
-            ResultSet rs01 = pstm01.executeQuery();
-            ResultSet rs02 = pstm02.executeQuery();
-            
-            while(rs01.next() && rs02.next()){
-                Object[] dataRow = new Object[4];
-                
-                dataRow[0] = rs02.getInt("id");
-                dataRow[1] = rs02.getString("nome");
-                dataRow[2] = rs02.getString("email");
-                dataRow[3] = rs02.getString("celular");
-                dataRow[4] = rs01.getString("parentesco");
-                model.addRow(dataRow);
-            }
-            
-        } catch (Exception e) {
-        }
-        
-        
     }
 
 }

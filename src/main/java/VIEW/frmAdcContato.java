@@ -482,6 +482,7 @@ public class frmAdcContato extends javax.swing.JInternalFrame {
             try {
                 contato.cadastrar();
                 System.out.println("Contato inserido com sucesso!");
+                
             } catch (SQLException e) {
                 e.printStackTrace();
             }

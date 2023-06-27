@@ -194,11 +194,11 @@ public class frmAttContato extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
-        try {
-            passardados();
-        } catch (SQLException ex) {
-            Logger.getLogger(frmAttContato.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            passardados();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(frmAttContato.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarAttContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAttContActionPerformed
@@ -229,27 +229,27 @@ public class frmAttContato extends javax.swing.JInternalFrame {
     public javax.swing.JLabel lblId;
     // End of variables declaration//GEN-END:variables
 
-    private void passardados() throws SQLException {
-
-        frmPrincipal principal = new frmPrincipal();
-        if (principal.TabelaFamilia.equals("Familia")) {
-            int id = Integer.parseInt(lblId.getText());
-            String nome = TextNome.getText();
-            String email = TextEmail.getText();
-            String celular = TextCelular.getText();
-            String parentesco = TextApelido.getText();
-
-            ContatoFamiliaDAO familia = new ContatoFamiliaDAO();
-
-            if (familia.atualizar(id, nome, email, celular, parentesco) > 0) {
-                JOptionPane.showMessageDialog(null, "Salvo com sucesso");
-                dispose();
-                principal.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro na edição");
-            }
-
-        }
-
-    }
+//    private void passardados() throws SQLException {
+//
+//        frmPrincipal principal = new frmPrincipal();
+//        if (principal.TabelaFamilia.equals("Familia")) {
+//            int id = Integer.parseInt(lblId.getText());
+//            String nome = TextNome.getText();
+//            String email = TextEmail.getText();
+//            String celular = TextCelular.getText();
+//            String parentesco = TextApelido.getText();
+//
+//            ContatoFamiliaDAO familia = new ContatoFamiliaDAO();
+//
+//            if (familia.atualizar(id, nome, email, celular, parentesco) > 0) {
+//                JOptionPane.showMessageDialog(null, "Salvo com sucesso");
+//                dispose();
+//                principal.setVisible(true);
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Erro na edição");
+//            }
+//
+//        }
+//
+//    }
 }
