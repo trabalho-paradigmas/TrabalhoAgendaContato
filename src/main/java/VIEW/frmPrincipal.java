@@ -741,7 +741,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
                 return;
             } else {
-                EditarContato editarContato = new EditarContato();
+                frmAttContato editarContato = new frmAttContato();
                 editarContato.TextNome.setText(nome);
                 editarContato.lblId.setText(String.valueOf(id));
                 editarContato.TextCelular.setText(celular);
@@ -752,7 +752,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 editarContato.TextApelido.setEditable(false);
                 editarContato.setVisible(true);
                 editarContato.pack();
-                editarContato.setLocationRelativeTo(null);
+                //editarContato.setLocationRelativeTo(null);
                 editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             }
@@ -770,7 +770,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nenhum contato selecionado");
                 return;
             } else {
-                EditarContato editarContato = new EditarContato();
+                frmAttContato editarContato = new frmAttContato();
                 editarContato.lblId.setText(String.valueOf(id));
                 editarContato.TextNome.setText(nome);
                 editarContato.TextCelular.setText(celular);
@@ -781,7 +781,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                 editarContato.TextDepartamento.setEditable(false);
                 editarContato.setVisible(true);
                 editarContato.pack();
-                editarContato.setLocationRelativeTo(null);
+                //editarContato.setLocationRelativeTo(null);
                 editarContato.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             }

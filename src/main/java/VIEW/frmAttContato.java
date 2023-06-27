@@ -197,7 +197,7 @@ public class frmAttContato extends javax.swing.JInternalFrame {
         try {
             passardados();
         } catch (SQLException ex) {
-            Logger.getLogger(EditarContato.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmAttContato.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
